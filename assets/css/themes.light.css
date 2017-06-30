@@ -1,7 +1,7 @@
 /**
  * THEMES.LIGHT
  */
-/* Body */
+/* Body  ICI la couleur lors du chargement*/
 body {
   background: #fff;
   color: #939393;
@@ -33,19 +33,19 @@ h6 {
   color: inherit;
 }
 
-/* Links */
+/* Links couleur des liens*/
 a,
 .t-link-container .t-link-container__item,
 .t-link-container:hover .t-link-container__item--blended {
-  color: #F8BB10;
+  color: #0e2f44;
 }
 
-/* Hover Links */
+/* Hover Links lien surbrillance */
 a:hover,
 a:focus,
 a:active,
 .t-link-container:hover .t-link-container__item {
-  color: #e0a707;
+  color: #6897bb;
 }
 
 /* Horizontal Rulers */
@@ -59,30 +59,30 @@ hr,
   background: #ececec;
 }
 
-/* Primary Color */
+/* Primary Color couleur numéro dans expertise*/
 .t-primary-color,
 .t-primary-color-line {
-  color: #F8BB10;
+  color: #0e2f44;
 }
 
 .t-primary-bg,
 .t-primary-color-line {
-  background: #F8BB10;
+  background: #cbbeb5;
 }
 
-/* Preloader */
+/* Preloader  couleur chargement*/
 .t-preloader__spinner:not(:required):before {
-  border-top-color: #F8BB10;
-  border-bottom-color: #F8BB10;
+  border-top-color: #cbbeb5;
+  border-bottom-color: #0e2f44;
 }
 
-/* Brand Colors */
+/* Brand Colors prénom, nom de famille*/
 .t-title__first-word {
   color: #939393;
 }
 
 .t-title__second-word {
-  color: #F8BB10;
+  color: #0e2f44;
 }
 
 .t-sub-title {
@@ -96,7 +96,7 @@ hr,
 }
 
 .t-title__first-word {
-  text-transform: lowercase;
+
   font-weight: 300;
 }
 
