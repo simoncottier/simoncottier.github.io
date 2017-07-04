@@ -2001,7 +2001,7 @@ img[height] {
 
 .c-progress-bar {
   position: relative;
-  height: 5px;
+  height: 2px;
 }
 
 .c-progress-bar__filler {
@@ -2176,7 +2176,7 @@ img[height] {
 }
 
 .c-avatar__img {
-  border-radius: 50%;
+  border-radius: 2%;
   width: 11rem;
 }
 
