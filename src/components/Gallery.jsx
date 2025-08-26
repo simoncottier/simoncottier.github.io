@@ -8,53 +8,18 @@ const Gallery = ({ colorTheme }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Look for numbered images 1-8 with common extensions
-    const imageExtensions = ['jpg', 'jpeg', 'png', 'webp'];
-    const imageNames = [];
+    // Directly define the images we know exist (1.jpg through 8.jpg)
+    const galleryImages = [];
     
-    // Generate all possible combinations for images 1-8
     for (let i = 1; i <= 8; i++) {
-      for (const ext of imageExtensions) {
-        imageNames.push(`${i}.${ext}`);
-        imageNames.push(`image${i}.${ext}`);
-        imageNames.push(`photo${i}.${ext}`);
-        imageNames.push(`gallery${i}.${ext}`);
-        imageNames.push(`project${i}.${ext}`);
-        imageNames.push(`work${i}.${ext}`);
-        imageNames.push(`portfolio${i}.${ext}`);
-      }
+      galleryImages.push({
+        src: `/images/${i}.jpg`,
+        alt: `Gallery image ${i}`,
+        name: `${i}.jpg`
+      });
     }
     
-    // Try to load images that exist
-    const loadImages = async () => {
-      const validImages = [];
-      for (const imageName of imageNames) {
-        try {
-          const img = new Image();
-          img.src = `/images/${imageName}`;
-          
-          await new Promise((resolve, reject) => {
-            img.onload = () => {
-              validImages.push({
-                src: `/images/${imageName}`,
-                alt: imageName.replace(/\.[^/.]+$/, "").replace(/[_-]/g, " "), // Clean up name
-                name: imageName
-              });
-              resolve();
-            };
-            img.onerror = () => reject();
-            
-            // Timeout after 100ms to avoid hanging
-            setTimeout(() => reject(), 100);
-          });
-        } catch (error) {
-          // Image doesn't exist, skip it
-        }
-      }
-      setImages(validImages);
-    };
-
-    loadImages();
+    setImages(galleryImages);
   }, []);
 
   const openModal = (image, index) => {
@@ -78,9 +43,10 @@ const Gallery = ({ colorTheme }) => {
     setSelectedImage(images[prevIndex]);
   };
 
-  if (images.length === 0) {
-    return null; // Don't render the gallery if no images
-  }
+  // Always render the gallery since we know we have 8 images
+  // if (images.length === 0) {
+  //   return null; // Don't render the gallery if no images
+  // }
 
   return (
     <>
