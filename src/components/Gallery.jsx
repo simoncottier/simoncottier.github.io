@@ -13,12 +13,13 @@ const Gallery = ({ colorTheme }) => {
     
     for (let i = 1; i <= 8; i++) {
       galleryImages.push({
-        src: `${process.env.PUBLIC_URL}/images/${i}.jpg`,
+        src: `./images/${i}.jpg`,
         alt: `Gallery image ${i}`,
         name: `${i}.jpg`
       });
     }
     
+    console.log('Gallery images configured:', galleryImages);
     setImages(galleryImages);
   }, []);
 
