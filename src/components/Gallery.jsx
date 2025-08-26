@@ -13,7 +13,7 @@ const Gallery = ({ colorTheme }) => {
     
     for (let i = 1; i <= 8; i++) {
       galleryImages.push({
-        src: `/images/${i}.jpg`,
+        src: `${process.env.PUBLIC_URL}/images/${i}.jpg`,
         alt: `Gallery image ${i}`,
         name: `${i}.jpg`
       });
@@ -106,6 +106,9 @@ const Gallery = ({ colorTheme }) => {
                 src={selectedImage.src}
                 alt={selectedImage.alt}
                 className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                onError={(e) => {
+                  console.error(`Modal failed to load image: ${selectedImage.src}`);
+                }}
               />
               
               {/* Close button */}
