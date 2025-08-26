@@ -7,7 +7,7 @@ import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } fro
 import Chatbot from "./Chatbot";
 
 import SiteExperience from "./SiteExperience";
-import Gallery from "./Gallery";
+
 
 export default function InteractiveCV() {
 
@@ -355,8 +355,7 @@ export default function InteractiveCV() {
           </motion.section>
         )}
 
-        {/* Gallery */}
-        <Gallery colorTheme={colorTheme} />
+
 
 
       </motion.div>
