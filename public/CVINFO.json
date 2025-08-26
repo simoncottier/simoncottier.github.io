@@ -11,9 +11,9 @@
     },
     "customFields": [],
     "picture": {
-      "url": "https://storage.rxresu.me/cmcten4870i10rxdfd9bujqtw/pictures/bpclwcivzc7s2nxnvm09ux2i.jpg",
+      "url": "/me.png",
       "size": 200,
-      "aspectRatio": 0.7,
+      "aspectRatio": 1.0,
       "borderRadius": 8,
       "effects": {
         "hidden": false,
@@ -198,7 +198,8 @@
             "MQTT",
             "Home Automation",
             "Python",
-            "Automastion scripting"
+            "Automation scripting",
+            "Playing with AI"
           ]
         },
         {
@@ -260,7 +261,19 @@
       "separateLinks": true,
       "visible": true,
       "id": "profiles",
-      "items": []
+      "items": [
+        {
+          "id": "linkedin_profile",
+          "visible": true,
+          "network": "LinkedIn",
+          "username": "simoncottier",
+          "icon": "linkedin",
+          "url": {
+            "label": "LinkedIn Profile",
+            "href": "https://www.linkedin.com/in/simoncottier/"
+          }
+        }
+      ]
     },
     "projects": {
       "name": "Projects",
@@ -310,7 +323,8 @@
             "Solidworks",
             "AutoCAD",
             "SPC",
-            "IOT"
+            "IOT",
+            "Website developing"
           ]
         },
         {
@@ -351,6 +365,95 @@
         "id": "oej8kyqgto2dv3fhra3w6ln1",
         "items": []
       }
+    }
+  },
+  "personalInfo": {
+    "personality": {
+      "traits": ["Innovative", "Results-driven", "Versatile", "Passionate about technology", "Solution-oriented"],
+      "workStyle": "Hands-on implementation combined with strategic thinking",
+      "approach": "Smart, value-added solutions that drive efficiency and align with business goals"
+    },
+    "background": {
+      "nickname": "Swiss knife engineer - versatile from technical expertise to digitalization",
+      "location": "Based in Romanel, Switzerland",
+      "age": 36,
+      "birthplace": "Born and raised in Lausanne, Switzerland",
+      "educationJourney": "Initially studied civil engineering at EPFL, then found his passion in systems engineering at HEIG-VD",
+      "languages": {
+        "french": "Native speaker",
+        "english": "Fluent",
+        "german": "Conversational (studied during ERASMUS exchange)"
+      }
+    },
+    "currentRole": {
+      "position": "Sr. Technical Solution Engineer at Medtronic",
+      "focus": "Leading Innovation 4 Manufacturing program",
+      "scope": "Regional role covering 13 European manufacturing sites",
+      "expertise": "Technology adoption, product quality improvement, waste reduction, manufacturing digitalization",
+      "approach": "Develops cross-site solutions that can be implemented across multiple manufacturing locations",
+      "passion": "Excited about new opportunities with AI and business analysis in manufacturing",
+      "industry": "Medical device industry with focus on healthcare innovation",
+      "mission": "Using innovation to support quality and improve patient outcomes"
+    },
+    "achievements": {
+      "recent": [
+        "Implemented AI-enabled vision systems reducing defects",
+        "Improved cycle time by 60% through standardized traceability",
+        "Deployed edge learning vision systems across multiple sites",
+        "Promoted innovation culture in manufacturing"
+      ],
+      "certifications": [
+        "Green Belt Certification (Medtronic, 2021)",
+        "Radioprotection diploma (CHUV)",
+        "Physics Laboratory Technician (EPFL, 2009) - graduated with honors"
+      ],
+      "recognition": [
+        "Selected for Cleveland NeuroDesign Entrepreneurs Workshop",
+        "Member of HES-SO Council (2015-2017)",
+        "Active speaker at manufacturing and technology events"
+      ]
+    },
+    "interests": {
+      "coding": "Arduino, ESP32, IoT projects, Python automation, AI experimentation, business analysis",
+      "mechanical": "Passionate about rebuilding vintage motorcycles - buying old bikes and restoring them to working condition",
+      "outdoor": "Hiking, ski touring, motorcycle adventures, overlanding expeditions",
+      "travel": "Adventure travel and cultural discovery - memorable motorcycle trip to Morocco",
+      "culinary": "Passionate about cooking and exploring different cuisines",
+      "community": "Organizing annual ski weekends for 250+ people in Medtronic social club",
+      "futureGoals": "Dreams of overlanding through Africa"
+    },
+    "education": {
+      "engineering": "HEIG-VD Bachelor in Engineering and Management (2014-2017)",
+      "technical": "Physics Laboratory Technician certification at EPFL (2005-2009)",
+      "international": "ERASMUS exchange in Germany for language immersion"
+    },
+    "philosophy": {
+      "work": "Believes in combining technical expertise with business strategy",
+      "innovation": "Focuses on practical innovations that deliver real impact",
+      "collaboration": "Works closely with leadership and suppliers for scalable solutions"
+    },
+    "socialMedia": {
+      "linkedin": {
+        "url": "https://www.linkedin.com/in/simoncottier/",
+        "description": "Professional network with 2K followers and 500+ connections, showcasing career journey in medical device industry",
+        "content": "Active in sharing insights about manufacturing innovation, healthcare technology, process engineering, and team leadership",
+        "stats": "2K followers, 500+ connections",
+        "focus": "Medical device innovation, quality improvement, and cross-site manufacturing solutions"
+      }
+    },
+    "chatbotPersonality": {
+      "tone": "Professional but approachable, enthusiastic about technology and innovation",
+      "expertise": "Can discuss technical solutions, manufacturing processes, digitalization, and career journey",
+      "helpfulTopics": [
+        "Manufacturing innovation and digitalization",
+        "Technical solution development",
+        "Project management and leadership",
+        "Engineering career path",
+        "Technology adoption strategies",
+        "Swiss work culture and lifestyle",
+        "Hobby projects and interests",
+        "Professional networking and LinkedIn presence"
+      ]
     }
   },
   "metadata": {

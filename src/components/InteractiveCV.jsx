@@ -7,6 +7,7 @@ import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } fro
 import Chatbot from "./Chatbot";
 
 import SiteExperience from "./SiteExperience";
+import Gallery from "./Gallery";
 
 export default function InteractiveCV() {
 
@@ -78,21 +79,21 @@ export default function InteractiveCV() {
         className="max-w-6xl mx-auto p-8 space-y-10 font-sans"
       >
         {/* Header */}
-        <header className={`flex justify-between items-center sticky top-0 z-20 backdrop-blur-md ${colorTheme.colors.container} p-6 rounded-2xl shadow-lg border border-gray-200`}>
-          <div className="flex items-center space-x-6">
+        <header className={`flex justify-between items-center ${colorTheme.colors.container} p-8 rounded-2xl shadow-lg border border-gray-200`}>
+          <div className="flex items-center space-x-8">
             {basics.picture?.url && (
               <img 
                 src={basics.picture.url} 
                 alt={basics.name}
                 onClick={() => setPhotoModalOpen(true)}
-                className="w-20 h-20 rounded-lg object-cover border-4 border-gray-200 shadow-lg cursor-pointer hover:opacity-80 transition-opacity duration-200"
+                className="w-32 h-40 rounded-lg object-cover border-4 border-gray-200 shadow-lg cursor-pointer hover:opacity-80 transition-opacity duration-200"
               />
             )}
             <div>
-              <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
+              <h1 className="text-5xl font-extrabold tracking-tight text-gray-900">
                 {basics.name}
               </h1>
-              <p className="text-xl text-gray-600 mt-2">{basics.headline}</p>
+              <p className="text-2xl text-gray-600 mt-3">{basics.headline}</p>
             </div>
           </div>
           <div className="flex space-x-3">
@@ -178,7 +179,7 @@ export default function InteractiveCV() {
               </div>
               <div
                 onClick={() => setExpanded(expanded === i ? null : i)}
-                className={`rounded-2xl ${colorTheme.colors.container} bg-opacity-80 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-200`}
+                className={`rounded-2xl ${colorTheme.colors.container} shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-200`}
               >
                 <div className="p-8">
                   <div className="flex justify-between items-center">
@@ -354,34 +355,10 @@ export default function InteractiveCV() {
           </motion.section>
         )}
 
-        {/* Skills Overview - Moved to the end */}
-        {skillsForChart.length > 0 && (
-          <motion.section
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
-          >
-            <h2 className="text-2xl font-bold mb-8 text-gray-900 text-center">Skills Overview</h2>
-            <div className="h-80">
-              <ResponsiveContainer>
-                <RadarChart data={skillsForChart}>
-                  <PolarGrid stroke="#cbd5e1" />
-                  <PolarAngleAxis dataKey="skill" stroke="#64748b" />
-                  <Radar 
-                    name="Skill Level" 
-                    dataKey="level" 
-                    stroke={colorTheme.colors.chartColor || colorTheme.preview.hex} 
-                    fill={colorTheme.colors.chartColor || colorTheme.preview.hex} 
-                    fillOpacity={0.6} 
-                    strokeWidth={3}
-                  />
-                </RadarChart>
-              </ResponsiveContainer>
-            </div>
-          </motion.section>
-        )}
+        {/* Gallery */}
+        <Gallery colorTheme={colorTheme} />
+
+
       </motion.div>
       
       {/* Photo Modal */}
