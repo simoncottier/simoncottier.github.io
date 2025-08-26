@@ -1,78 +1,76 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon, Download, Search, ChevronDown, ExternalLink, X } from "lucide-react";
+
+
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Download, ChevronDown, Mail, Phone, MapPin } from "lucide-react";
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from "recharts";
+import Chatbot from "./Chatbot";
 
-const skills = [
-  { skill: "React", level: 90 },
-  { skill: "TypeScript", level: 80 },
-  { skill: "Python", level: 75 },
-  { skill: "Vision Systems", level: 85 },
-  { skill: "Process Optimization", level: 95 },
-];
-
-const experiences = [
-  {
-    role: "Senior Technical Solutions Engineer",
-    company: "Medtronic",
-    period: "2022 – Present",
-    details: [
-      "Leading Innovation 4 Manufacturing program across 13 sites.",
-      "Deployed AI-based vision systems reducing cycle time by 17%.",
-      "Scaling packaging redesign and scrap reduction initiatives.",
-    ],
-  },
-  {
-    role: "Manufacturing Engineer",
-    company: "Previous Role",
-    period: "2018 – 2022",
-    details: [
-      "Implemented automated inspection systems.",
-      "Optimized cycle times and improved OEE by 12%.",
-    ],
-  },
-];
-
-const projects = [
-  {
-    title: "Little Market Platform",
-    description: "A local-commerce web and mobile app built with React, Firebase, and Mapbox.",
-    details: "Built a marketplace platform connecting local shops to consumers. Features include location-based search, product uploads, and payment integrations.",
-    link: "https://littlemarket.app",
-    image: "https://via.placeholder.com/400x250.png?text=Little+Market",
-    stack: ["React", "Firebase", "Mapbox"]
-  },
-  {
-    title: "Vision AI System",
-    description: "AI-enabled inspection system for pacemaker assembly, reducing cycle time by 17%.",
-    details: "Developed a deep learning solution using Cognex ViDi and integrated with PLCs. Enabled automated quality checks and reduced risk of scrap.",
-    link: "#",
-    image: "https://via.placeholder.com/400x250.png?text=Vision+System",
-    stack: ["Cognex ViDi", "Python", "PLC"]
-  },
-  {
-    title: "Smart Home Automation",
-    description: "Custom Raspberry Pi and Zigbee2MQTT setup for smart lighting and sensors.",
-    details: "Built a home automation hub with Node.js backend, integrated Zigbee devices, and dashboard monitoring in Home Assistant.",
-    link: "#",
-    image: "https://via.placeholder.com/400x250.png?text=Smart+Home",
-    stack: ["Raspberry Pi", "Zigbee2MQTT", "Home Assistant"]
-  },
-];
+import SiteExperience from "./SiteExperience";
 
 export default function InteractiveCV() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [query, setQuery] = useState("");
-  const [expanded, setExpanded] = useState(null);
-  const [selectedProject, setSelectedProject] = useState(null);
 
-  const filteredExperiences = experiences.filter((exp) =>
-    exp.role.toLowerCase().includes(query.toLowerCase()) ||
-    exp.company.toLowerCase().includes(query.toLowerCase())
-  );
+  const [expanded, setExpanded] = useState(null);
+  const [cvData, setCvData] = useState(null);
+  const [photoModalOpen, setPhotoModalOpen] = useState(false);
+  const [colorTheme, setColorTheme] = useState({
+    id: 'pink',
+    name: 'Rose Pink',
+    colors: {
+      primary: 'text-gray-700',
+      secondary: 'text-gray-600',
+      accent: 'bg-[#FFB6C1]',
+      accentHover: 'hover:bg-[#FF91A4]',
+      border: 'border-[#FFB6C1]',
+      tag: 'bg-[#FFB6C1] bg-opacity-20 text-[#D1477A]',
+      container: 'bg-[#FFB6C1] bg-opacity-40',
+      background: 'bg-gray-50',
+      font: 'text-gray-900',
+      iconBg: 'bg-[#FFB6C1]',
+      numberText: 'text-white',
+      chartColor: '#FFB6C1',
+      languageDots: 'bg-[#FFB6C1]'
+    },
+    preview: {
+      bg: 'bg-[#FFB6C1]',
+      text: 'text-[#D1477A]',
+      hex: '#FFB6C1'
+    }
+  });
+
+  useEffect(() => {
+    // Load CV data from CVINFO.json
+    fetch('/CVINFO.json')
+      .then(response => response.json())
+      .then(data => setCvData(data))
+      .catch(error => console.error('Error loading CV data:', error));
+  }, []);
+
+  if (!cvData) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className={`animate-spin rounded-full h-32 w-32 border-b-4 border-[#FFB6C1]`}></div>
+      </div>
+    );
+  }
+
+  const { basics, sections } = cvData;
+  const experiences = sections.experience?.items || [];
+  const skills = sections.skills?.items || [];
+  const education = sections.education?.items || [];
+  const languages = sections.languages?.items || [];
+  const interests = sections.interests?.items || [];
+
+  // Convert skills to radar chart format
+  const skillsForChart = skills.map(skill => ({
+    skill: skill.name,
+    level: skill.keywords ? skill.keywords.length * 10 : 50
+  }));
+
+
 
   return (
-    <div className={darkMode ? "bg-neutral-950 text-white min-h-screen" : "bg-neutral-50 text-neutral-900 min-h-screen"}>
+    <div className={`${colorTheme.colors.background} text-gray-900 min-h-screen`}>
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
@@ -80,69 +78,126 @@ export default function InteractiveCV() {
         className="max-w-6xl mx-auto p-8 space-y-10 font-sans"
       >
         {/* Header */}
-        <header className="flex justify-between items-center sticky top-0 z-20 backdrop-blur-md bg-white/70 dark:bg-neutral-900/70 p-4 rounded-2xl shadow-sm">
-          <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-500 to-teal-400 bg-clip-text text-transparent">Simon Cottier</h1>
-          <div className="flex space-x-2">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-xl bg-neutral-200 dark:bg-neutral-800 hover:scale-105 transition"
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-            <button className="p-2 px-4 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600 transition flex items-center">
-              <Download size={18} className="mr-2" /> Export PDF
-            </button>
+        <header className={`flex justify-between items-center sticky top-0 z-20 backdrop-blur-md ${colorTheme.colors.container} p-6 rounded-2xl shadow-lg border border-gray-200`}>
+          <div className="flex items-center space-x-6">
+            {basics.picture?.url && (
+              <img 
+                src={basics.picture.url} 
+                alt={basics.name}
+                onClick={() => setPhotoModalOpen(true)}
+                className="w-20 h-20 rounded-lg object-cover border-4 border-gray-200 shadow-lg cursor-pointer hover:opacity-80 transition-opacity duration-200"
+              />
+            )}
+            <div>
+              <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
+                {basics.name}
+              </h1>
+              <p className="text-xl text-gray-600 mt-2">{basics.headline}</p>
+            </div>
+          </div>
+          <div className="flex space-x-3">
+            {/* Color picker removed - now handled in Site Experience section */}
           </div>
         </header>
 
-        {/* Search */}
+        {/* Site Experience */}
+        <SiteExperience 
+          onThemeChange={setColorTheme} 
+          currentTheme={colorTheme}
+        />
+
+        {/* Contact Info */}
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="flex items-center border rounded-2xl p-3 shadow-md bg-white dark:bg-neutral-900"
+          transition={{ delay: 0.2 }}
+          className={`${colorTheme.colors.container} p-8 rounded-2xl shadow-lg border border-gray-200`}
         >
-          <Search size={18} className="mr-2 text-emerald-500" />
-          <input
-            className="flex-1 bg-transparent outline-none placeholder:text-neutral-400"
-            placeholder="Search experiences..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
+          <div className="grid md:grid-cols-3 gap-6">
+            {basics.email && (
+              <a 
+                href={`mailto:${basics.email}`}
+                className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
+              >
+                <div className={`p-2 ${colorTheme.colors.iconBg || colorTheme.colors.accent} rounded-lg`}>
+                  <Mail size={20} className="text-white" />
+                </div>
+                <span className="font-medium text-gray-900 hover:text-gray-700">{basics.email}</span>
+              </a>
+            )}
+            {basics.phone && (
+              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
+                <div className={`p-2 ${colorTheme.colors.iconBg || colorTheme.colors.accent} rounded-lg opacity-80`}>
+                  <Phone size={20} className="text-white" />
+                </div>
+                <span className="font-medium">{basics.phone}</span>
+              </div>
+            )}
+            {basics.location && (
+              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
+                <div className={`p-2 ${colorTheme.colors.iconBg || colorTheme.colors.accent} rounded-lg opacity-60`}>
+                  <MapPin size={20} className="text-white" />
+                </div>
+                <span className="font-medium">{basics.location}</span>
+              </div>
+            )}
+          </div>
         </motion.div>
 
+        {/* Summary */}
+        {sections.summary?.content && (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className={`${colorTheme.colors.container} p-8 rounded-2xl shadow-lg border border-gray-200`}
+          >
+            <h2 className="text-2xl font-bold mb-6 text-gray-900 ">Summary</h2>
+            <div 
+              className="text-gray-700 leading-relaxed text-lg"
+              dangerouslySetInnerHTML={{ __html: sections.summary.content }}
+            />
+          </motion.section>
+        )}
+
+
+
         {/* Experience Timeline */}
-        <section className="space-y-6 relative before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-6 before:w-1 before:bg-gradient-to-b before:from-emerald-400 before:to-teal-500">
-          {filteredExperiences.map((exp, i) => (
+        <section className={`space-y-8 relative before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-8 before:w-1 ${colorTheme.colors.accent.replace('bg-', 'before:bg-')}`}>
+          {experiences.map((exp, i) => (
             <motion.div
-              key={i}
+              key={exp.id || i}
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.15 }}
               viewport={{ once: true }}
-              className="pl-14 relative"
+              className="pl-20 relative"
             >
-              <span className="absolute left-3 top-7 w-6 h-6 flex items-center justify-center rounded-full bg-emerald-500 text-white font-bold">{i+1}</span>
+              <div className={`absolute left-4 top-8 w-8 h-8 flex items-center justify-center rounded-full ${colorTheme.colors.accent} ${colorTheme.colors.numberText || 'text-white'} font-bold text-lg shadow-lg`}>
+                {i+1}
+              </div>
               <div
                 onClick={() => setExpanded(expanded === i ? null : i)}
-                className="rounded-2xl bg-white dark:bg-neutral-800 shadow-lg hover:shadow-xl transition cursor-pointer overflow-hidden"
+                className={`rounded-2xl ${colorTheme.colors.container} bg-opacity-80 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-200`}
               >
-                <div className="p-6">
+                <div className="p-8">
                   <div className="flex justify-between items-center">
-                    <h2 className="text-xl font-semibold">{exp.role} @ {exp.company}</h2>
-                    <ChevronDown className={`transition-transform ${expanded === i ? "rotate-180" : ""}`} />
+                    <h2 className="text-2xl font-bold text-gray-900 ">
+                      {exp.position} @ {exp.company}
+                    </h2>
+                    <ChevronDown className={`transition-transform duration-300 text-gray-500 ${expanded === i ? "rotate-180" : ""}`} size={24} />
                   </div>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400">{exp.period}</p>
-                  {expanded === i && (
-                    <motion.ul 
+                  <p className="text-lg text-gray-600  mt-2">{exp.date}</p>
+                  {exp.location && (
+                    <p className="text-lg text-gray-500 ">{exp.location}</p>
+                  )}
+                  {expanded === i && exp.summary && (
+                    <motion.div 
                       initial={{ opacity: 0, y: -10 }} 
                       animate={{ opacity: 1, y: 0 }} 
-                      className="list-disc ml-6 mt-3 space-y-1 text-neutral-700 dark:text-neutral-300"
-                    >
-                      {exp.details.map((d, j) => (
-                        <li key={j}>{d}</li>
-                      ))}
-                    </motion.ul>
+                      className="mt-6 p-6 bg-white bg-opacity-70 rounded-xl border border-gray-200 shadow-sm"
+                      dangerouslySetInnerHTML={{ __html: exp.summary }}
+                    />
                   )}
                 </div>
               </div>
@@ -150,105 +205,217 @@ export default function InteractiveCV() {
           ))}
         </section>
 
-        {/* Skills Chart */}
-        <motion.section
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="bg-white dark:bg-neutral-800 p-8 rounded-2xl shadow-xl"
-        >
-          <h2 className="text-2xl font-semibold mb-6">Skills</h2>
-          <div className="h-72">
-            <ResponsiveContainer>
-              <RadarChart data={skills}>
-                <PolarGrid stroke="#d1d5db" />
-                <PolarAngleAxis dataKey="skill" stroke="#6b7280" />
-                <Radar name="Skill Level" dataKey="level" stroke="#10b981" fill="#34d399" fillOpacity={0.6} />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
-        </motion.section>
 
-        {/* Projects Showcase */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="p-8 rounded-2xl shadow-xl bg-white dark:bg-neutral-800"
-        >
-          <h2 className="text-2xl font-semibold mb-6">Projects</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setSelectedProject(project)}
-                className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition bg-neutral-100 dark:bg-neutral-900 cursor-pointer"
-              >
-                <img src={project.image} alt={project.title} className="w-full h-40 object-cover" />
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">{project.description}</p>
-                  <span className="inline-flex items-center text-emerald-500 font-medium">
-                    Learn More <ExternalLink size={16} className="ml-1" />
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
 
-        {/* Project Modal */}
-        <AnimatePresence>
-          {selectedProject && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-6"
-              onClick={() => setSelectedProject(null)}
-            >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
-                className="bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden"
-              >
-                <div className="relative">
-                  <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-56 object-cover" />
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="absolute top-4 right-4 p-2 bg-black/60 rounded-full text-white hover:bg-black"
-                  >
-                    <X size={20} />
-                  </button>
-                </div>
-                <div className="p-6 space-y-4">
-                  <h3 className="text-2xl font-bold">{selectedProject.title}</h3>
-                  <p className="text-neutral-700 dark:text-neutral-300">{selectedProject.details}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.stack.map((tech, idx) => (
-                      <span key={idx} className="px-3 py-1 rounded-full text-sm bg-emerald-100 text-emerald-700 dark:bg-emerald-800 dark:text-emerald-200">{tech}</span>
+        {/* Skills Details */}
+        {skills.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
+          >
+            <h2 className="text-2xl font-bold mb-8 text-gray-900  text-center">Skills & Expertise</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {skills.map((skill, i) => (
+                <motion.div
+                  key={skill.id || i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-gray-50  p-6 rounded-xl shadow-lg border border-gray-200  hover:shadow-xl transition-all duration-300"
+                >
+                  <h3 className="text-xl font-bold mb-4 text-gray-900 ">{skill.name}</h3>
+                  {skill.keywords && (
+                    <div className="flex flex-wrap gap-2">
+                      {skill.keywords.map((keyword, idx) => (
+                        <span 
+                          key={idx} 
+                          className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}
+                        >
+                          {keyword}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+        )}
+
+        {/* Education */}
+        {education.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
+          >
+            <h2 className="text-2xl font-bold mb-8 text-gray-900  text-center">Education</h2>
+            <div className="space-y-6">
+              {education.map((edu, i) => (
+                <motion.div
+                  key={edu.id || i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className={`border-l-4 ${colorTheme.colors.border} pl-6 bg-gray-50  p-6 rounded-xl shadow-lg`}
+                >
+                  <h3 className="text-xl font-bold text-gray-900 ">{edu.institution}</h3>
+                  <p className="text-lg text-gray-600  mt-2">{edu.area}</p>
+                  <p className="text-gray-500  mt-1">{edu.date}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+        )}
+
+        {/* Languages */}
+        {languages.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
+          >
+            <h2 className="text-2xl font-bold mb-8 text-gray-900  text-center">Languages</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {languages.map((lang, i) => (
+                <motion.div
+                  key={lang.id || i}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-center p-6 bg-gray-50  rounded-xl shadow-lg border border-gray-200 "
+                >
+                  <h3 className="text-xl font-bold text-gray-900 ">{lang.name}</h3>
+                  <div className="flex justify-center mt-4">
+                    {[...Array(5)].map((_, idx) => (
+                      <div
+                        key={idx}
+                        className={`w-4 h-4 rounded-full mx-1 ${
+                          idx < lang.level ? (colorTheme.colors.languageDots || colorTheme.colors.accent) : 'bg-gray-300'
+                        }`}
+                      />
                     ))}
                   </div>
-                  <a
-                    href={selectedProject.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center mt-4 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition"
-                  >
-                    Visit Project <ExternalLink size={18} className="ml-2" />
-                  </a>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                  {lang.description && (
+                    <p className="text-gray-600  mt-3">{lang.description}</p>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+        )}
+
+        {/* Interests */}
+        {interests.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
+          >
+            <h2 className="text-2xl font-bold mb-8 text-gray-900  text-center">Interests</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {interests.map((interest, i) => (
+                <motion.div
+                  key={interest.id || i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-gray-50  p-6 rounded-xl shadow-lg border border-gray-200  hover:shadow-xl transition-all duration-300"
+                >
+                  <h3 className="text-xl font-bold mb-4 text-gray-900 ">{interest.name}</h3>
+                  {interest.keywords && (
+                    <div className="flex flex-wrap gap-2">
+                      {interest.keywords.map((keyword, idx) => (
+                        <span 
+                          key={idx} 
+                          className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}
+                        >
+                          {keyword}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+        )}
+
+        {/* Skills Overview - Moved to the end */}
+        {skillsForChart.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
+          >
+            <h2 className="text-2xl font-bold mb-8 text-gray-900 text-center">Skills Overview</h2>
+            <div className="h-80">
+              <ResponsiveContainer>
+                <RadarChart data={skillsForChart}>
+                  <PolarGrid stroke="#cbd5e1" />
+                  <PolarAngleAxis dataKey="skill" stroke="#64748b" />
+                  <Radar 
+                    name="Skill Level" 
+                    dataKey="level" 
+                    stroke={colorTheme.colors.chartColor || colorTheme.preview.hex} 
+                    fill={colorTheme.colors.chartColor || colorTheme.preview.hex} 
+                    fillOpacity={0.6} 
+                    strokeWidth={3}
+                  />
+                </RadarChart>
+              </ResponsiveContainer>
+            </div>
+          </motion.section>
+        )}
       </motion.div>
+      
+      {/* Photo Modal */}
+      {photoModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+          onClick={() => setPhotoModalOpen(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            className="relative max-w-2xl max-h-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={basics.picture?.url} 
+              alt={basics.name}
+              className="w-full h-full object-contain rounded-lg shadow-2xl"
+            />
+            <button
+              onClick={() => setPhotoModalOpen(false)}
+              className="absolute top-4 right-4 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-70 transition-all duration-200"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </motion.div>
+        </div>
+      )}
+      
+      {/* Chatbot */}
+      <Chatbot cvData={cvData} />
     </div>
   );
 }
-
