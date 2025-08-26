@@ -57,7 +57,10 @@ const Gallery = ({ colorTheme }) => {
         viewport={{ once: true }}
         className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
       >
-        <h2 className="text-2xl font-bold mb-8 text-gray-900 text-center">Gallery</h2>
+        <h2 className="text-2xl font-bold mb-8 text-gray-900 text-center">Gallery ({images.length} images)</h2>
+        {images.length === 0 && (
+          <p className="text-center text-gray-500">Loading images...</p>
+        )}
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((image, index) => (
@@ -74,6 +77,14 @@ const Gallery = ({ colorTheme }) => {
                 src={image.src}
                 alt={image.alt}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onError={(e) => {
+                  console.error(`Failed to load image: ${image.src}`);
+                  e.target.style.backgroundColor = '#f3f4f6';
+                  e.target.alt = `Image ${image.name} failed to load`;
+                }}
+                onLoad={() => {
+                  console.log(`Successfully loaded: ${image.src}`);
+                }}
               />
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
             </motion.div>
