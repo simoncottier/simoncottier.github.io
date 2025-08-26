@@ -12,31 +12,31 @@ import Gallery from "./Gallery";
 
 export default function InteractiveCV() {
 
-  const [expanded, setExpanded] = useState(null);
+  const [expanded, setExpanded] = useState('all'); // Open all experiences by default
   const [cvData, setCvData] = useState(null);
   const [photoModalOpen, setPhotoModalOpen] = useState(false);
   const [colorTheme, setColorTheme] = useState({
-    id: 'pink',
-    name: 'Rose Pink',
+    id: 'mint',
+    name: 'Mint Green',
     colors: {
       primary: 'text-gray-700',
       secondary: 'text-gray-600',
-      accent: 'bg-[#FFB6C1]',
-      accentHover: 'hover:bg-[#FF91A4]',
-      border: 'border-[#FFB6C1]',
-      tag: 'bg-[#FFB6C1] bg-opacity-20 text-[#D1477A]',
-      container: 'bg-[#FFB6C1] bg-opacity-40',
+      accent: 'bg-[#B0E0B8]',
+      accentHover: 'hover:bg-[#9DD4A5]',
+      border: 'border-[#B0E0B8]',
+      tag: 'bg-[#B0E0B8] bg-opacity-20 text-[#6A876E]',
+      container: 'bg-[#B0E0B8] bg-opacity-40',
       background: 'bg-gray-50',
       font: 'text-gray-900',
-      iconBg: 'bg-[#FFB6C1]',
+      iconBg: 'bg-[#B0E0B8]',
       numberText: 'text-white',
-      chartColor: '#FFB6C1',
-      languageDots: 'bg-[#FFB6C1]'
+      chartColor: '#B0E0B8',
+      languageDots: 'bg-[#B0E0B8]'
     },
     preview: {
-      bg: 'bg-[#FFB6C1]',
-      text: 'text-[#D1477A]',
-      hex: '#FFB6C1'
+      bg: 'bg-[#B0E0B8]',
+      text: 'text-[#6A876E]',
+      hex: '#B0E0B8'
     }
   });
 
@@ -179,7 +179,7 @@ export default function InteractiveCV() {
                 {i+1}
               </div>
               <div
-                onClick={() => setExpanded(expanded === i ? null : i)}
+                onClick={() => setExpanded(expanded === i ? null : expanded === 'all' ? i : i)}
                 className={`rounded-2xl ${colorTheme.colors.container} shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-200`}
               >
                 <div className="p-8">
@@ -187,13 +187,13 @@ export default function InteractiveCV() {
                     <h2 className="text-2xl font-bold text-gray-900 ">
                       {exp.position} @ {exp.company}
                     </h2>
-                    <ChevronDown className={`transition-transform duration-300 text-gray-500 ${expanded === i ? "rotate-180" : ""}`} size={24} />
+                    <ChevronDown className={`transition-transform duration-300 text-gray-500 ${expanded === i || expanded === 'all' ? "rotate-180" : ""}`} size={24} />
                   </div>
                   <p className="text-lg text-gray-600  mt-2">{exp.date}</p>
                   {exp.location && (
                     <p className="text-lg text-gray-500 ">{exp.location}</p>
                   )}
-                  {expanded === i && exp.summary && (
+                  {(expanded === i || expanded === 'all') && exp.summary && (
                     <motion.div 
                       initial={{ opacity: 0, y: -10 }} 
                       animate={{ opacity: 1, y: 0 }} 
@@ -371,13 +371,13 @@ export default function InteractiveCV() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
-            className="relative max-w-2xl max-h-full"
+            className="relative max-w-md max-h-96"
             onClick={(e) => e.stopPropagation()}
           >
             <img 
               src={basics.picture?.url} 
               alt={basics.name}
-              className="w-full h-full object-contain rounded-lg shadow-2xl"
+              className="w-full h-full object-cover rounded-lg shadow-2xl"
             />
             <button
               onClick={() => setPhotoModalOpen(false)}
