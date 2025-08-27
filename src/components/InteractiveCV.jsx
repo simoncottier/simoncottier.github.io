@@ -30,6 +30,7 @@ export default function InteractiveCV() {
       background: 'bg-gray-50',
       backgroundStyle: {},
       backgroundImage: null,
+      backgroundCombined: null,
       font: 'text-gray-900',
       iconBg: 'bg-[#B0E0B8]',
       numberText: 'text-white',
@@ -82,8 +83,8 @@ export default function InteractiveCV() {
       className={`${colorTheme.colors.background} text-gray-900 min-h-screen relative`}
       style={{
         ...colorTheme.colors.backgroundStyle,
-        backgroundImage: colorTheme.colors.backgroundImage ? `url(${colorTheme.colors.backgroundImage})` : 'none',
-        backgroundSize: 'contain',
+        backgroundImage: colorTheme.colors.backgroundCombined || (colorTheme.colors.backgroundImage ? `url(${colorTheme.colors.backgroundImage})` : 'none'),
+        backgroundSize: colorTheme.colors.backgroundCombined ? 'contain, cover' : 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
         backgroundAttachment: 'fixed'
