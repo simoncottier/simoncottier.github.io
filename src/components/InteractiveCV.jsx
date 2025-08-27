@@ -99,6 +99,9 @@ export default function InteractiveCV() {
                 <p className="text-lg italic text-gray-500 border-l-4 border-gray-300 pl-4">
                   "Optimization starts with this application"
                 </p>
+                <p className="text-sm text-gray-400 mt-2 ml-4">
+                  In reference of QOQA-000094
+                </p>
               </div>
               <p className="text-2xl text-gray-600 mt-3">{basics.headline}</p>
             </div>

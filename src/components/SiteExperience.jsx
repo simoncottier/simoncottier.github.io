@@ -34,8 +34,10 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
       .map(hex => Math.floor(parseInt(hex, 16) * 0.6).toString(16).padStart(2, '0'))
       .join('');
     
-    // Special handling for Cream Yellow theme
+    // Special handling for light themes that need black text
     const isCreamYellow = value.toUpperCase() === '#FFFACD';
+    const isLavender = value.toUpperCase() === '#E6E6FA';
+    const needsBlackText = isCreamYellow || isLavender;
     
     // Update the theme with all related colors
     const updatedTheme = {
@@ -47,11 +49,11 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
         border: `border-[${value}]`,
         tag: `bg-[${value}] bg-opacity-20 text-[#${darkerColor}]`,
         container: `bg-[${value}] bg-opacity-40`,
-        // Special overrides for Cream Yellow
-        iconBg: isCreamYellow ? 'bg-black' : `bg-[${value}]`,
-        numberText: isCreamYellow ? 'text-black' : 'text-white',
+        // Special overrides for light themes
+        iconBg: needsBlackText ? 'bg-black' : `bg-[${value}]`,
+        numberText: needsBlackText ? 'text-black' : 'text-white',
         chartColor: isCreamYellow ? '#FFB6C1' : value, // Pink for cream yellow
-        languageDots: isCreamYellow ? 'bg-black' : `bg-[${value}]`
+        languageDots: needsBlackText ? 'bg-black' : `bg-[${value}]`
       },
       preview: {
         ...currentTheme.preview,

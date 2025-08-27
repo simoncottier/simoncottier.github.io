@@ -4,6 +4,7 @@ import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
 
 const Chatbot = ({ cvData }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -23,6 +24,21 @@ const Chatbot = ({ cvData }) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Show popup notification after 3 seconds when site loads
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isOpen) {
+        setShowPopup(true);
+        // Auto-hide popup after 5 seconds
+        setTimeout(() => {
+          setShowPopup(false);
+        }, 5000);
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [isOpen]);
 
   const generateResponse = (userMessage) => {
     const message = userMessage.toLowerCase();
@@ -225,16 +241,55 @@ const Chatbot = ({ cvData }) => {
 
   return (
     <>
+      {/* Popup Notification */}
+      <AnimatePresence>
+        {showPopup && !isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.8 }}
+            className="fixed bottom-28 right-6 z-50 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 max-w-xs"
+          >
+            <div className="flex items-start space-x-3">
+              <div className="p-2 bg-blue-500 rounded-full flex-shrink-0">
+                <Bot size={16} className="text-white" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-900 dark:text-white mb-1">
+                  Hey, I'm here if you have some questions!
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Click to chat with Simon's AI assistant
+                </p>
+              </div>
+              <button
+                onClick={() => setShowPopup(false)}
+                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              >
+                <X size={14} />
+              </button>
+            </div>
+            <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white dark:bg-gray-800 border-r border-b border-gray-200 dark:border-gray-700 transform rotate-45"></div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Chat Button */}
       <motion.button
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+          setShowPopup(false);
+        }}
         className={`fixed bottom-6 right-6 z-50 p-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 ${
           isOpen ? 'hidden' : 'flex'
-        } items-center justify-center`}
+        } items-center justify-center relative`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
         <MessageCircle size={24} />
+        {showPopup && (
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+        )}
       </motion.button>
 
       {/* Chat Window */}
