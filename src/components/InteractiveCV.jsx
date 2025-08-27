@@ -28,6 +28,7 @@ export default function InteractiveCV() {
       tag: 'bg-[#B0E0B8] bg-opacity-20 text-[#6A876E]',
       container: 'bg-[#B0E0B8] bg-opacity-40',
       background: 'bg-gray-50',
+      backgroundStyle: {},
       backgroundImage: null,
       font: 'text-gray-900',
       iconBg: 'bg-[#B0E0B8]',
@@ -80,6 +81,7 @@ export default function InteractiveCV() {
     <div 
       className={`${colorTheme.colors.background} text-gray-900 min-h-screen relative`}
       style={{
+        ...colorTheme.colors.backgroundStyle,
         backgroundImage: colorTheme.colors.backgroundImage ? `url(${colorTheme.colors.backgroundImage})` : 'none',
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',

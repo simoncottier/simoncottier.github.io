@@ -50,7 +50,8 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
         border: `border-[${value}]`,
         tag: `bg-[${value}] bg-opacity-20 text-[#${darkerColor}]`,
         container: isQoqaPink ? 'bg-white' : `bg-[${value}] bg-opacity-40`,
-        background: isQoqaPink ? `bg-[${value}]` : 'bg-gray-50',
+        background: isQoqaPink ? 'bg-qoqa-pink' : 'bg-gray-50',
+        backgroundStyle: isQoqaPink ? { backgroundColor: value } : {},
         backgroundImage: isQoqaPink ? '/loutre.png' : null,
         // Special overrides for different themes
         iconBg: needsBlackText ? 'bg-black' : `bg-[${value}]`,
