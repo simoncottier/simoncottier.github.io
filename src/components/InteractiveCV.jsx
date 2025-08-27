@@ -240,7 +240,7 @@ export default function InteractiveCV() {
               </div>
             </motion.div>
 
-            {/* Design & Prototyping */}
+            {/* Leadership and team work */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -252,13 +252,13 @@ export default function InteractiveCV() {
                 <div className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4`}>
                   <span className="text-2xl">🎯</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">Design & Prototyping</h3>
+                <h3 className="text-xl font-bold text-gray-900">Leadership and team work</h3>
               </div>
               <p className="text-gray-700 mb-4">
-                <strong>3D design & printing:</strong> From idea → CAD model → functional prototype.
+                <strong>Cross-functional leadership:</strong> Leading teams across multiple sites and disciplines.
               </p>
               <p className="text-gray-700">
-                Demonstrates a maker mindset: test quickly, iterate, bring abstract ideas into tangible solutions.
+                Building consensus, driving alignment, and delivering results through collaborative problem-solving approaches.
               </p>
             </motion.div>
 
@@ -279,9 +279,20 @@ export default function InteractiveCV() {
               <p className="text-gray-700 mb-4">
                 <strong>Love for working with hands:</strong> building, tinkering, optimizing.
               </p>
-              <p className="text-gray-700">
+              <p className="text-gray-700 mb-4">
                 Ability to blend practical craftsmanship with digital innovation (bridge between field execution and strategic vision).
               </p>
+              <div className="flex flex-wrap gap-2">
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  3D parts design
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  prototyping
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  CAD
+                </span>
+              </div>
             </motion.div>
 
             {/* Mindset & Transferable Value */}
