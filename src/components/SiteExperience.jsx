@@ -95,12 +95,8 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
         >
           {/* Container Color Options */}
           <div className="space-y-4">
-            <label className="block text-lg font-semibold text-gray-800">
-              Choose Container Color
-            </label>
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {[
-                { name: 'Rose Pink', hex: '#FFB6C1', bg: 'bg-[#FFB6C1]' },
                 { name: 'Cream Yellow', hex: '#FFFACD', bg: 'bg-[#FFFACD]' },
                 { name: 'Mint Green', hex: '#B0E0B8', bg: 'bg-[#B0E0B8]' },
                 { name: 'Sky Blue', hex: '#87CEEB', bg: 'bg-[#87CEEB]' },
