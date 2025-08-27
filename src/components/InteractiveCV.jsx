@@ -227,9 +227,17 @@ export default function InteractiveCV() {
               <p className="text-gray-700 mb-4">
                 <strong>Passion for mechanics:</strong> repair and restoration of vintage motorcycles → shows patience, precision, and resilience.
               </p>
-              <p className="text-gray-700">
+              <p className="text-gray-700 mb-4">
                 Skilled at diagnosing and fixing complex systems — directly applicable to understanding inefficiencies and resolving them.
               </p>
+              <div className="flex flex-wrap gap-2">
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Mechanic
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  DIY
+                </span>
+              </div>
             </motion.div>
 
             {/* Design & Prototyping */}
