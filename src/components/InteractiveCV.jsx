@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Download, ChevronDown, Mail, Phone, MapPin } from "lucide-react";
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from "recharts";
-import Chatbot from "./Chatbot";
+
 
 import SiteExperience from "./SiteExperience";
 import Gallery from "./Gallery";
@@ -566,8 +566,6 @@ export default function InteractiveCV() {
         </div>
       )}
       
-      {/* Chatbot */}
-      <Chatbot cvData={cvData} />
     </div>
   );
 }
