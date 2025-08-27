@@ -49,7 +49,8 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
         accentHover: `hover:bg-[${value}]`,
         border: `border-[${value}]`,
         tag: `bg-[${value}] bg-opacity-20 text-[#${darkerColor}]`,
-        container: `bg-[${value}] bg-opacity-40`,
+        container: isQoqaPink ? 'bg-white' : `bg-[${value}] bg-opacity-40`,
+        background: isQoqaPink ? `bg-[${value}]` : 'bg-gray-50',
         // Special overrides for different themes
         iconBg: needsBlackText ? 'bg-black' : `bg-[${value}]`,
         numberText: needsBlackText ? 'text-black' : 'text-white',
