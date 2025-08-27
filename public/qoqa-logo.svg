@@ -1,0 +1,17 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pink background -->
+  <rect width="100" height="100" fill="#FF69B4" rx="12"/>
+  
+  <!-- White circle background -->
+  <circle cx="50" cy="50" r="32" fill="white"/>
+  
+  <!-- Black Q shape -->
+  <g fill="black">
+    <!-- Outer circle of Q -->
+    <circle cx="50" cy="50" r="32" fill="none" stroke="black" stroke-width="12"/>
+    <!-- Inner circle (hole of Q) -->
+    <circle cx="50" cy="48" r="12" fill="black"/>
+    <!-- Q tail -->
+    <rect x="58" y="58" width="8" height="20" rx="4" transform="rotate(45 62 68)"/>
+  </g>
+</svg>

@@ -37,6 +37,7 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
     // Special handling for light themes that need black text
     const isCreamYellow = value.toUpperCase() === '#FFFACD';
     const isLavender = value.toUpperCase() === '#E6E6FA';
+    const isQoqaPink = value.toUpperCase() === '#FF69B4';
     const needsBlackText = isCreamYellow || isLavender;
     
     // Update the theme with all related colors
@@ -49,10 +50,10 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
         border: `border-[${value}]`,
         tag: `bg-[${value}] bg-opacity-20 text-[#${darkerColor}]`,
         container: `bg-[${value}] bg-opacity-40`,
-        // Special overrides for light themes
+        // Special overrides for different themes
         iconBg: needsBlackText ? 'bg-black' : `bg-[${value}]`,
         numberText: needsBlackText ? 'text-black' : 'text-white',
-        chartColor: isCreamYellow ? '#FFB6C1' : value, // Pink for cream yellow
+        chartColor: isCreamYellow ? '#FFB6C1' : (isQoqaPink ? '#FF1493' : value), // Different pinks
         languageDots: needsBlackText ? 'bg-black' : `bg-[${value}]`
       },
       preview: {
@@ -95,13 +96,14 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
             <label className="block text-lg font-semibold text-gray-800">
               Choose Container Color
             </label>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
               {[
                 { name: 'Rose Pink', hex: '#FFB6C1', bg: 'bg-[#FFB6C1]' },
                 { name: 'Cream Yellow', hex: '#FFFACD', bg: 'bg-[#FFFACD]' },
                 { name: 'Mint Green', hex: '#B0E0B8', bg: 'bg-[#B0E0B8]' },
                 { name: 'Sky Blue', hex: '#87CEEB', bg: 'bg-[#87CEEB]' },
-                { name: 'Lavender', hex: '#E6E6FA', bg: 'bg-[#E6E6FA]' }
+                { name: 'Lavender', hex: '#E6E6FA', bg: 'bg-[#E6E6FA]' },
+                { name: 'QoQa Pink', hex: '#FF69B4', bg: 'bg-[#FF69B4]', isQoqa: true }
               ].map((color) => (
                 <button
                   key={color.hex}
@@ -113,7 +115,17 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
                   }`}
                 >
                   <div className="flex flex-col items-center space-y-2">
-                    <div className={`w-12 h-12 rounded-2xl ${color.bg} shadow-md border-2 border-white`}></div>
+                    <div className={`w-12 h-12 rounded-2xl ${color.bg} shadow-md border-2 border-white relative flex items-center justify-center overflow-hidden`}>
+                      {color.isQoqa ? (
+                        <img 
+                          src="/qoqa-logo.svg" 
+                          alt="QoQa Logo" 
+                          className="w-full h-full object-cover rounded-xl"
+                        />
+                      ) : (
+                        <div className="w-full h-full"></div>
+                      )}
+                    </div>
                     <div className="text-center">
                       <p className="font-semibold text-sm">{color.name}</p>
                       <p className="text-xs text-gray-500">{color.hex}</p>

@@ -461,48 +461,44 @@ export default function InteractiveCV() {
 
             <div className="bg-white bg-opacity-70 rounded-xl border border-gray-200 shadow-sm p-8">
               <div className="prose prose-lg max-w-none">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Dear Hiring Manager,</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Hello QoQa Team,</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  Thank you for taking the time to review my interactive CV! Your decision to learn more shows that you appreciate innovation and creativity – qualities that I bring to every project I work on.
+                  My name is Simon, and I am a generalist engineer by training. Over the past years, I have developed my career within Medtronic through several roles of increasing responsibility.
                 </p>
 
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  As a <strong>Senior Technical Solution Engineer</strong> with a proven track record in digitalization and manufacturing innovation, I'm passionate about creating smart, value-added solutions that drive efficiency and deliver impactful change. My experience spans across 13 European sites, where I've successfully implemented AI-enabled vision systems, output trackers, and scalable technical solutions.
+                  I began as a Production Engineer on the line manufacturing the world's smallest pacemaker. This experience allowed me to strengthen my ability to work in teams, lead groups, and solve daily challenges in a demanding environment. I also drove continuous improvement projects, both technical and organizational, to optimize line performance.
                 </p>
 
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  What sets me apart is my versatility – I'm truly a "Swiss knife" engineer, comfortable moving from hands-on technical implementation to strategic project leadership. Whether it's deploying edge learning systems in Grenoble, rolling out AI vision systems across Switzerland and Singapore, or leading cross-functional teams, I combine technical expertise with business acumen to deliver results.
+                  Driven by my passion for industrial optimization, I then became responsible for an innovation program, aimed at simplifying and enhancing communication and control processes. I had the opportunity to lead projects between Switzerland and Singapore, including the deployment of vision systems to reinforce quality and efficiency.
                 </p>
 
-                <div className="bg-gray-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Why I'm excited about this opportunity:</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="text-green-500 mr-2 mt-1">✓</span>
-                      <span>Your company's commitment to innovation aligns perfectly with my passion for cutting-edge solutions</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-green-500 mr-2 mt-1">✓</span>
-                      <span>The opportunity to contribute to meaningful projects that make a real impact</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-green-500 mr-2 mt-1">✓</span>
-                      <span>Working with a team that values creativity and forward-thinking approaches</span>
-                    </li>
-                  </ul>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  My ambition led me to take on a global role across 13 European sites, coordinating the deployment of common technologies (vision, automation, digitalization) in alignment with the group's strategy. Alongside this, I spearheaded digitalization initiatives (Power BI, SPC) to measure performance and identify new opportunities for improvement.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  These experiences have taught me to be structured, ambitious, and results-oriented, with the ability to unite teams around concrete and sustainable solutions. If I were to describe my "superpower," it would be <strong>Efficiency Vision</strong>: the ability to instantly detect inefficiencies within a system — like X-ray glasses for processes — and transform weak points into drivers of performance.
+                </p>
+
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg mb-6 border-l-4 border-blue-500">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Why QoQa?</h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    I am looking for an environment where I can make a real impact, not only by deploying technologies but by creating measurable value that teams can see and feel every day. QoQa's culture of creativity, agility, and human-centered values is the perfect ground for that.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    I believe my expertise in medical devices, technology, and digitalization can help accelerate your optimization journey — but more importantly, I want to bring a fresh perspective, positive energy, and a wave of motivation to the tanière.
+                  </p>
                 </div>
 
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  I'm particularly drawn to roles where I can leverage my experience in project management, technical implementation, and stakeholder engagement to drive digital transformation and process optimization. My Green Belt certification and hands-on experience with CAPA management, quality assurance, and continuous improvement make me well-equipped to contribute from day one.
-                </p>
-
                 <p className="text-gray-700 leading-relaxed mb-8">
-                  I would love the opportunity to discuss how my unique blend of technical expertise, leadership experience, and passion for innovation can contribute to your team's success. Let's schedule a conversation to explore how we can create something amazing together!
+                  If you're looking for someone to turn ambition into measurable efficiency while keeping the ride fun, then I think we're a good match. 🚀
                 </p>
 
                 <div className="text-center">
-                  <p className="text-gray-700 font-semibold mb-4">Looking forward to hearing from you,</p>
+                  <p className="text-gray-700 font-semibold mb-4">Looking forward to meeting you,</p>
                   <p className="text-2xl font-bold text-gray-900 mb-2">Simon Cottier</p>
                   <div className="flex justify-center space-x-4 text-sm text-gray-600">
                     <span>📧 simon.cottier@gmail.com</span>
