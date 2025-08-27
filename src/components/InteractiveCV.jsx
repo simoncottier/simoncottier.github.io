@@ -179,44 +179,110 @@ export default function InteractiveCV() {
           </motion.section>
         )}
 
-        {/* Skills Details */}
-        {skills.length > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
-          >
-            <h2 className="text-2xl font-bold mb-8 text-gray-900  text-center">Skills & Expertise</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {skills.map((skill, i) => (
-                <motion.div
-                  key={skill.id || i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-gray-50  p-6 rounded-xl shadow-lg border border-gray-200  hover:shadow-xl transition-all duration-300"
-                >
-                  <h3 className="text-xl font-bold mb-4 text-gray-900 ">{skill.name}</h3>
-                  {skill.keywords && (
-                    <div className="flex flex-wrap gap-2">
-                      {skill.keywords.map((keyword, idx) => (
-                        <span 
-                          key={idx} 
-                          className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}
-                        >
-                          {keyword}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-        )}
+        {/* Hands-on Expertise */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
+        >
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-center">Beyond the Office</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            
+            {/* Hands-on Problem Solving */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center mb-4">
+                <div className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4`}>
+                  <span className="text-2xl">🔧</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Hands-on Problem Solving</h3>
+              </div>
+              <p className="text-gray-700 mb-4">
+                <strong>Passion for mechanics:</strong> repair and restoration of vintage motorcycles → shows patience, precision, and resilience.
+              </p>
+              <p className="text-gray-700">
+                Skilled at diagnosing and fixing complex systems — directly applicable to understanding inefficiencies and resolving them.
+              </p>
+            </motion.div>
+
+            {/* Design & Prototyping */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center mb-4">
+                <div className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4`}>
+                  <span className="text-2xl">🎯</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Design & Prototyping</h3>
+              </div>
+              <p className="text-gray-700 mb-4">
+                <strong>3D design & printing:</strong> From idea → CAD model → functional prototype.
+              </p>
+              <p className="text-gray-700">
+                Demonstrates a maker mindset: test quickly, iterate, bring abstract ideas into tangible solutions.
+              </p>
+            </motion.div>
+
+            {/* Creativity & Engineering Craft */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center mb-4">
+                <div className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4`}>
+                  <span className="text-2xl">⚡</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Creativity & Engineering Craft</h3>
+              </div>
+              <p className="text-gray-700 mb-4">
+                <strong>Love for working with hands:</strong> building, tinkering, optimizing.
+              </p>
+              <p className="text-gray-700">
+                Ability to blend practical craftsmanship with digital innovation (bridge between field execution and strategic vision).
+              </p>
+            </motion.div>
+
+            {/* Mindset & Transferable Value */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center mb-4">
+                <div className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4`}>
+                  <span className="text-2xl">🚀</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Mindset & Transferable Value</h3>
+              </div>
+              <p className="text-gray-700 mb-4">
+                Shows you're not afraid to get dirty and make things work in real life.
+              </p>
+              <p className="text-gray-700 mb-4">
+                Brings credibility when introducing change — because you've been on both sides (design + execution).
+              </p>
+              <p className="text-gray-700 font-medium italic">
+                Fits perfectly with QoQa's playful but pragmatic culture: <strong>"pas que des idées, mais du concret"</strong>.
+              </p>
+            </motion.div>
+
+          </div>
+        </motion.section>
 
         {/* Experience Timeline */}
         <section className={`space-y-8 relative before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-8 before:w-1 ${colorTheme.colors.accent.replace('bg-', 'before:bg-')}`}>
