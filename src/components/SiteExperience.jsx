@@ -120,9 +120,9 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
                     <div className={`w-12 h-12 rounded-2xl shadow-md border-2 border-white relative flex items-center justify-center ${color.isQoqa ? '' : color.bg}`}>
                       {color.isQoqa ? (
                         <img 
-                          src="/qoqa-logo.svg" 
+                          src="/q.png" 
                           alt="QoQa Logo" 
-                          className="w-full h-full object-contain rounded-xl"
+                          className="w-full h-full object-contain"
                         />
                       ) : (
                         <div className="w-full h-full"></div>
