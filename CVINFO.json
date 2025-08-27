@@ -190,37 +190,35 @@
         {
           "id": "r0sp3conrgffl3xmdouko712",
           "visible": true,
-          "name": "Coding",
+          "name": "DIY",
           "keywords": [
-            "Arduino",
+            "Application Development",
+            "Website",
             "ESP32",
-            "IOT",
-            "MQTT",
-            "Home Automation",
-            "Python",
-            "Automation scripting",
-            "Playing with AI"
+            "Arduino",
+            "Python"
           ]
         },
         {
           "id": "vv52ehm1tzk18z3fleaaf674",
           "visible": true,
-          "name": "Mechanical hobbies",
+          "name": "Chilling",
           "keywords": [
-            "Motorbike",
-            "3D Printing",
-            "Welding",
-            "Electronic"
+            "Cooking",
+            "Reading Joe Dickers",
+            "Biking",
+            "Zythologie"
           ]
         },
         {
           "id": "qqbyx3tm7saum7g4fn46804v",
           "visible": true,
-          "name": "Outdoor hiking",
+          "name": "Outdoor Adventure",
           "keywords": [
-            "Hiking",
+            "Motorcycle Tour",
             "Ski Touring",
-            "Motorcycle adventure"
+            "Hiking",
+            "Fondue in the Mountain"
           ]
         }
       ]

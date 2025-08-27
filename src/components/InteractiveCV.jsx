@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Download, ChevronDown, Mail, Phone, MapPin } from "lucide-react";
+import { Download, ChevronDown, Mail, Phone, MapPin, Wrench, Target, Zap, Monitor, Heart, Star, Sparkles } from "lucide-react";
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from "recharts";
 
 
@@ -143,43 +143,7 @@ export default function InteractiveCV() {
           currentTheme={colorTheme}
         />
 
-        {/* Contact Info */}
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className={`${colorTheme.colors.container} p-8 rounded-2xl shadow-lg border border-gray-200`}
-        >
-          <div className="grid md:grid-cols-3 gap-6">
-            {basics.email && (
-              <a 
-                href={`mailto:${basics.email}`}
-                className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
-              >
-                <div className={`p-2 ${colorTheme.colors.iconBg || colorTheme.colors.accent} rounded-lg`}>
-                  <Mail size={20} className="text-white" />
-                </div>
-                <span className="font-medium text-gray-900 hover:text-gray-700">{basics.email}</span>
-              </a>
-            )}
-            {basics.phone && (
-              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
-                <div className={`p-2 ${colorTheme.colors.iconBg || colorTheme.colors.accent} rounded-lg opacity-80`}>
-                  <Phone size={20} className="text-white" />
-                </div>
-                <span className="font-medium">{basics.phone}</span>
-              </div>
-            )}
-            {basics.location && (
-              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
-                <div className={`p-2 ${colorTheme.colors.iconBg || colorTheme.colors.accent} rounded-lg opacity-60`}>
-                  <MapPin size={20} className="text-white" />
-                </div>
-                <span className="font-medium">{basics.location}</span>
-              </div>
-            )}
-          </div>
-        </motion.div>
+
 
         {/* Summary */}
         {sections.summary?.content && (
@@ -200,187 +164,152 @@ export default function InteractiveCV() {
         )}
 
         {/* Hands-on Expertise */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+        <section
           className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200 overflow-hidden relative`}
         >
-          {/* Animated background elements */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full opacity-20 animate-pulse"></div>
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-green-100 to-yellow-100 rounded-full opacity-20 animate-bounce" style={{ animationDelay: '1s', animationDuration: '3s' }}></div>
-          
-          <motion.h2 
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-            viewport={{ once: true }}
+          <h2 
             className="text-3xl font-bold mb-8 text-gray-900 text-center relative z-10"
           >
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Beyond the Office
-            </span>
-          </motion.h2>
+            Beyond the Office
+          </h2>
           
           <div className="grid md:grid-cols-2 gap-8 relative z-10">
             
             {/* Hands-on Problem Solving */}
-            <motion.div
-              initial={{ opacity: 0, x: -50, rotateY: -15 }}
-              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-              whileHover={{ 
-                scale: 1.02, 
-                rotateY: 5,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-              }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
-              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform-gpu perspective-1000 group"
+            <div
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer group"
             >
               <div className="flex items-center mb-4">
-                <motion.div 
+                <div 
                   className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300`}
-                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                  transition={{ duration: 0.5 }}
                 >
-                  <span className="text-2xl">🔧</span>
-                </motion.div>
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Hands-on Problem Solving</h3>
+                  <Wrench size={24} className="text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Hands-on Problem Solving & Business Acumen</h3>
               </div>
               <p className="text-gray-700 mb-4">
-                <strong>Passion for mechanics:</strong> repair and restoration of vintage motorcycles → shows patience, precision, and resilience.
-              </p>
-              <p className="text-gray-700 mb-4">
-                Skilled at diagnosing and fixing complex systems — directly applicable to understanding inefficiencies and resolving them.
+                Ability to identify solution, create plan and execute plan for problem solving.
               </p>
               <div className="flex flex-wrap gap-2">
                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Mechanic
+                  Business Case Identification
                 </span>
                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  DIY
+                  Project Activation
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Project Management
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  DMAIC & Green Belt Methodology
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Result Oriented
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Home Automation
                 </span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Leadership and team work */}
-            <motion.div
-              initial={{ opacity: 0, x: 50, rotateY: 15 }}
-              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-              whileHover={{ 
-                scale: 1.02, 
-                rotateY: -5,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-              }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
-              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform-gpu perspective-1000 group"
+            <div
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer group"
             >
               <div className="flex items-center mb-4">
-                <motion.div 
+                <div 
                   className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300`}
-                  whileHover={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 0.3 }}
                 >
-                  <span className="text-2xl">🎯</span>
-                </motion.div>
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">Leadership and team work</h3>
+                  <Target size={24} className="text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">Collaborative Leadership</h3>
               </div>
               <p className="text-gray-700 mb-4">
-                <strong>Cross-functional leadership:</strong> Leading teams across multiple sites and disciplines.
+                Leading cross-functional teams across multiple sites and disciplines, fostering collaboration, building consensus, and driving successful outcomes through inclusive leadership approaches.
               </p>
-              <p className="text-gray-700">
-                Building consensus, driving alignment, and delivering results through collaborative problem-solving approaches.
-              </p>
-            </motion.div>
+              <div className="flex flex-wrap gap-2">
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Cross-Functional Collaboration
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Knowledge Sharing & Mentorship
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Driving Adoption & Engagement
+                </span>
+              </div>
+            </div>
 
             {/* Creativity & Engineering Craft */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              whileHover={{ 
-                scale: 1.02, 
-                rotateZ: 1,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-              }}
-              transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
-              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform-gpu group"
+            <div
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer group"
             >
               <div className="flex items-center mb-4">
-                <motion.div 
+                <div 
                   className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300`}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
                 >
-                  <span className="text-2xl">⚡</span>
-                </motion.div>
+                  <Zap size={24} className="text-white" />
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">Creativity & Engineering Craft</h3>
               </div>
               <p className="text-gray-700 mb-4">
-                <strong>Love for working with hands:</strong> building, tinkering, optimizing.
-              </p>
-              <p className="text-gray-700 mb-4">
-                Ability to blend practical craftsmanship with digital innovation (bridge between field execution and strategic vision).
+                Building, tinkering, optimizing with ability to blend practical craftsmanship with digital innovation.
               </p>
               <div className="flex flex-wrap gap-2">
                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  3D parts design
+                  Mechanical Repair (Motorcycles)
                 </span>
                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  prototyping
+                  3D Design & Printing (CAD, Prototyping)
                 </span>
                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  CAD
+                  Hands-on Maker Mindset
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Rapid Prototyping & Iteration
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Gardening
                 </span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Technology and digitalization */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              whileHover={{ 
-                scale: 1.02, 
-                rotateZ: -1,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-              }}
-              transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
-              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform-gpu group"
+            <div
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer group"
             >
               <div className="flex items-center mb-4">
-                <motion.div 
+                <div 
                   className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300`}
-                  whileHover={{ y: [0, -5, 0] }}
-                  transition={{ duration: 0.4 }}
                 >
-                  <span className="text-2xl">💻</span>
-                </motion.div>
+                  <Monitor size={24} className="text-white" />
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Technology and digitalization</h3>
               </div>
               <p className="text-gray-700 mb-4">
-                Using technology to ease our daily task, optimization of complexe process.
+                Using technology to ease daily tasks and optimize complex processes.
               </p>
               <div className="flex flex-wrap gap-2">
                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Power BI
+                  AI & Computer Vision (Cognex ViDi, OCR)
                 </span>
                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  SPC
+                  Process Automation
                 </span>
                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Application dev
+                  Systems Integration
                 </span>
                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  IOT
+                  Data Analytics & Power BI
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Industry 4.0 / Smart Manufacturing
                 </span>
               </div>
-            </motion.div>
+            </div>
 
           </div>
-        </motion.section>
+        </section>
 
         {/* Experience Timeline */}
         <section className={`space-y-8 relative before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-8 before:w-1 ${colorTheme.colors.accent.replace('bg-', 'before:bg-')}`}>
@@ -496,41 +425,82 @@ export default function InteractiveCV() {
 
         {/* Interests */}
         {interests.length > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+          <section
             className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
           >
-            <h2 className="text-2xl font-bold mb-8 text-gray-900  text-center">Interests</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {interests.map((interest, i) => (
-                <motion.div
-                  key={interest.id || i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-gray-50  p-6 rounded-xl shadow-lg border border-gray-200  hover:shadow-xl transition-all duration-300"
-                >
-                  <h3 className="text-xl font-bold mb-4 text-gray-900 ">{interest.name}</h3>
-                  {interest.keywords && (
-                    <div className="flex flex-wrap gap-2">
-                      {interest.keywords.map((keyword, idx) => (
-                        <span 
-                          key={idx} 
-                          className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}
-                        >
-                          {keyword}
-                        </span>
-                      ))}
+            <h2 className="text-2xl font-bold mb-8 text-gray-900 text-center">Interests</h2>
+            
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Radar Chart */}
+              <div className="bg-white bg-opacity-70 p-8 rounded-xl shadow-lg border border-gray-200">
+                <div className="h-96">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <RadarChart 
+                      data={interests.map((interest, i) => ({
+                        skill: interest.name,
+                        level: interest.name === "DIY" ? 100 : 
+                              interest.name === "Chilling" ? 80 : 
+                              interest.name === "Outdoor Adventure" ? 60 : 
+                              (interest.keywords ? Math.min(100, interest.keywords.length * 25) : 50),
+                        fullMark: 100
+                      }))}
+                      startAngle={30}
+                      endAngle={390}
+                    >
+                      <PolarGrid stroke="#e5e7eb" />
+                      <PolarAngleAxis 
+                        dataKey="skill" 
+                        tick={{ fontSize: 9, fill: '#374151' }}
+                        tickLine={false}
+                        axisLine={false}
+                        tickFormatter={(value) => {
+                          if (value === "Outdoor Adventure") return "Outdoor";
+                          return value;
+                        }}
+                      />
+                      <Radar
+                        name="Interest Level"
+                        dataKey="level"
+                        stroke={colorTheme.colors.chartColor}
+                        fill={colorTheme.colors.chartColor}
+                        fillOpacity={0.3}
+                        strokeWidth={2}
+                      />
+                    </RadarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+              {/* Interest Details */}
+              <div className="space-y-6">
+                {interests.map((interest, i) => (
+                  <div
+                    key={interest.id || i}
+                    className="group bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                  >
+                    <div className="mb-3">
+                      <h4 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                        {interest.name}
+                      </h4>
                     </div>
-                  )}
-                </motion.div>
-              ))}
+                    
+                    {interest.keywords && (
+                      <div className="flex flex-wrap gap-2">
+                        {interest.keywords.map((keyword, idx) => (
+                          <span 
+                            key={idx} 
+                            className="px-2 py-1 bg-gray-100 text-gray-700 rounded-md text-xs font-medium"
+                          >
+                            {keyword}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </motion.section>
+          </section>
         )}
 
         {/* Photo Gallery */}
@@ -626,7 +596,6 @@ export default function InteractiveCV() {
                 <span className="text-6xl">🎉</span>
               </motion.div>
               <h1 className="text-4xl font-bold text-gray-900 mb-4">Excellent Choice!</h1>
-              <p className="text-xl text-gray-600">Here's why I'm the perfect fit for your team</p>
             </div>
 
             <div className="bg-white bg-opacity-70 rounded-xl border border-gray-200 shadow-sm p-8">
@@ -634,32 +603,32 @@ export default function InteractiveCV() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Hello QoQa Team,</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  My name is Simon, and I am a generalist engineer by training. Over the past years, I have developed my career within Medtronic through several roles of increasing responsibility.
+                  My name is Simon, and I am a <strong>System Engineer from HEIG-VD</strong>. Over the past years, I have developed my career within <strong>Medtronic</strong> through several roles of increasing responsibility.
                 </p>
 
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  I began as a Production Engineer on the line manufacturing the world's smallest pacemaker. This experience allowed me to strengthen my ability to work in teams, lead groups, and solve daily challenges in a demanding environment. I also drove continuous improvement projects, both technical and organizational, to optimize line performance.
+                  I began as a <strong>Production Engineer</strong> on the line manufacturing the world's smallest pacemaker. This experience allowed me to strengthen my ability to work in teams, lead groups, and solve daily challenges in a demanding environment. I also drove continuous improvement projects, both technical and organizational, to optimize line performance.
                 </p>
 
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  Driven by my passion for industrial optimization, I then became responsible for an innovation program, aimed at simplifying and enhancing communication and control processes. I had the opportunity to lead projects between Switzerland and Singapore, including the deployment of vision systems to reinforce quality and efficiency.
+                  Driven by my passion for industrial optimization, I then became responsible for an <strong>innovation program</strong>, aimed at simplifying and enhancing communication and control processes. I had the opportunity to lead projects between Switzerland and Singapore, including the deployment of vision systems to reinforce quality and efficiency.
                 </p>
 
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  My ambition led me to take on a global role across 13 European sites, coordinating the deployment of common technologies (vision, automation, digitalization) in alignment with the group's strategy. Alongside this, I spearheaded digitalization initiatives (Power BI, SPC) to measure performance and identify new opportunities for improvement.
+                  My ambition led me to take on a <strong>global role across 13 European sites</strong>, coordinating the deployment of common technologies (vision, automation, digitalization) in alignment with the group's strategy. Alongside this, I spearheaded digitalization initiatives (Power BI, SPC) to measure performance and identify new opportunities for improvement.
                 </p>
 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   These experiences have taught me to be structured, ambitious, and results-oriented, with the ability to unite teams around concrete and sustainable solutions. If I were to describe my "superpower," it would be <strong>Efficiency Vision</strong>: the ability to instantly detect inefficiencies within a system — like X-ray glasses for processes — and transform weak points into drivers of performance.
                 </p>
 
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg mb-6 border-l-4 border-blue-500">
+                <div className={`${colorTheme.colors.container} p-6 rounded-lg mb-6 border-l-4 ${colorTheme.colors.border}`}>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Why QoQa?</h3>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    I am looking for an environment where I can make a real impact, not only by deploying technologies but by creating measurable value that teams can see and feel every day. QoQa's culture of creativity, agility, and human-centered values is the perfect ground for that.
+                    I am looking for an environment where I can make a <strong>real impact</strong>, not only by deploying technologies but by creating <strong>measurable value</strong> that teams can see and feel every day. QoQa's culture of <strong>creativity, agility, and human-centered values</strong> is the perfect ground for that.
                   </p>
                   <p className="text-gray-700 leading-relaxed">
-                    I believe my expertise in medical devices, technology, and digitalization can help accelerate your optimization journey — but more importantly, I want to bring a fresh perspective, positive energy, and a wave of motivation to the tanière.
+                    I believe my expertise in <strong>medical devices, technology, and digitalization</strong> can help accelerate your optimization journey — but more importantly, I want to bring a <strong>fresh perspective, positive energy, and a wave of motivation</strong> to the tanière.
                   </p>
                 </div>
 
@@ -670,10 +639,10 @@ export default function InteractiveCV() {
                 <div className="text-center">
                   <p className="text-gray-700 font-semibold mb-4">Looking forward to meeting you,</p>
                   <p className="text-2xl font-bold text-gray-900 mb-2">Simon Cottier</p>
-                  <div className="flex justify-center space-x-4 text-sm text-gray-600">
-                    <span>📧 simon.cottier@gmail.com</span>
-                    <span>📱 +41794570319</span>
-                    <span>📍 Switzerland, Romanel</span>
+                  <div className="flex justify-center mb-4">
+                    <div className={`p-2 ${colorTheme.colors.iconBg} rounded-full`}>
+                      <Zap size={16} className="text-white" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -688,15 +657,52 @@ export default function InteractiveCV() {
                   const body = encodeURIComponent("Hi Simon,\n\nI've reviewed your interactive CV and cover letter, and I'm impressed! I'd like to schedule a conversation to discuss potential opportunities.\n\nBest regards,");
                   window.location.href = `mailto:simon.cottier@gmail.com?subject=${subject}&body=${body}`;
                 }}
-                className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-xl shadow-lg transition-all duration-300 transform hover:shadow-xl"
+                className={`inline-flex items-center px-8 py-4 ${colorTheme.colors.accent} hover:${colorTheme.colors.accentHover} text-black font-bold text-lg rounded-xl shadow-lg transition-all duration-300 transform hover:shadow-xl`}
               >
-                <span className="mr-3 text-2xl">📧</span>
-                Let's Talk!
+                Let's Meet!
               </motion.button>
             </div>
           </div>
         </motion.section>
         )}
+
+        {/* Contact Info */}
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className={`${colorTheme.colors.container} p-8 rounded-2xl shadow-lg border border-gray-200 mt-8`}
+        >
+          <div className="grid md:grid-cols-3 gap-6">
+            {basics.email && (
+              <a 
+                href={`mailto:${basics.email}`}
+                className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
+              >
+                <div className={`p-2 ${colorTheme.colors.iconBg || colorTheme.colors.accent} rounded-lg`}>
+                  <Mail size={20} className="text-white" />
+                </div>
+                <span className="font-medium text-gray-900 hover:text-gray-700">{basics.email}</span>
+              </a>
+            )}
+            {basics.phone && (
+              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
+                <div className={`p-2 ${colorTheme.colors.iconBg || colorTheme.colors.accent} rounded-lg opacity-80`}>
+                  <Phone size={20} className="text-white" />
+                </div>
+                <span className="font-medium">{basics.phone}</span>
+              </div>
+            )}
+            {basics.location && (
+              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
+                <div className={`p-2 ${colorTheme.colors.iconBg || colorTheme.colors.accent} rounded-lg opacity-60`}>
+                  <MapPin size={20} className="text-white" />
+                </div>
+                <span className="font-medium">{basics.location}</span>
+              </div>
+            )}
+          </div>
+        </motion.div>
 
       </motion.div>
       

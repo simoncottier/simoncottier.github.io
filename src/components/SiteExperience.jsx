@@ -138,11 +138,7 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
             </div>
           </div>
 
-          <div className="p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm text-gray-600">
-              Choose your preferred container color. The selected color will be applied to all sections of your CV.
-            </p>
-          </div>
+
         </motion.div>
       )}
     </motion.section>
