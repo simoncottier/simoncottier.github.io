@@ -310,14 +310,22 @@ export default function InteractiveCV() {
                 <h3 className="text-xl font-bold text-gray-900">Technology and digitalization</h3>
               </div>
               <p className="text-gray-700 mb-4">
-                <strong>Digital transformation:</strong> Leading AI-enabled vision systems, Power BI dashboards, and SPC implementation across multiple sites.
+                Using technology to ease our daily task, optimization of complexe process.
               </p>
-              <p className="text-gray-700 mb-4">
-                Bridging the gap between cutting-edge technology and practical manufacturing applications.
-              </p>
-              <p className="text-gray-700">
-                Expert in translating complex technical solutions into business value and operational efficiency.
-              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Power BI
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  SPC
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  Application dev
+                </span>
+                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                  IOT
+                </span>
+              </div>
             </motion.div>
 
           </div>
