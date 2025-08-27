@@ -51,9 +51,8 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
         tag: `bg-[${value}] bg-opacity-20 text-[#${darkerColor}]`,
         container: isQoqaPink ? 'bg-white' : `bg-[${value}] bg-opacity-40`,
         background: isQoqaPink ? 'bg-qoqa-pink' : 'bg-gray-50',
-        backgroundStyle: isQoqaPink ? {} : {},
+        backgroundStyle: isQoqaPink ? { backgroundColor: value } : {},
         backgroundImage: isQoqaPink ? '/loutre.png' : null,
-        backgroundCombined: isQoqaPink ? `url(/loutre.png), linear-gradient(${value}, ${value})` : null,
         // Special overrides for different themes
         iconBg: needsBlackText ? 'bg-black' : `bg-[${value}]`,
         numberText: needsBlackText ? 'text-black' : 'text-white',

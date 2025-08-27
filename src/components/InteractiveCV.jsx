@@ -30,7 +30,6 @@ export default function InteractiveCV() {
       background: 'bg-gray-50',
       backgroundStyle: {},
       backgroundImage: null,
-      backgroundCombined: null,
       font: 'text-gray-900',
       iconBg: 'bg-[#B0E0B8]',
       numberText: 'text-white',
@@ -82,14 +81,22 @@ export default function InteractiveCV() {
     <div 
       className={`${colorTheme.colors.background} text-gray-900 min-h-screen relative`}
       style={{
-        ...colorTheme.colors.backgroundStyle,
-        backgroundImage: colorTheme.colors.backgroundCombined || (colorTheme.colors.backgroundImage ? `url(${colorTheme.colors.backgroundImage})` : 'none'),
-        backgroundSize: colorTheme.colors.backgroundCombined ? 'contain, cover' : 'contain',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
-        backgroundAttachment: 'fixed'
+        ...colorTheme.colors.backgroundStyle
       }}
     >
+      {/* Otter image positioned behind white boxes */}
+      {colorTheme.colors.backgroundImage && (
+        <div 
+          className="fixed inset-0 flex items-center justify-center pointer-events-none z-0"
+          style={{
+            backgroundImage: `url(${colorTheme.colors.backgroundImage})`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+          }}
+        />
+      )}
+      
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
