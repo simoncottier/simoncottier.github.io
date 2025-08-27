@@ -28,6 +28,7 @@ export default function InteractiveCV() {
       tag: 'bg-[#B0E0B8] bg-opacity-20 text-[#6A876E]',
       container: 'bg-[#B0E0B8] bg-opacity-40',
       background: 'bg-gray-50',
+      backgroundImage: null,
       font: 'text-gray-900',
       iconBg: 'bg-[#B0E0B8]',
       numberText: 'text-white',
@@ -76,12 +77,21 @@ export default function InteractiveCV() {
 
 
   return (
-    <div className={`${colorTheme.colors.background} text-gray-900 min-h-screen`}>
+    <div 
+      className={`${colorTheme.colors.background} text-gray-900 min-h-screen relative`}
+      style={{
+        backgroundImage: colorTheme.colors.backgroundImage ? `url(${colorTheme.colors.backgroundImage})` : 'none',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ duration: 0.8 }} 
-        className="max-w-6xl mx-auto p-8 space-y-10 font-sans"
+        className="max-w-6xl mx-auto p-8 space-y-10 font-sans relative z-10"
       >
         {/* Header */}
         <header className={`flex justify-between items-center ${colorTheme.colors.container} p-8 rounded-2xl shadow-lg border border-gray-200`}>

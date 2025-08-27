@@ -51,6 +51,7 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
         tag: `bg-[${value}] bg-opacity-20 text-[#${darkerColor}]`,
         container: isQoqaPink ? 'bg-white' : `bg-[${value}] bg-opacity-40`,
         background: isQoqaPink ? `bg-[${value}]` : 'bg-gray-50',
+        backgroundImage: isQoqaPink ? '/loutre.png' : null,
         // Special overrides for different themes
         iconBg: needsBlackText ? 'bg-black' : `bg-[${value}]`,
         numberText: needsBlackText ? 'text-black' : 'text-white',
