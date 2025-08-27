@@ -32,6 +32,7 @@ export default function InteractiveCV() {
       iconBg: 'bg-[#B0E0B8]',
       numberText: 'text-white',
       nameColor: 'text-gray-900',
+      nameStyle: {},
       numberBorder: '',
       chartColor: '#B0E0B8',
       languageDots: 'bg-[#B0E0B8]'
@@ -94,7 +95,10 @@ export default function InteractiveCV() {
               />
             )}
             <div>
-              <h1 className={`text-5xl font-extrabold tracking-tight ${colorTheme.colors.nameColor}`}>
+              <h1 
+                className={`text-5xl font-extrabold tracking-tight ${colorTheme.colors.nameColor}`}
+                style={colorTheme.colors.nameStyle || {}}
+              >
                 {basics.name}
               </h1>
               <div className="mt-4 mb-2">
