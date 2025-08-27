@@ -37,8 +37,8 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
     // Special handling for light themes that need black text
     const isCreamYellow = value.toUpperCase() === '#FFFACD';
     const isLavender = value.toUpperCase() === '#E6E6FA';
-    const isQoqaPink = value.toUpperCase() === '#FF69B4';
-    const needsBlackText = isCreamYellow || isLavender;
+    const isQoqaPink = value.toUpperCase() === '#FFC0CB';
+    const needsBlackText = isCreamYellow || isLavender || isQoqaPink;
     
     // Update the theme with all related colors
     const updatedTheme = {
@@ -104,7 +104,7 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
                 { name: 'Mint Green', hex: '#B0E0B8', bg: 'bg-[#B0E0B8]' },
                 { name: 'Sky Blue', hex: '#87CEEB', bg: 'bg-[#87CEEB]' },
                 { name: 'Lavender', hex: '#E6E6FA', bg: 'bg-[#E6E6FA]' },
-                { name: 'QoQa Pink', hex: '#FF69B4', bg: 'bg-[#FF69B4]', isQoqa: true }
+                { name: 'QoQa Pink', hex: '#FFC0CB', bg: 'bg-[#FFC0CB]', isQoqa: true }
               ].map((color) => (
                 <button
                   key={color.hex}
