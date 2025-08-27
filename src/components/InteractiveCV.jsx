@@ -223,7 +223,7 @@ export default function InteractiveCV() {
               viewport={{ once: true }}
               className="pl-20 relative"
             >
-              <div className={`absolute left-4 top-8 w-8 h-8 flex items-center justify-center rounded-full ${colorTheme.colors.accent} ${colorTheme.colors.numberText || 'text-white'} font-bold text-lg shadow-lg`}>
+              <div className={`absolute left-4 top-8 w-8 h-8 flex items-center justify-center rounded-full ${colorTheme.colors.accent} ${colorTheme.colors.numberText || 'text-white'} ${colorTheme.colors.numberBorder || ''} font-bold text-lg shadow-lg`}>
                 {i+1}
               </div>
               <div
