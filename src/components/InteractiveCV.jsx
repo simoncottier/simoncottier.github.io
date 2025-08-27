@@ -205,24 +205,48 @@ export default function InteractiveCV() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
+          className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200 overflow-hidden relative`}
         >
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-center">Beyond the Office</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          {/* Animated background elements */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-green-100 to-yellow-100 rounded-full opacity-20 animate-bounce" style={{ animationDelay: '1s', animationDuration: '3s' }}></div>
+          
+          <motion.h2 
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold mb-8 text-gray-900 text-center relative z-10"
+          >
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              Beyond the Office
+            </span>
+          </motion.h2>
+          
+          <div className="grid md:grid-cols-2 gap-8 relative z-10">
             
             {/* Hands-on Problem Solving */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+              initial={{ opacity: 0, x: -50, rotateY: -15 }}
+              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+              whileHover={{ 
+                scale: 1.02, 
+                rotateY: 5,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              transition={{ delay: 0.1, type: "spring", stiffness: 100 }}
               viewport={{ once: true }}
-              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform-gpu perspective-1000 group"
             >
               <div className="flex items-center mb-4">
-                <div className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4`}>
+                <motion.div 
+                  className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300`}
+                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
                   <span className="text-2xl">🔧</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900">Hands-on Problem Solving</h3>
+                </motion.div>
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Hands-on Problem Solving</h3>
               </div>
               <p className="text-gray-700 mb-4">
                 <strong>Passion for mechanics:</strong> repair and restoration of vintage motorcycles → shows patience, precision, and resilience.
@@ -242,17 +266,26 @@ export default function InteractiveCV() {
 
             {/* Leadership and team work */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+              initial={{ opacity: 0, x: 50, rotateY: 15 }}
+              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+              whileHover={{ 
+                scale: 1.02, 
+                rotateY: -5,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
               viewport={{ once: true }}
-              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform-gpu perspective-1000 group"
             >
               <div className="flex items-center mb-4">
-                <div className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4`}>
+                <motion.div 
+                  className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300`}
+                  whileHover={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 0.3 }}
+                >
                   <span className="text-2xl">🎯</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900">Leadership and team work</h3>
+                </motion.div>
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">Leadership and team work</h3>
               </div>
               <p className="text-gray-700 mb-4">
                 <strong>Cross-functional leadership:</strong> Leading teams across multiple sites and disciplines.
@@ -264,17 +297,26 @@ export default function InteractiveCV() {
 
             {/* Creativity & Engineering Craft */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              whileHover={{ 
+                scale: 1.02, 
+                rotateZ: 1,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
               viewport={{ once: true }}
-              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform-gpu group"
             >
               <div className="flex items-center mb-4">
-                <div className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4`}>
+                <motion.div 
+                  className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300`}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
                   <span className="text-2xl">⚡</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900">Creativity & Engineering Craft</h3>
+                </motion.div>
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">Creativity & Engineering Craft</h3>
               </div>
               <p className="text-gray-700 mb-4">
                 <strong>Love for working with hands:</strong> building, tinkering, optimizing.
@@ -297,17 +339,26 @@ export default function InteractiveCV() {
 
             {/* Technology and digitalization */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              whileHover={{ 
+                scale: 1.02, 
+                rotateZ: -1,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+              transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
               viewport={{ once: true }}
-              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
+              className="bg-white bg-opacity-70 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform-gpu group"
             >
               <div className="flex items-center mb-4">
-                <div className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4`}>
+                <motion.div 
+                  className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300`}
+                  whileHover={{ y: [0, -5, 0] }}
+                  transition={{ duration: 0.4 }}
+                >
                   <span className="text-2xl">💻</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900">Technology and digitalization</h3>
+                </motion.div>
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Technology and digitalization</h3>
               </div>
               <p className="text-gray-700 mb-4">
                 Using technology to ease our daily task, optimization of complexe process.
