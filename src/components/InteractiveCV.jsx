@@ -295,7 +295,7 @@ export default function InteractiveCV() {
               </div>
             </motion.div>
 
-            {/* Mindset & Transferable Value */}
+            {/* Technology and digitalization */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -305,18 +305,18 @@ export default function InteractiveCV() {
             >
               <div className="flex items-center mb-4">
                 <div className={`p-3 ${colorTheme.colors.iconBg} rounded-lg mr-4`}>
-                  <span className="text-2xl">🚀</span>
+                  <span className="text-2xl">💻</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">Mindset & Transferable Value</h3>
+                <h3 className="text-xl font-bold text-gray-900">Technology and digitalization</h3>
               </div>
               <p className="text-gray-700 mb-4">
-                Shows you're not afraid to get dirty and make things work in real life.
+                <strong>Digital transformation:</strong> Leading AI-enabled vision systems, Power BI dashboards, and SPC implementation across multiple sites.
               </p>
               <p className="text-gray-700 mb-4">
-                Brings credibility when introducing change — because you've been on both sides (design + execution).
+                Bridging the gap between cutting-edge technology and practical manufacturing applications.
               </p>
-              <p className="text-gray-700 font-medium italic">
-                Fits perfectly with QoQa's playful but pragmatic culture: <strong>"pas que des idées, mais du concret"</strong>.
+              <p className="text-gray-700">
+                Expert in translating complex technical solutions into business value and operational efficiency.
               </p>
             </motion.div>
 
