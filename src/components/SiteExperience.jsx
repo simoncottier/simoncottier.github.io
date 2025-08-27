@@ -117,12 +117,12 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
                   }`}
                 >
                   <div className="flex flex-col items-center space-y-2">
-                    <div className={`w-12 h-12 rounded-2xl ${color.bg} shadow-md border-2 border-white relative flex items-center justify-center overflow-hidden`}>
+                    <div className={`w-12 h-12 rounded-2xl shadow-md border-2 border-white relative flex items-center justify-center ${color.isQoqa ? '' : color.bg}`}>
                       {color.isQoqa ? (
                         <img 
                           src="/qoqa-logo.svg" 
                           alt="QoQa Logo" 
-                          className="w-full h-full object-cover rounded-xl"
+                          className="w-full h-full object-contain rounded-xl"
                         />
                       ) : (
                         <div className="w-full h-full"></div>
