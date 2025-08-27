@@ -92,7 +92,7 @@ export default function InteractiveCV() {
               />
             )}
             <div>
-              <h1 className="text-5xl font-extrabold tracking-tight text-gray-900">
+              <h1 className={`text-5xl font-extrabold tracking-tight ${colorTheme.colors.nameColor || 'text-gray-900'}`}>
                 {basics.name}
               </h1>
               <div className="mt-4 mb-2">

@@ -55,6 +55,7 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
         iconBg: needsBlackText ? 'bg-black' : `bg-[${value}]`,
         numberText: needsBlackText ? 'text-black' : 'text-white',
         numberBorder: isQoqaPink ? 'border-2 border-white' : '',
+        nameColor: isQoqaPink ? `text-[${value}]` : 'text-gray-900',
         chartColor: isCreamYellow ? '#FFB6C1' : (isQoqaPink ? '#FF1493' : value), // Different pinks
         languageDots: needsBlackText ? 'bg-black' : `bg-[${value}]`
       },

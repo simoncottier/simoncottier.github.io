@@ -275,22 +275,22 @@ const Chatbot = ({ cvData }) => {
       </AnimatePresence>
 
       {/* Chat Button */}
-      <motion.button
-        onClick={() => {
-          setIsOpen(true);
-          setShowPopup(false);
-        }}
-        className={`fixed bottom-6 right-6 z-50 p-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 ${
-          isOpen ? 'hidden' : 'flex'
-        } items-center justify-center relative`}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <MessageCircle size={24} />
-        {showPopup && (
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-        )}
-      </motion.button>
+      {!isOpen && (
+        <motion.button
+          onClick={() => {
+            setIsOpen(true);
+            setShowPopup(false);
+          }}
+          className="fixed bottom-6 right-6 z-50 p-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center relative"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <MessageCircle size={24} />
+          {showPopup && (
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+          )}
+        </motion.button>
+      )}
 
       {/* Chat Window */}
       <AnimatePresence>
