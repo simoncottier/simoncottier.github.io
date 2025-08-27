@@ -12,9 +12,10 @@ import Gallery from "./Gallery";
 
 export default function InteractiveCV() {
 
-  const [expanded, setExpanded] = useState('all'); // Open all experiences by default
+  const [expanded, setExpanded] = useState(0); // Open only the first experience by default
   const [cvData, setCvData] = useState(null);
   const [photoModalOpen, setPhotoModalOpen] = useState(false);
+  const [showCoverLetter, setShowCoverLetter] = useState(false);
   const [colorTheme, setColorTheme] = useState({
     id: 'mint',
     name: 'Mint Green',
@@ -94,6 +95,11 @@ export default function InteractiveCV() {
               <h1 className="text-5xl font-extrabold tracking-tight text-gray-900">
                 {basics.name}
               </h1>
+              <div className="mt-4 mb-2">
+                <p className="text-lg italic text-gray-500 border-l-4 border-gray-300 pl-4">
+                  "Optimization starts with this application"
+                </p>
+              </div>
               <p className="text-2xl text-gray-600 mt-3">{basics.headline}</p>
             </div>
           </div>
@@ -155,59 +161,14 @@ export default function InteractiveCV() {
             className={`${colorTheme.colors.container} p-8 rounded-2xl shadow-lg border border-gray-200`}
           >
             <h2 className="text-2xl font-bold mb-6 text-gray-900 ">Summary</h2>
-            <div 
-              className="text-gray-700 leading-relaxed text-lg"
-              dangerouslySetInnerHTML={{ __html: sections.summary.content }}
-            />
+            <div className="p-6 bg-white bg-opacity-70 rounded-xl border border-gray-200 shadow-sm">
+              <div 
+                className="text-gray-700 leading-relaxed text-lg"
+                dangerouslySetInnerHTML={{ __html: sections.summary.content }}
+              />
+            </div>
           </motion.section>
         )}
-
-
-
-        {/* Experience Timeline */}
-        <section className={`space-y-8 relative before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-8 before:w-1 ${colorTheme.colors.accent.replace('bg-', 'before:bg-')}`}>
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={exp.id || i}
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.15 }}
-              viewport={{ once: true }}
-              className="pl-20 relative"
-            >
-              <div className={`absolute left-4 top-8 w-8 h-8 flex items-center justify-center rounded-full ${colorTheme.colors.accent} ${colorTheme.colors.numberText || 'text-white'} font-bold text-lg shadow-lg`}>
-                {i+1}
-              </div>
-              <div
-                onClick={() => setExpanded(expanded === i ? null : expanded === 'all' ? i : i)}
-                className={`rounded-2xl ${colorTheme.colors.container} shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-200`}
-              >
-                <div className="p-8">
-                  <div className="flex justify-between items-center">
-                    <h2 className="text-2xl font-bold text-gray-900 ">
-                      {exp.position} @ {exp.company}
-                    </h2>
-                    <ChevronDown className={`transition-transform duration-300 text-gray-500 ${expanded === i || expanded === 'all' ? "rotate-180" : ""}`} size={24} />
-                  </div>
-                  <p className="text-lg text-gray-600  mt-2">{exp.date}</p>
-                  {exp.location && (
-                    <p className="text-lg text-gray-500 ">{exp.location}</p>
-                  )}
-                  {(expanded === i || expanded === 'all') && exp.summary && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: -10 }} 
-                      animate={{ opacity: 1, y: 0 }} 
-                      className="mt-6 p-6 bg-white bg-opacity-70 rounded-xl border border-gray-200 shadow-sm"
-                      dangerouslySetInnerHTML={{ __html: exp.summary }}
-                    />
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </section>
-
-
 
         {/* Skills Details */}
         {skills.length > 0 && (
@@ -247,6 +208,49 @@ export default function InteractiveCV() {
             </div>
           </motion.section>
         )}
+
+        {/* Experience Timeline */}
+        <section className={`space-y-8 relative before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-8 before:w-1 ${colorTheme.colors.accent.replace('bg-', 'before:bg-')}`}>
+          {experiences.map((exp, i) => (
+            <motion.div
+              key={exp.id || i}
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.15 }}
+              viewport={{ once: true }}
+              className="pl-20 relative"
+            >
+              <div className={`absolute left-4 top-8 w-8 h-8 flex items-center justify-center rounded-full ${colorTheme.colors.accent} ${colorTheme.colors.numberText || 'text-white'} font-bold text-lg shadow-lg`}>
+                {i+1}
+              </div>
+              <div
+                onClick={() => setExpanded(expanded === i ? null : i)}
+                className={`rounded-2xl ${colorTheme.colors.container} shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-200`}
+              >
+                <div className="p-8">
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-2xl font-bold text-gray-900 ">
+                      {exp.position} @ {exp.company}
+                    </h2>
+                    <ChevronDown className={`transition-transform duration-300 text-gray-500 ${expanded === i ? "rotate-180" : ""}`} size={24} />
+                  </div>
+                  <p className="text-lg text-gray-600  mt-2">{exp.date}</p>
+                  {exp.location && (
+                    <p className="text-lg text-gray-500 ">{exp.location}</p>
+                  )}
+                  {expanded === i && exp.summary && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: -10 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      className="mt-6 p-6 bg-white bg-opacity-70 rounded-xl border border-gray-200 shadow-sm"
+                      dangerouslySetInnerHTML={{ __html: exp.summary }}
+                    />
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </section>
 
         {/* Education */}
         {education.length > 0 && (
@@ -358,6 +362,172 @@ export default function InteractiveCV() {
 
         {/* Photo Gallery */}
         <Gallery colorTheme={colorTheme} />
+
+        {/* Tinder-style Decision Box */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200 mt-8`}
+        >
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">What's your verdict?</h2>
+            <p className="text-lg text-gray-600">Time to make your decision...</p>
+          </div>
+          
+          <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+            {/* Accept Button */}
+            <motion.button
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 25px 50px -12px rgba(34, 197, 94, 0.4)"
+              }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => {
+                setShowCoverLetter(true);
+                setTimeout(() => {
+                  document.getElementById('cover-letter-section')?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
+              className="group relative overflow-hidden w-72 h-16 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-semibold text-lg rounded-2xl shadow-xl transition-all duration-500 border border-emerald-400/20"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              <div className="relative flex items-center justify-center space-x-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span className="tracking-wide">I want to know more</span>
+              </div>
+            </motion.button>
+
+            {/* Dismiss Button */}
+            <motion.button
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 25px 50px -12px rgba(239, 68, 68, 0.4)"
+              }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => {
+                const subject = encodeURIComponent("[DISMISSED]");
+                const body = encodeURIComponent("Dear Simon,\n\nWe have the regret to announce you that your application was pretty cool, but we did our choice and you're dismissed.\n\nNext time,\nThe QoQa Team !!");
+                window.location.href = `mailto:simon.cottier@gmail.com?subject=${subject}&body=${body}`;
+              }}
+              className="group relative overflow-hidden w-72 h-16 bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-semibold text-lg rounded-2xl shadow-xl transition-all duration-500 border border-red-400/20"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              <div className="relative flex items-center justify-center space-x-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span className="tracking-wide">You're dismissed</span>
+              </div>
+            </motion.button>
+          </div>
+
+        </motion.section>
+
+        {/* Cover Letter Section */}
+        {showCoverLetter && (
+        <motion.section
+          id="cover-letter-section"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200 mt-8`}
+          style={{ minHeight: '100vh' }}
+        >
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ delay: 0.3, type: "spring" }}
+                className="inline-block p-4 bg-green-100 rounded-full mb-6"
+              >
+                <span className="text-6xl">🎉</span>
+              </motion.div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">Excellent Choice!</h1>
+              <p className="text-xl text-gray-600">Here's why I'm the perfect fit for your team</p>
+            </div>
+
+            <div className="bg-white bg-opacity-70 rounded-xl border border-gray-200 shadow-sm p-8">
+              <div className="prose prose-lg max-w-none">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Dear Hiring Manager,</h2>
+                
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Thank you for taking the time to review my interactive CV! Your decision to learn more shows that you appreciate innovation and creativity – qualities that I bring to every project I work on.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  As a <strong>Senior Technical Solution Engineer</strong> with a proven track record in digitalization and manufacturing innovation, I'm passionate about creating smart, value-added solutions that drive efficiency and deliver impactful change. My experience spans across 13 European sites, where I've successfully implemented AI-enabled vision systems, output trackers, and scalable technical solutions.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  What sets me apart is my versatility – I'm truly a "Swiss knife" engineer, comfortable moving from hands-on technical implementation to strategic project leadership. Whether it's deploying edge learning systems in Grenoble, rolling out AI vision systems across Switzerland and Singapore, or leading cross-functional teams, I combine technical expertise with business acumen to deliver results.
+                </p>
+
+                <div className="bg-gray-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Why I'm excited about this opportunity:</h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2 mt-1">✓</span>
+                      <span>Your company's commitment to innovation aligns perfectly with my passion for cutting-edge solutions</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2 mt-1">✓</span>
+                      <span>The opportunity to contribute to meaningful projects that make a real impact</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2 mt-1">✓</span>
+                      <span>Working with a team that values creativity and forward-thinking approaches</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  I'm particularly drawn to roles where I can leverage my experience in project management, technical implementation, and stakeholder engagement to drive digital transformation and process optimization. My Green Belt certification and hands-on experience with CAPA management, quality assurance, and continuous improvement make me well-equipped to contribute from day one.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-8">
+                  I would love the opportunity to discuss how my unique blend of technical expertise, leadership experience, and passion for innovation can contribute to your team's success. Let's schedule a conversation to explore how we can create something amazing together!
+                </p>
+
+                <div className="text-center">
+                  <p className="text-gray-700 font-semibold mb-4">Looking forward to hearing from you,</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-2">Simon Cottier</p>
+                  <div className="flex justify-center space-x-4 text-sm text-gray-600">
+                    <span>📧 simon.cottier@gmail.com</span>
+                    <span>📱 +41794570319</span>
+                    <span>📍 Switzerland, Romanel</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center mt-8">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  const subject = encodeURIComponent("Let's discuss the opportunity!");
+                  const body = encodeURIComponent("Hi Simon,\n\nI've reviewed your interactive CV and cover letter, and I'm impressed! I'd like to schedule a conversation to discuss potential opportunities.\n\nBest regards,");
+                  window.location.href = `mailto:simon.cottier@gmail.com?subject=${subject}&body=${body}`;
+                }}
+                className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-xl shadow-lg transition-all duration-300 transform hover:shadow-xl"
+              >
+                <span className="mr-3 text-2xl">📧</span>
+                Let's Talk!
+              </motion.button>
+            </div>
+          </div>
+        </motion.section>
+        )}
 
       </motion.div>
       
