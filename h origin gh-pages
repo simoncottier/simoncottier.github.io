@@ -1,0 +1,5 @@
+[33m8782687[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mgh-pages[m[33m)[m Merge master into gh-pages with latest updates
+[33m11d3c4d[m[33m ([m[1;32mmaster[m[33m)[m Update CV with latest changes and improvements
+[33mf8657ee[m Merge master into gh-pages - resolve conflict
+[33m54b9891[m Update CV with new interests, improved cover letter, and enhanced UI design
+[33m1c7ed5b[m Add dynamic animations to Beyond the Office section - Added gradient text title with spring animation - Animated background elements (pulsing and bouncing circles) - 3D hover effects with rotation and scaling on each box - Individual icon animations (wiggle, scale, rotate, bounce) - Color-changing titles on hover (blue, purple, yellow, green) - Enhanced shadows and perspective transforms - Staggered entrance animations from different directions - More engaging and interactive user experience
