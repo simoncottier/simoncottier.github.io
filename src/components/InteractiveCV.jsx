@@ -17,32 +17,32 @@ export default function InteractiveCV() {
   const [photoModalOpen, setPhotoModalOpen] = useState(false);
   const [showCoverLetter, setShowCoverLetter] = useState(false);
   const [colorTheme, setColorTheme] = useState({
-    id: 'mint',
-    name: 'Mint Green',
+    id: 'qoqa',
+    name: 'QoQa Pink',
     colors: {
       primary: 'text-gray-700',
       secondary: 'text-gray-600',
-      accent: 'bg-[#B0E0B8]',
-      accentHover: 'hover:bg-[#9DD4A5]',
-      border: 'border-[#B0E0B8]',
-      tag: 'bg-[#B0E0B8] bg-opacity-20 text-[#6A876E]',
-      container: 'bg-[#B0E0B8] bg-opacity-40',
-      background: 'bg-gray-50',
-      backgroundStyle: {},
-      backgroundImage: null,
+      accent: 'bg-[#ff7abc]',
+      accentHover: 'hover:bg-[#ff6aa8]',
+      border: 'border-[#ff7abc]',
+      tag: 'bg-[#ff7abc] bg-opacity-20 text-[#cc5a8a]',
+      container: 'bg-white',
+      background: 'bg-qoqa-pink',
+      backgroundStyle: { backgroundColor: '#ff7abc' },
+      backgroundImage: '/loutre.png',
       font: 'text-gray-900',
-      iconBg: 'bg-[#B0E0B8]',
+      iconBg: 'bg-[#ff7abc]',
       numberText: 'text-white',
-      nameColor: 'text-gray-900',
-      nameStyle: {},
-      numberBorder: '',
-      chartColor: '#B0E0B8',
-      languageDots: 'bg-[#B0E0B8]'
+      nameColor: 'text-qoqa-pink',
+      nameStyle: { color: '#ff7abc' },
+      numberBorder: 'border-2 border-white',
+      chartColor: '#FF1493',
+      languageDots: 'bg-[#ff7abc]'
     },
     preview: {
-      bg: 'bg-[#B0E0B8]',
-      text: 'text-[#6A876E]',
-      hex: '#B0E0B8'
+      bg: 'bg-[#ff7abc]',
+      text: 'text-[#cc5a8a]',
+      hex: '#ff7abc'
     }
   });
 
@@ -122,11 +122,11 @@ export default function InteractiveCV() {
                 {basics.name}
               </h1>
               <div className="mt-4 mb-2">
-                <p className="text-lg italic text-gray-500 border-l-4 border-gray-300 pl-4">
-                  "Optimization starts with this application"
+                                                 <p className="text-lg italic text-gray-500 border-l-4 border-gray-300 pl-4">
+                  "Candidature – édition optimisée"
                 </p>
                 <p className="text-sm text-gray-400 mt-2 ml-4">
-                  In reference of QOQA-000094
+                  En référence à QOQA-000094
                 </p>
               </div>
               <p className="text-2xl text-gray-600 mt-3">{basics.headline}</p>
@@ -153,7 +153,7 @@ export default function InteractiveCV() {
             transition={{ delay: 0.3 }}
             className={`${colorTheme.colors.container} p-8 rounded-2xl shadow-lg border border-gray-200`}
           >
-            <h2 className="text-2xl font-bold mb-6 text-gray-900 ">Summary</h2>
+                         <h2 className="text-2xl font-bold mb-6 text-gray-900 ">En quelques mots</h2>
             <div className="p-6 bg-white bg-opacity-70 rounded-xl border border-gray-200 shadow-sm">
               <div 
                 className="text-gray-700 leading-relaxed text-lg"
@@ -167,11 +167,11 @@ export default function InteractiveCV() {
         <section
           className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200 overflow-hidden relative`}
         >
-          <h2 
-            className="text-3xl font-bold mb-8 text-gray-900 text-center relative z-10"
-          >
-            Beyond the Office
-          </h2>
+                                   <h2 
+               className="text-2xl font-bold mb-8 text-gray-900 text-left relative z-10"
+             >
+               Mon moteur
+             </h2>
           
           <div className="grid md:grid-cols-2 gap-8 relative z-10">
             
@@ -185,31 +185,21 @@ export default function InteractiveCV() {
                 >
                   <Wrench size={24} className="text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Hands-on Problem Solving & Business Acumen</h3>
+                                 <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Business et Stratégie</h3>
               </div>
-              <p className="text-gray-700 mb-4">
-                Ability to identify solution, create plan and execute plan for problem solving.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Business Case Identification
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Project Activation
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Project Management
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  DMAIC & Green Belt Methodology
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Result Oriented
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Home Automation
-                </span>
-              </div>
+              
+                             <div className="flex flex-wrap gap-2">
+                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                   Identification de Business Case
+                 </span>
+                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                   Gestion de Projet
+                 </span>
+                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                   Méthodologie DMAIC & Green Belt
+                 </span>
+                 
+               </div>
             </div>
 
             {/* Leadership and team work */}
@@ -222,22 +212,20 @@ export default function InteractiveCV() {
                 >
                   <Target size={24} className="text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">Collaborative Leadership</h3>
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">Leadership Collaboratif</h3>
               </div>
-              <p className="text-gray-700 mb-4">
-                Leading cross-functional teams across multiple sites and disciplines, fostering collaboration, building consensus, and driving successful outcomes through inclusive leadership approaches.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Cross-Functional Collaboration
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Knowledge Sharing & Mentorship
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Driving Adoption & Engagement
-                </span>
-              </div>
+              
+                                                           <div className="flex flex-wrap gap-2">
+                  <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                    Dynamisation collective
+                  </span>
+                  <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                    Montée en compétences
+                  </span>
+                  <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                    Énergie positive et fédératrice
+                  </span>
+                </div>
             </div>
 
             {/* Creativity & Engineering Craft */}
@@ -250,28 +238,23 @@ export default function InteractiveCV() {
                 >
                   <Zap size={24} className="text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">Creativity & Engineering Craft</h3>
+                                 <h3 className="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">Problem Solving</h3>
               </div>
-              <p className="text-gray-700 mb-4">
-                Building, tinkering, optimizing with ability to blend practical craftsmanship with digital innovation.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Mechanical Repair (Motorcycles)
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  3D Design & Printing (CAD, Prototyping)
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Hands-on Maker Mindset
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Rapid Prototyping & Iteration
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Gardening
-                </span>
-              </div>
+              
+                             <div className="flex flex-wrap gap-2">
+                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                   Maker spirit
+                 </span>
+                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                   Design technique
+                 </span>
+                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                   Prototypage
+                 </span>
+                 <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                   Orienté solution
+                 </span>
+               </div>
             </div>
 
             {/* Technology and digitalization */}
@@ -284,36 +267,36 @@ export default function InteractiveCV() {
                 >
                   <Monitor size={24} className="text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Technology and digitalization</h3>
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Technologie et Digitalisation</h3>
               </div>
-              <p className="text-gray-700 mb-4">
-                Using technology to ease daily tasks and optimize complex processes.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  AI & Computer Vision (Cognex ViDi, OCR)
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Process Automation
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Systems Integration
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Data Analytics & Power BI
-                </span>
-                <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
-                  Industry 4.0 / Smart Manufacturing
-                </span>
-              </div>
+              
+                                                                                                                       <div className="flex flex-wrap gap-2">
+                   <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                     Data analyse (PowerBI/Spotfire)
+                   </span>
+                   <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                     Simplification flux (Power Automate)
+                   </span>
+                   <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                     Système vision AI
+                   </span>
+                   <span className={`px-3 py-1 ${colorTheme.colors.tag} rounded-full text-sm font-medium`}>
+                     Application Web et IOT
+                   </span>
+                 </div>
             </div>
 
           </div>
         </section>
 
-        {/* Experience Timeline */}
-        <section className={`space-y-8 relative before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-8 before:w-1 ${colorTheme.colors.accent.replace('bg-', 'before:bg-')}`}>
-          {experiences.map((exp, i) => (
+                 {/* Experience Timeline */}
+         <section className={`space-y-8 relative before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-8 before:w-1 ${colorTheme.colors.accent.replace('bg-', 'before:bg-')}`}>
+                       {/* Title Container */}
+            <div className={`${colorTheme.colors.container} p-6 rounded-2xl shadow-lg border border-gray-200 mb-8`}>
+              <h2 className="text-2xl font-bold text-gray-900 text-left">Expériences</h2>
+            </div>
+           
+           {experiences.map((exp, i) => (
             <motion.div
               key={exp.id || i}
               initial={{ opacity: 0, x: -40 }}
@@ -363,7 +346,7 @@ export default function InteractiveCV() {
             viewport={{ once: true }}
             className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
           >
-            <h2 className="text-2xl font-bold mb-8 text-gray-900  text-center">Education</h2>
+                         <h2 className="text-2xl font-bold mb-8 text-gray-900  text-left">Formation</h2>
             <div className="space-y-6">
               {education.map((edu, i) => (
                 <motion.div
@@ -392,7 +375,7 @@ export default function InteractiveCV() {
             viewport={{ once: true }}
             className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
           >
-            <h2 className="text-2xl font-bold mb-8 text-gray-900  text-center">Languages</h2>
+                         <h2 className="text-2xl font-bold mb-8 text-gray-900  text-left">Langues</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {languages.map((lang, i) => (
                 <motion.div
@@ -403,7 +386,12 @@ export default function InteractiveCV() {
                   viewport={{ once: true }}
                   className="text-center p-6 bg-gray-50  rounded-xl shadow-lg border border-gray-200 "
                 >
-                  <h3 className="text-xl font-bold text-gray-900 ">{lang.name}</h3>
+                                     <h3 className="text-xl font-bold text-gray-900 ">{
+                     lang.name === "French" ? "Français" :
+                     lang.name === "English" ? "Anglais" :
+                     lang.name === "German" ? "Allemand" :
+                     lang.name
+                   }</h3>
                   <div className="flex justify-center mt-4">
                     {[...Array(5)].map((_, idx) => (
                       <div
@@ -428,7 +416,7 @@ export default function InteractiveCV() {
           <section
             className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
           >
-            <h2 className="text-2xl font-bold mb-8 text-gray-900 text-center">Interests</h2>
+                         <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">Centres d'intérêt</h2>
             
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Radar Chart */}
@@ -438,10 +426,10 @@ export default function InteractiveCV() {
                     <RadarChart 
                       data={interests.map((interest, i) => ({
                         skill: interest.name,
-                        level: interest.name === "DIY" ? 100 : 
-                              interest.name === "Chilling" ? 80 : 
-                              interest.name === "Outdoor Adventure" ? 60 : 
-                              (interest.keywords ? Math.min(100, interest.keywords.length * 25) : 50),
+                                                 level: interest.name === "DIY" ? 100 : 
+                               interest.name === "Détente" ? 80 : 
+                               interest.name === "Aventure" ? 60 : 
+                               (interest.keywords ? Math.min(100, interest.keywords.length * 25) : 50),
                         fullMark: 100
                       }))}
                       startAngle={30}
@@ -453,13 +441,10 @@ export default function InteractiveCV() {
                         tick={{ fontSize: 9, fill: '#374151' }}
                         tickLine={false}
                         axisLine={false}
-                        tickFormatter={(value) => {
-                          if (value === "Outdoor Adventure") return "Outdoor";
-                          return value;
-                        }}
+                                                 
                       />
                       <Radar
-                        name="Interest Level"
+                        name="Niveau d'Intérêt"
                         dataKey="level"
                         stroke={colorTheme.colors.chartColor}
                         fill={colorTheme.colors.chartColor}
@@ -514,10 +499,10 @@ export default function InteractiveCV() {
           viewport={{ once: true }}
           className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200 mt-8`}
         >
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">What's your verdict?</h2>
-            <p className="text-lg text-gray-600">Time to make your decision...</p>
-          </div>
+                      <div className="text-center mb-8">
+                             <h2 className="text-2xl font-bold text-gray-900 mb-4">Tu veux en savoir davantage ?</h2>
+                             <p className="text-lg text-gray-600">Fais ton choix...</p>
+            </div>
           
           <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
             {/* Accept Button */}
@@ -542,7 +527,7 @@ export default function InteractiveCV() {
                     <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="tracking-wide">I want to know more</span>
+                <span className="tracking-wide">Je veux en savoir plus</span>
               </div>
             </motion.button>
 
@@ -553,11 +538,11 @@ export default function InteractiveCV() {
                 boxShadow: "0 25px 50px -12px rgba(239, 68, 68, 0.4)"
               }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => {
-                const subject = encodeURIComponent("[DISMISSED]");
-                const body = encodeURIComponent("Dear Simon,\n\nWe have the regret to announce you that your application was pretty cool, but we did our choice and you're dismissed.\n\nNext time,\nThe QoQa Team !!");
-                window.location.href = `mailto:simon.cottier@gmail.com?subject=${subject}&body=${body}`;
-              }}
+                              onClick={() => {
+                  const subject = encodeURIComponent("[REFUSÉ]");
+                  const body = encodeURIComponent("Cher Simon,\n\nNous avons le regret de vous annoncer que votre candidature était plutôt cool, mais nous avons fait notre choix et vous êtes refusé.\n\nÀ la prochaine fois,\nL'équipe QoQa !!");
+                  window.location.href = `mailto:simon.cottier@gmail.com?subject=${subject}&body=${body}`;
+                }}
               className="group relative overflow-hidden w-72 h-16 bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-semibold text-lg rounded-2xl shadow-xl transition-all duration-500 border border-red-400/20"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
@@ -567,7 +552,7 @@ export default function InteractiveCV() {
                     <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="tracking-wide">You're dismissed</span>
+                <span className="tracking-wide">Tu es refusé</span>
               </div>
             </motion.button>
           </div>
@@ -595,49 +580,59 @@ export default function InteractiveCV() {
               >
                 <span className="text-6xl">🎉</span>
               </motion.div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Excellent Choice!</h1>
+                             <h1 className="text-2xl font-bold text-gray-900 mb-4">Bon choix !</h1>
             </div>
 
             <div className="bg-white bg-opacity-70 rounded-xl border border-gray-200 shadow-sm p-8">
               <div className="prose prose-lg max-w-none">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Hello QoQa Team,</h2>
+                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Bonjour l'équipe QoQa,</h2>
                 
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  My name is Simon, and I am a <strong>System Engineer from HEIG-VD</strong>. Over the past years, I have developed my career within <strong>Medtronic</strong> through several roles of increasing responsibility.
-                </p>
+                                 <p className="text-gray-700 leading-relaxed mb-6">
+                   Salut, moi c'est <strong>Simon</strong>. <strong>Ingénieur en gestion industrielle</strong>, j'ai construit mon parcours chez <strong>Medtronic</strong> en endossant des rôles à responsabilités croissantes, avec pour fil conducteur l'optimisation, l'innovation et le leadership terrain.
+                 </p>
 
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  I began as a <strong>Production Engineer</strong> on the line manufacturing the world's smallest pacemaker. This experience allowed me to strengthen my ability to work in teams, lead groups, and solve daily challenges in a demanding environment. I also drove continuous improvement projects, both technical and organizational, to optimize line performance.
-                </p>
-
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  Driven by my passion for industrial optimization, I then became responsible for an <strong>innovation program</strong>, aimed at simplifying and enhancing communication and control processes. I had the opportunity to lead projects between Switzerland and Singapore, including the deployment of vision systems to reinforce quality and efficiency.
-                </p>
-
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  My ambition led me to take on a <strong>global role across 13 European sites</strong>, coordinating the deployment of common technologies (vision, automation, digitalization) in alignment with the group's strategy. Alongside this, I spearheaded digitalization initiatives (Power BI, SPC) to measure performance and identify new opportunities for improvement.
-                </p>
-
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  These experiences have taught me to be structured, ambitious, and results-oriented, with the ability to unite teams around concrete and sustainable solutions. If I were to describe my "superpower," it would be <strong>Efficiency Vision</strong>: the ability to instantly detect inefficiencies within a system — like X-ray glasses for processes — and transform weak points into drivers of performance.
-                </p>
-
-                <div className={`${colorTheme.colors.container} p-6 rounded-lg mb-6 border-l-4 ${colorTheme.colors.border}`}>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Why QoQa?</h3>
+                                 <div className="bg-blue-50 p-6 rounded-lg mb-6 border-l-4 border-blue-500">
+                   <h3 className="text-xl font-bold text-gray-900 mb-4">Mon parcours :</h3>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    I am looking for an environment where I can make a <strong>real impact</strong>, not only by deploying technologies but by creating <strong>measurable value</strong> that teams can see and feel every day. QoQa's culture of <strong>creativity, agility, and human-centered values</strong> is the perfect ground for that.
+                    J'ai commencé comme <strong>Ingénieur de Production</strong> sur la ligne de fabrication du plus petit stimulateur cardiaque au monde. Cette expérience m'a permis de renforcer ma capacité à travailler en équipe, diriger des groupes et résoudre les défis quotidiens dans un environnement exigeant.
                   </p>
                   <p className="text-gray-700 leading-relaxed">
-                    I believe my expertise in <strong>medical devices, technology, and digitalization</strong> can help accelerate your optimization journey — but more importantly, I want to bring a <strong>fresh perspective, positive energy, and a wave of motivation</strong> to the tanière.
+                    Poussé par ma passion pour l'optimisation industrielle, je suis ensuite devenu responsable d'un <strong>programme d'innovation</strong>, visant à simplifier et améliorer les processus de communication et de contrôle. J'ai eu l'opportunité de diriger des projets entre la Suisse et Singapour, incluant le déploiement de systèmes de vision pour renforcer la qualité et l'efficacité.
                   </p>
                 </div>
 
-                <p className="text-gray-700 leading-relaxed mb-8">
-                  If you're looking for someone to turn ambition into measurable efficiency while keeping the ride fun, then I think we're a good match. 🚀
-                </p>
+                                 <div className="bg-green-50 p-6 rounded-lg mb-6 border-l-4 border-green-500">
+                   <h3 className="text-xl font-bold text-gray-900 mb-4">Mon rôle actuel :</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Mon ambition m'a conduit à prendre un <strong>rôle global sur 13 sites européens</strong>, coordonnant le déploiement de technologies communes (vision, automatisation, digitalisation) en alignement avec la stratégie du groupe. Parallèlement, j'ai piloté des initiatives de digitalisation (Power BI, SPC) pour mesurer les performances et identifier de nouvelles opportunités d'amélioration.
+                  </p>
+                </div>
+
+                                 <div className="bg-purple-50 p-6 rounded-lg mb-6 border-l-4 border-purple-500">
+                   <h3 className="text-xl font-bold text-gray-900 mb-4">Mon superpouvoir :</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Ces expériences m'ont appris à être <strong>structuré, ambitieux et orienté résultats</strong>, avec la capacité d'unir les équipes autour de solutions concrètes et durables. Si je devais décrire mon "superpouvoir", ce serait la <strong>Vision d'Efficacité</strong> : la capacité de détecter instantanément les inefficacités dans un système — comme des lunettes à rayons X pour les processus — et transformer les points faibles en moteurs de performance.
+                  </p>
+                </div>
+
+                                 <div className="bg-orange-50 p-6 rounded-lg mb-6 border-l-4 border-orange-500">
+                   <h3 className="text-xl font-bold text-gray-900 mb-4">Pourquoi QoQa ?</h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Je recherche un environnement où je peux avoir un <strong>impact réel</strong>, non seulement en déployant des technologies mais en créant une <strong>valeur mesurable</strong> que les équipes peuvent voir et ressentir chaque jour. La culture de QoQa de <strong>créativité, agilité et valeurs centrées sur l'humain</strong> est le terrain parfait pour cela.
+                  </p>
+                                     <p className="text-gray-700 leading-relaxed">
+                     Je crois que mon expertise en <strong>dispositifs médicaux, technologie et digitalisation</strong> peut aider à accélérer votre parcours d'optimisation — mais plus important encore, je veux insuffler une <strong>dynamique et une énergie positive</strong> à la tanière.
+                   </p>
+                </div>
+
+                <div className="bg-red-50 p-6 rounded-lg mb-8 border-l-4 border-red-500 text-center">
+                  <p className="text-gray-700 leading-relaxed font-semibold text-lg">
+                    Si vous recherchez quelqu'un pour transformer l'ambition en efficacité mesurable tout en gardant le voyage amusant, alors je pense que nous sommes faits pour nous entendre. 🚀
+                  </p>
+                </div>
 
                 <div className="text-center">
-                  <p className="text-gray-700 font-semibold mb-4">Looking forward to meeting you,</p>
+                  <p className="text-gray-700 font-semibold mb-4">Au plaisir de vous rencontrer,</p>
                   <p className="text-2xl font-bold text-gray-900 mb-2">Simon Cottier</p>
                   <div className="flex justify-center mb-4">
                     <div className={`p-2 ${colorTheme.colors.iconBg} rounded-full`}>
@@ -652,14 +647,14 @@ export default function InteractiveCV() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  const subject = encodeURIComponent("Let's discuss the opportunity!");
-                  const body = encodeURIComponent("Hi Simon,\n\nI've reviewed your interactive CV and cover letter, and I'm impressed! I'd like to schedule a conversation to discuss potential opportunities.\n\nBest regards,");
-                  window.location.href = `mailto:simon.cottier@gmail.com?subject=${subject}&body=${body}`;
-                }}
+                                 onClick={() => {
+                   const subject = encodeURIComponent("Discutons de l'opportunité !");
+                   const body = encodeURIComponent("Hello Simon !\n\nTon CV nous a tapé dans l'œil (et on avoue, ton originalité aussi ).\nOn s'est dit : plutôt que de continuer à lire des lignes de texte… pourquoi pas se rencontrer en vrai ?\n\nVoici quelques créneaux qu'on te propose (tu n'as qu'à modifier ce qui t'arrange) :\n\n[Date, Heure] – dans nos locaux à Bussigny\n\nÀ toi de nous dire ce qui te convient, on s'adapte !\n\nL'équipe QoQa");
+                   window.location.href = `mailto:simon.cottier@gmail.com?subject=${subject}&body=${body}`;
+                 }}
                 className={`inline-flex items-center px-8 py-4 ${colorTheme.colors.accent} hover:${colorTheme.colors.accentHover} text-black font-bold text-lg rounded-xl shadow-lg transition-all duration-300 transform hover:shadow-xl`}
               >
-                Let's Meet!
+                Rencontrons-nous !
               </motion.button>
             </div>
           </div>

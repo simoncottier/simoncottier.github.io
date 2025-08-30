@@ -81,7 +81,7 @@ const SiteExperience = ({ onThemeChange, currentTheme }) => {
       className={`${currentTheme.colors.container} p-8 rounded-2xl shadow-lg border border-gray-200`}
     >
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Define your color</h2>
+                        <h2 className="text-2xl font-bold text-gray-900">Choisi ta couleur</h2>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`p-2 ${currentTheme.colors.iconBg || currentTheme.colors.accent} rounded-lg text-white hover:opacity-80 transition-opacity`}

@@ -6,14 +6,17 @@ const Gallery = ({ colorTheme }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Create array of images 1.jpg through 8.jpg
+  // Create array of images 1.jpg through 8.jpg, excluding 1, 2, 6, and 8
   const images = [];
   for (let i = 1; i <= 8; i++) {
-    images.push({
-      src: `/images/${i}.jpg`,
-      alt: `Photo ${i}`,
-      name: `${i}.jpg`
-    });
+    // Skip images 1, 2, 6, and 8
+    if (i !== 1 && i !== 2 && i !== 6 && i !== 8) {
+      images.push({
+        src: `/images/${i}.jpg`,
+        alt: `Photo ${i}`,
+        name: `${i}.jpg`
+      });
+    }
   }
 
   const openModal = (image, index) => {
@@ -46,7 +49,7 @@ const Gallery = ({ colorTheme }) => {
         viewport={{ once: true }}
         className={`${colorTheme.colors.container} p-10 rounded-2xl shadow-xl border border-gray-200`}
       >
-        <h2 className="text-2xl font-bold mb-8 text-gray-900 text-center">Photo Gallery</h2>
+                    <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">Un peu de moi en quelques clichés</h2>
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((image, index) => (

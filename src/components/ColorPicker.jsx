@@ -123,7 +123,7 @@ const ColorPicker = ({ onColorChange, currentTheme }) => {
         } items-center justify-center`}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        title="Choose Color Theme"
+        title="Choisir le Thème de Couleur"
       >
         <Palette size={20} className="text-gray-600 dark:text-gray-300" />
       </motion.button>
@@ -147,7 +147,7 @@ const ColorPicker = ({ onColorChange, currentTheme }) => {
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Choose Your Theme</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Choisissez Votre Thème</h3>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
@@ -182,7 +182,7 @@ const ColorPicker = ({ onColorChange, currentTheme }) => {
                       {/* Theme Name */}
                       <div className="text-center">
                         <p className={`font-semibold ${theme.preview.text}`}>{theme.name}</p>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Pastel Theme</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Thème Pastel</p>
                       </div>
                     </div>
                   </motion.button>
@@ -192,7 +192,7 @@ const ColorPicker = ({ onColorChange, currentTheme }) => {
               {/* Footer */}
               <div className="mt-6 text-center">
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Your color preference will be saved for your next visit
+                  Votre préférence de couleur sera sauvegardée pour votre prochaine visite
                 </p>
               </div>
             </motion.div>
