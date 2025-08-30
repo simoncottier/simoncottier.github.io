@@ -4,7 +4,7 @@
     "headline": "Sr. Technical Solution Engineer",
     "email": "simon.cottier@gmail.com",
     "phone": "+41794570319",
-    "location": "Switzerland, Romanel",
+    "location": "Suisse, Romanel",
     "url": {
       "label": "",
       "href": ""
@@ -24,15 +24,15 @@
   },
   "sections": {
     "summary": {
-      "name": "Summary",
+      "name": "En quelques mots",
       "columns": 1,
       "separateLinks": true,
       "visible": true,
       "id": "summary",
-      "content": "<p>Innovative and results-driven engineer, a true Swiss knife – versatile from technical expertise to digitalization, and from hands-on implementation to project leadership.</p><p> Passionate about smart, value-added solutions that drive efficiency, align with business goals, and deliver impactful change.</p>"
+             "content": "<p>« <strong>Ingénieur</strong> de formation et de passion, toujours à l'affût pour transformer l'existant en y intégrant des <strong>technologies simples</strong> dans des flux complexes.</p><p>Un véritable <strong>couteau suisse</strong>, capable de jongler entre <strong>technique</strong>, <strong>innovation</strong> et <strong>travail d'équipe</strong>.</p><p>Passionné par les <strong>technologies modernes</strong> qui stimulent l'<strong>efficacité</strong> et génèrent un <strong>impact réel</strong> là où se crée la véritable <strong>valeur ajoutée</strong>. »</p>"
     },
     "awards": {
-      "name": "Awards",
+      "name": "Récompenses",
       "columns": 1,
       "separateLinks": true,
       "visible": true,
@@ -67,28 +67,28 @@
       "visible": true,
       "id": "education",
       "items": [
-        {
-          "id": "hlhgzwf6pxuaz1ws8u80fr21",
-          "visible": true,
-          "institution": "HEIG-VD Bachelor of Applied Science (B.A.Sc.) in Engineering and Management",
-          "studyType": "",
-          "area": "Engineering",
-          "score": "",
-          "date": "2014 - 2017",
+                 {
+           "id": "hlhgzwf6pxuaz1ws8u80fr21",
+           "visible": true,
+                       "institution": "HEIG-VD BSC en Ingénierie et gestion industrielles",
+           "studyType": "",
+                       "area": "Ingénieur",
+           "score": "",
+           "date": "2014 - 2017",
           "summary": "<p></p><p></p>",
           "url": {
             "label": "",
             "href": ""
           }
         },
-        {
-          "id": "i5ez48q0i54pzjibfopqkm1s",
-          "visible": true,
-          "institution": "CFC - Physics Laboratory Technician",
-          "studyType": "",
-          "area": "EPFL",
-          "score": "",
-          "date": "2005 - 2009",
+                 {
+           "id": "i5ez48q0i54pzjibfopqkm1s",
+           "visible": true,
+           "institution": "CFC Laborant en physique",
+           "studyType": "",
+           "area": "EPFL",
+           "score": "",
+           "date": "2005 - 2009",
           "summary": "",
           "url": {
             "label": "",
@@ -109,9 +109,9 @@
           "visible": true,
           "company": "Medtronic",
           "position": "Sr. Technical Engineer",
-          "location": "Switzerland, Tolochenaz",
+          "location": "Suisse, Tolochenaz",
           "date": "June 2021 - Now",
-          "summary": "<p>Leading the Innovation 4 Manufacturing program to drive technology adoption, improve product quality, reduce waste, and digitalize manufacturing processes.</p><p>In a regional role covering 13 European sites, I identify business needs, create business cases, and ensure project execution.</p><p><strong>My role is to identify and implement scalable technical solutions</strong> across sites, combining engineering expertise with business strategy.</p><p> I work closely with leadership and suppliers to deliver impactful and practical innovations.</p><p><strong>Key Achievements:</strong></p><ul><li><p>Implemented an output tracker to improve process visibility and efficiency at a local manufacturing site.</p></li><li><p>Deployed a vision system with edge learning in Grenoble to accurately detect needles and boost precision.</p></li><li><p>Rolled out five AI-enabled vision systems in Switzerland and Singapore, reducing defects and inspection waste.</p></li><li><p>Improved cycle time by 60% and reduced costs through a new standardized traceability system.</p></li><li><p>Promoted a culture of innovation, enhancing collaboration and influencing technology choices in new product development.</p></li></ul><p></p>",
+                     "summary": "<p><strong>Responsable du programme Innovation 4 Manufacturing</strong></p><p><strong>Mission :</strong> intégrer de nouvelles technologies sur les lignes de production afin d'améliorer la qualité, réduire les activités sans valeur ajoutée et simplifier les flux.</p><p><strong>Rôle régional (13 sites européens) :</strong></p><ul><li><p>• Identifier les besoins business et définir la stratégie</p></li><li><p>• Construire les business cases et piloter l'exécution des projets</p></li><li><p>• Déployer des solutions techniques scalables entre sites</p></li><li><p>• Allier ingénierie, gestion de projet et suivi business</p></li><li><p>• Collaborer avec les équipes de direction et les fournisseurs pour livrer des innovations concrètes et à fort impact</p></li></ul><p><strong>Réalisations clés :</strong></p><ul><li><p>• Déploiement de 2 systèmes de vision IA pour détecter les composants avant soudure (+17 % de productivité)</p></li><li><p>• Mise en place d'un système de contrôle des composants entre Tolochenaz et Singapour afin de garantir la conformité du produit</p></li><li><p>• Rétrofit complet du mode d'assemblage (+40 % d'efficacité)</p></li><li><p>• Création de dashboards Spotfire et d'applications Power Apps pour simplifier la consolidation des données</p></li><li><p>• Promotion d'une culture de l'innovation, renforçant la collaboration et influençant les choix technologiques dans le développement de nouveaux produits</p></li></ul>",
           "url": {
             "label": "",
             "href": ""
@@ -122,9 +122,9 @@
           "visible": true,
           "company": "Medtronic",
           "position": "Project Engineer",
-          "location": "Switzerland, Tolochenaz",
+          "location": "Suisse, Tolochenaz",
           "date": "Jun 2021 – Aug 2022",
-          "summary": "<ul><li><p>Lead project for the PMO: Planification (MS Project, JIRA), Manage team and execution to achieved goal. </p></li><li><p>Characterization and validation for production of Backfill and Seamweld process.</p></li></ul>",
+                                           "summary": "<ul><li><p>• Pilotage de projets PMO : planification (MS Project / JIRA), coordination d'équipes et suivi d'exécution jusqu'à l'atteinte des objectifs</p></li><li><p>• Caractérisation & validation : conduite de projets de qualification process (Backfill, Seamweld) et d'équipements de soudure pour micro-devices, de la planification à l'exécution</p></li></ul>",
           "url": {
             "label": "",
             "href": ""
@@ -135,9 +135,9 @@
           "visible": true,
           "company": "Medtronic",
           "position": "Manufacturing Engineer",
-          "location": "Switzerland, Tolochenaz",
+          "location": "Suisse, Tolochenaz",
           "date": "Dec 2018 - Jun 2021",
-          "summary": "<p>Responsible for laser welding, gas filling and engraving process on the micro device production line </p><ul><li><p>Managed CAPA, non-conformities, and complaints to ensure compliance and continuous improvement.</p></li><li><p>Production performance by monitoring key processes and executing continuous improvement projects.</p></li></ul>",
+                                           "summary": "<ul><li><p>• Gestion des problématiques de production (CAPA, non-conformités, plaintes)</p></li><li><p>• Amélioration continue des flux de production</p></li><li><p>• Déploiement de systèmes d'amélioration qualité</p></li><li><p>• Formation et accompagnement des opérateurs</p></li></ul>",
           "url": {
             "label": "",
             "href": ""
@@ -147,10 +147,10 @@
           "id": "le3p1yot4inzp169fhvxm8wj",
           "visible": true,
           "company": "Socorex Isba SA",
-          "position": "Intern Bsc Thesis",
-          "location": "Switzerland, Crissier",
+                                           "position": "Stage/ travail bachelor",
+          "location": "Suisse, Crissier",
           "date": "",
-          "summary": "<p>Establishing a strategic plan for new ISO 17025 calibration laboratory in Europe, assessing regional needs and identifying the most suitable location based on business relevance and technical feasibility.</p>",
+                                           "summary": "<ul><li><p>• Définition d'un plan stratégique business pour la création d'un laboratoire d'étalonnage ISO 17025 en Europe.</p></li><li><p>• Analyse des besoins régionaux et identification du site optimal selon la pertinence business et la faisabilité technique.</p></li></ul>",
           "url": {
             "label": "",
             "href": ""
@@ -172,7 +172,7 @@
           "position": "",
           "location": "",
           "date": "2022 - Now",
-          "summary": "<p>• Organize annual ski weekends for 250+ people in a social club.</p>",
+                     "summary": "<ul><li><p>Organisation de weekends de ski annuels pour plus de 250 personnes dans un club social.</p></li></ul>",
           "url": {
             "label": "",
             "href": ""
@@ -187,40 +187,44 @@
       "visible": true,
       "id": "interests",
       "items": [
-        {
-          "id": "r0sp3conrgffl3xmdouko712",
-          "visible": true,
-          "name": "DIY",
-          "keywords": [
-            "Application Development",
-            "Website",
-            "ESP32",
-            "Arduino",
-            "Python"
-          ]
-        },
-        {
-          "id": "vv52ehm1tzk18z3fleaaf674",
-          "visible": true,
-          "name": "Chilling",
-          "keywords": [
-            "Cooking",
-            "Reading Joe Dickers",
-            "Biking",
-            "Zythologie",
-            "Family Time"
-          ]
-        },
-        {
-          "id": "qqbyx3tm7saum7g4fn46804v",
-          "visible": true,
-          "name": "Outdoor Adventure",
-          "keywords": [
-            "Motorcycle Tour",
-            "Ski Touring",
-            "Hiking"
-          ]
-        }
+                 {
+           "id": "r0sp3conrgffl3xmdouko712",
+           "visible": true,
+           "name": "DIY",
+                       "keywords": [
+              "Développement d'Applications",
+              "Site Web",
+              "ESP32",
+              "Arduino",
+              "Python",
+              "Jardinage",
+              "Mécanique moto",
+              "3D printing"
+            ]
+         },
+                 {
+           "id": "vv52ehm1tzk18z3fleaaf674",
+           "visible": true,
+           "name": "Chill & Fun",
+           "keywords": [
+             "Cuisine",
+             "Lecture de Joe Dicker",
+             "Vélo",
+             "Zythologie",
+                           "Repas de famille"
+           ]
+         },
+                 {
+           "id": "qqbyx3tm7saum7g4fn46804v",
+           "visible": true,
+           "name": "Aventure",
+                       "keywords": [
+              "Moto tour",
+              "Ski de Randonnée",
+              "Sortie montagne",
+              "Camping & Grillade"
+            ]
+         }
       ]
     },
     "languages": {
@@ -244,13 +248,13 @@
           "description": "",
           "level": 5
         },
-        {
-          "id": "ga5kv0krvoexms1wh41zef5b",
-          "visible": true,
-          "name": "German",
-          "description": "ERASMUS Exchange – 1 Year",
-          "level": 3
-        }
+                 {
+           "id": "ga5kv0krvoexms1wh41zef5b",
+           "visible": true,
+           "name": "German",
+           "description": "ERASMUS Exchange – 1 Year",
+           "level": 2
+         }
       ]
     },
     "profiles": {
@@ -331,12 +335,15 @@
           "name": "Business & Strategic",
           "description": "",
           "level": 0,
-          "keywords": [
-            "Business Case Identification",
-            "Technology Strategy",
-            "Cross site deployment",
-            "Supplier Development & External Collaboration"
-          ]
+                                                                                       "keywords": [
+               "Business Case Identification",
+               "Technology Strategy",
+               "Cross site deployment",
+               "Supplier Development & External Collaboration",
+               "Data Analyst",
+               "Gestion priorité",
+               "Orienté solution"
+             ]
         },
         {
           "id": "onf1r6pjzio2ttd27vi2uow6",
@@ -367,15 +374,15 @@
   },
   "personalInfo": {
     "personality": {
-      "traits": ["Innovative", "Results-driven", "Versatile", "Passionate about technology", "Solution-oriented"],
+             "traits": ["Innovative", "Versatile", "Passionate about technology", "Solution-oriented"],
       "workStyle": "Hands-on implementation combined with strategic thinking",
       "approach": "Smart, value-added solutions that drive efficiency and align with business goals"
     },
     "background": {
       "nickname": "Swiss knife engineer - versatile from technical expertise to digitalization",
-      "location": "Based in Romanel, Switzerland",
+      "location": "Based in Romanel, Suisse",
       "age": 36,
-      "birthplace": "Born and raised in Lausanne, Switzerland",
+      "birthplace": "Born and raised in Lausanne, Suisse",
       "educationJourney": "Initially studied civil engineering at EPFL, then found his passion in systems engineering at HEIG-VD",
       "languages": {
         "french": "Native speaker",
@@ -479,8 +486,8 @@
       ]
     ],
     "css": {
-      "value": "* {\n\toutline: 1px solid #000;\n\toutline-offset: 4px;\n}",
-      "visible": false
+      "value": "/* Styles pour les expériences */\n.experience-summary strong {\n  color: #001b54;\n  font-weight: 600;\n}\n.experience-summary ul {\n  margin: 8px 0;\n  padding-left: 20px;\n}\n.experience-summary li {\n  margin: 4px 0;\n  line-height: 1.4;\n}",
+      "visible": true
     },
     "page": {
       "margin": 36,
