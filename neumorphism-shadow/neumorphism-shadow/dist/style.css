@@ -1,0 +1,59 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #e8eaec;
+  font-family: "Roboto", sans-serif;
+}
+
+.shadow {
+  padding: 24px;
+}
+.shadow__box {
+  width: 250px;
+  height: 250px;
+  position: relative;
+  border-radius: 15%;
+}
+.shadow__box#drop-shadow {
+  box-shadow: 12px 12px 32px rgba(13, 39, 80, 0.25), -10px -10px 15px white;
+}
+.shadow__box#inner-shadow {
+  box-shadow: 12px 12px 32px rgba(13, 39, 80, 0.25), -10px -10px 15px white, inset -15px -15px 20px rgba(255, 255, 255, 0.7), inset 8px 8px 30px rgba(13, 39, 80, 0.2);
+}
+.shadow__box#dual-shadow {
+  box-shadow: 12px 12px 32px rgba(13, 39, 80, 0.25), -10px -10px 15px white, inset -15px -15px 20px rgba(255, 255, 255, 0.7), inset 8px 8px 30px rgba(13, 39, 80, 0.2);
+}
+.shadow__box#dual-shadow:before {
+  content: "";
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: inherit;
+  box-shadow: 12px 12px 32px rgba(13, 39, 80, 0.25), -10px -10px 15px white;
+}
+.shadow__title {
+  padding-top: 48px;
+  padding-left: 24px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0b254e;
+}
+.shadow__sub {
+  padding-top: 12px;
+  padding-left: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #c2c3c3;
+}

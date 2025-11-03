@@ -1,0 +1,74 @@
+$darkShadow: #0D2750;
+$lightShadow: #FFFFFF;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #e8eaec;
+  font-family: 'Roboto', sans-serif;
+}
+
+.shadow {
+  padding: 24px;
+
+  $dropShadow: 12px 12px 32px rgba($darkShadow, 0.25),
+              -10px -10px 15px rgba($lightShadow, 1);
+  $innerShadow: inset -15px -15px 20px rgba($lightShadow, 0.7),
+                inset 8px 8px 30px rgba($darkShadow, 0.2);
+
+  &__box {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    border-radius: 15%;
+    
+    &#drop-shadow {
+      box-shadow: $dropShadow;
+    }
+    
+    &#inner-shadow {
+      box-shadow: $dropShadow, $innerShadow;
+    }
+    
+    &#dual-shadow {
+      box-shadow: $dropShadow, $innerShadow;
+      
+      &:before {
+        content: "";
+        width: 60%;
+        height: 60%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: inherit;
+        box-shadow: $dropShadow;
+      }
+    }
+  }
+  
+  &__title {
+    padding-top: 48px;
+    padding-left: 24px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0b254e;
+  }
+  
+  &__sub {
+    padding-top: 12px;
+    padding-left: 24px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #c2c3c3;
+  }
+}

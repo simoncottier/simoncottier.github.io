@@ -1,0 +1,439 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #EBECF0;
+  --text-color: #6C7587;
+  --icon-color: #8992A5;
+  --dark-shadow: rgba(72, 79, 96, 0.4);
+  --light-shadow: rgba(255, 255, 255, 1);
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Neumorphic Button Styles */
+.neumorphic-btn {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+  color: var(--text-color);
+  padding: 0 32px;
+  height: 48px;
+  min-width: 280px;
+  width: auto;
+  white-space: nowrap;
+  border-radius: 40px;
+  border: 3px solid rgba(255, 255, 255, 0);
+  outline: none;
+  text-align: center;
+  background-color: var(--bg-color);
+  transition: all 250ms ease-in-out;
+  box-shadow: 8px 8px 12px -2px var(--dark-shadow),
+    -6px -6px 12px -1px var(--light-shadow);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.neumorphic-btn:hover {
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.neumorphic-btn:active {
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  border-color: rgba(255, 255, 255, 0);
+}
+
+/* Neumorphic Dropdown Styles */
+.neumorphic-dropdown {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+  color: var(--text-color);
+  padding: 0 28px;
+  height: 54px;
+  border-radius: 40px;
+  border: 3px solid rgba(255, 255, 255, 0);
+  outline: none;
+  background-color: var(--bg-color);
+  transition: all 250ms ease-in-out;
+  box-shadow: 8px 8px 12px -2px var(--dark-shadow),
+    -6px -6px 12px -1px var(--light-shadow);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.neumorphic-dropdown:hover {
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.neumorphic-dropdown:active {
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.icon-dropdown {
+  width: 24px;
+  height: 24px;
+  fill: var(--icon-color);
+  flex-shrink: 0;
+}
+
+/* Dropdown Menu */
+.neumorphic-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  right: 0;
+  max-width: 28rem;
+  margin: 0 auto;
+  background-color: var(--bg-color);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 8px 8px 16px -2px var(--dark-shadow),
+    -6px -6px 16px -1px var(--light-shadow);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.neumorphic-dropdown-item {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+  color: var(--text-color);
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 3px solid rgba(255, 255, 255, 0);
+  outline: none;
+  background-color: var(--bg-color);
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.neumorphic-dropdown-item:hover {
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.neumorphic-dropdown-item--active {
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  border-color: rgba(255, 255, 255, 0);
+}
+
+/* Content Section */
+.neumorphic-content {
+  padding: 32px;
+  background-color: var(--bg-color);
+  border-radius: 24px;
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  text-align: left;
+}
+
+/* Content Box for Menu Items */
+.neumorphic-content-box {
+  padding: 64px 96px;
+  background-color: var(--bg-color);
+  border-radius: 24px;
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  width: 100%;
+  text-align: left;
+}
+
+/* Neumorphic Image Container */
+.neumorphic-image-container {
+  border-radius: 16px;
+  padding: 4px;
+  background-color: var(--bg-color);
+  box-shadow: 12px 12px 32px -2px rgba(72, 79, 96, 0.25),
+    -10px -10px 15px -1px var(--light-shadow);
+  transition: all 250ms ease-in-out;
+  max-width: 400px;
+  width: 100%;
+}
+
+.neumorphic-image-container.cursor-pointer {
+  cursor: pointer;
+}
+
+.neumorphic-image {
+  border-radius: 12px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* Expanded Image Modal */
+.neumorphic-image-modal {
+  background-color: var(--bg-color);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 8px 8px 24px -2px var(--dark-shadow),
+    -6px -6px 24px -1px var(--light-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neumorphic-close-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  border: 3px solid rgba(255, 255, 255, 0);
+  color: var(--text-color);
+  font-size: 28px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 8px 8px 12px -2px var(--dark-shadow),
+    -6px -6px 12px -1px var(--light-shadow);
+  transition: all 250ms ease-in-out;
+}
+
+.neumorphic-close-btn:hover {
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.neumorphic-close-btn:active {
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+}
+
+/* Neumorphic Circular Name */
+.neumorphic-circle-pulse {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 8px 8px 16px -2px var(--dark-shadow),
+    -8px -8px 16px -1px var(--light-shadow);
+  border: 3px solid rgba(255, 255, 255, 0);
+  position: relative;
+}
+
+.neumorphic-circle-pulse h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-align: center;
+  z-index: 1;
+  margin: 0;
+  padding: 0 20px;
+}
+
+/* Neumorphic Circular Icon Button */
+.neumorphic-circle-icon-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0);
+  outline: none;
+  background-color: var(--bg-color);
+  transition: all 250ms ease-in-out;
+  box-shadow: 8px 8px 12px -2px var(--dark-shadow),
+    -6px -6px 12px -1px var(--light-shadow);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.neumorphic-circle-icon-btn:hover {
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.neumorphic-circle-icon-btn:active {
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  border-color: rgba(255, 255, 255, 0);
+}
+
+/* Neumorphic Dropdown Button - matching neumorphic components style */
+.neumorphic-dropdown-btn {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+  color: var(--text-color);
+  padding: 0 32px;
+  height: 48px;
+  min-width: 280px;
+  width: auto;
+  white-space: nowrap;
+  border-radius: 40px;
+  border: 3px solid rgba(255, 255, 255, 0);
+  outline: none;
+  background-color: var(--bg-color);
+  transition: all 250ms ease-in-out;
+  box-shadow: 8px 8px 12px -2px var(--dark-shadow),
+    -6px -6px 12px -1px var(--light-shadow);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.neumorphic-dropdown-btn:hover {
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.neumorphic-dropdown-btn:active {
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.icon-dropdown-arrow {
+  width: 24px;
+  height: 24px;
+  fill: var(--icon-color);
+  flex-shrink: 0;
+}
+
+/* Neumorphic Menu with Shadow */
+.neumorphic-menu {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 250px;
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 0;
+  pointer-events: auto;
+}
+
+.neumorphic-menu-item {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+  color: var(--text-color);
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 3px solid rgba(255, 255, 255, 0);
+  outline: none;
+  background-color: var(--bg-color);
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-shadow: 8px 8px 12px -2px var(--dark-shadow),
+    -6px -6px 12px -1px var(--light-shadow);
+}
+
+.neumorphic-menu-item:hover {
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.neumorphic-menu-item:active {
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  border-color: rgba(255, 255, 255, 0);
+}
+
+/* Language Selector Radio Buttons */
+.neumorphic-language-selector {
+  display: flex;
+  gap: 8px;
+  padding: 4px;
+  background-color: var(--bg-color);
+  border-radius: 40px;
+  box-shadow: 8px 8px 12px -2px var(--dark-shadow),
+    -6px -6px 12px -1px var(--light-shadow);
+}
+
+.neumorphic-radio-label {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neumorphic-radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.neumorphic-radio-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  border: 3px solid rgba(255, 255, 255, 0);
+  transition: all 250ms ease-in-out;
+  box-shadow: 8px 8px 12px -2px var(--dark-shadow),
+    -6px -6px 12px -1px var(--light-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neumorphic-radio-input:checked + .neumorphic-radio-text {
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.neumorphic-radio-text:hover {
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.5);
+}
