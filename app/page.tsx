@@ -111,7 +111,7 @@ export default function Home() {
   }, [showMenu]);
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+    <main className="min-h-screen flex flex-col items-center px-4 py-12">
       {/* Language Selector */}
       <div className="absolute top-4 right-4 md:top-8 md:right-8">
         <div className="flex gap-3 neumorphic-language-selector">
@@ -140,7 +140,7 @@ export default function Home() {
         </div>
       </div>
       
-      <div className="text-center space-y-12 w-full">
+      <div className="text-center space-y-12 w-full flex-shrink-0">
         {/* Name/Title */}
         <div className="flex flex-col items-center mb-16">
           <h1 className="text-5xl md:text-7xl font-medium text-[#6C7587] mb-4">
@@ -181,7 +181,7 @@ export default function Home() {
         </div>
 
         {/* Three Neumorphic Buttons */}
-        <div className="flex flex-col md:flex-row gap-12 justify-center items-center relative w-full max-w-4xl mx-auto px-4" style={{ minHeight: '120px' }}>
+        <div className="flex flex-col md:flex-row gap-12 justify-center items-center relative w-full max-w-4xl mx-auto px-4 flex-shrink-0" style={{ minHeight: '120px' }}>
           <button
             className="neumorphic-btn"
             onClick={() => {
@@ -271,7 +271,7 @@ export default function Home() {
         </div>
 
         {/* Section Content - Fixed position to avoid layout shift */}
-        <div className="mt-12 w-full px-4 min-h-[200px]">
+        <div className="mt-12 w-full px-4 min-h-[200px] flex-shrink-0">
           {selectedSection && !showMenu && (
             <>
               {selectedSection === "personal-info" && (
