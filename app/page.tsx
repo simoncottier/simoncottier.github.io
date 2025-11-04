@@ -279,10 +279,9 @@ export default function Home() {
       <div className="text-center space-y-12 w-full flex-shrink-0">
         {/* Name/Title */}
         <div className="flex flex-col items-center mb-24">
-          <h1 className="text-6xl md:text-7xl font-medium text-[#6C7587] mb-12" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif' }}>
+          <h1 className="text-6xl md:text-8xl font-medium text-[#6C7587] mb-12">
             Simon Cottier
           </h1>
-          
           <div className="flex gap-8 mb-12">
             <button className="neumorphic-circle-icon-btn">
               <Image
@@ -374,7 +373,7 @@ export default function Home() {
                 setSelectedMenuItem(null);
               }}
             >
-              <span style={{ justifyContent: 'center' }}>{t.personalExp}</span>
+              <span>{t.personalExp}</span>
               <svg
                 className={`icon-dropdown-arrow transition-transform ${showMenu ? "rotate-180" : ""}`}
                 xmlns="http://www.w3.org/2000/svg"
