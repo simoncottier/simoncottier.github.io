@@ -527,20 +527,8 @@ export default function Home() {
                           heightClass = "cube cube-height-3"; // High
                         }
                         
-                        const isDIYCube = i === 9; // DIY cube - extra high
-                        const hasDIY = i === 9; // Position 10 (cube index 9) has DIY text
-                        
-                        // If it's a DIY cube, override with appropriate class
-                        let finalClass = heightClass;
-                        if (isDIYCube) {
-                          finalClass = "cube cube-diy-high";
-                        }
-                        
                         return (
-                          <div key={i} className={finalClass}>
-                            {hasDIY && (
-                              <div className="cube-text cube-text-diy">DIY</div>
-                            )}
+                          <div key={i} className={heightClass}>
                           </div>
                         );
                       })}
