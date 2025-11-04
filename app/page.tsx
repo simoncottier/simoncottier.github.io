@@ -506,32 +506,9 @@ export default function Home() {
                   {/* Cube Grid Animation */}
                   <div className="cube-grid-wrapper cube-grid-neumorphic mb-12 relative">
                     <div className="cube-grid" style={{ '--n': 4 } as React.CSSProperties}>
-                      {Array.from({ length: 16 }).map((_, i) => {
-                        // Each group of 4 blocks has different heights
-                        // Blocks 0-3: height level 0 (lowest)
-                        // Blocks 4-7: height level 1 (low)
-                        // Blocks 8-11: height level 2 (medium)
-                        // Blocks 12-15: height level 3 (high)
-                        const groupIndex = Math.floor(i / 4);
-                        const positionInGroup = i % 4;
-                        let heightClass = "cube";
-                        
-                        // Different height within each group
-                        if (positionInGroup === 0) {
-                          heightClass = "cube cube-height-0"; // Lowest
-                        } else if (positionInGroup === 1) {
-                          heightClass = "cube cube-height-1"; // Low
-                        } else if (positionInGroup === 2) {
-                          heightClass = "cube cube-height-2"; // Medium
-                        } else if (positionInGroup === 3) {
-                          heightClass = "cube cube-height-3"; // High
-                        }
-                        
-                        return (
-                          <div key={i} className={heightClass}>
-                          </div>
-                        );
-                      })}
+                      {Array.from({ length: 16 }).map((_, i) => (
+                        <div key={i} className="cube"></div>
+                      ))}
                     </div>
                   </div>
 
