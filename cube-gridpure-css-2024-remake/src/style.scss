@@ -1,0 +1,41 @@
+$l: 2.75em;
+$t: 1.5s;
+
+html, body, div { display: grid }
+
+html { height: 100% }
+
+div { transform-style: preserve-3d }
+
+.grid {
+	grid-template-columns: repeat(var(--n), $l);
+	grid-gap: .5em;
+	place-self: center;
+	transform: rotateX(55deg) rotate(45deg);
+}
+
+.cube {
+	aspect-ratio: 1;
+	transform-origin: 50% 50% -1*$l;
+	background: #fff;
+	animation: ani $t ease-in-out infinite;
+	animation-delay: calc((var(--n) - 1 - var(--j) + var(--i))*.05*#{$t});
+	
+	&::before, &::after {
+		--i: 0;
+		--j: calc(1 - var(--i));
+		grid-area: 1/ 1;
+		transform-origin: calc(var(--j)*50%) calc(var(--i)*50%);
+		translate: calc(var(--i)*100%) calc(var(--j)*100%);
+		rotate: var(--j) var(--i) 0 calc((2*var(--i) - 1)*90deg);
+		background: color-mix(in hsl, #a9a9a9 calc(var(--i)*100%), #dcdcdc);
+		content: ''
+	}
+	
+	&::after { --i: 1 }
+}
+
+@keyframes ani {
+	0%, 50%, 100% { scale: 1 1 0 }
+	25% { scale: 1 1 .5 }
+}

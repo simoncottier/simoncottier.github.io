@@ -1,0 +1,9 @@
+- let n = 4, m = Math.pow(n, 2);
+
+style
+	- for(let i = 0; i < n; i++)
+		| .cube:nth-child(#{n}n + #{i + 1}) { --i: #{i} }
+		| .cube:nth-child(n + #{n*i + 1}) { --j: #{i} }
+.grid(style=`--n: ${n}`)
+	while m--
+		.cube

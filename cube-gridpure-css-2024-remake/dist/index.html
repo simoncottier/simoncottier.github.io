@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>cube grid - pure CSS, 2024 remake</title>
+    <link rel="stylesheet" href="./style.css">
+<script src="https://public.codepenassets.com/js/prefixfree-1.0.7.min.js"></script>
+
+  </head>
+    
+  <body>
+  <style>.cube:nth-child(4n + 1) { --i: 0 }
+  .cube:nth-child(n + 1) { --j: 0 }.cube:nth-child(4n + 2) { --i: 1 }
+  .cube:nth-child(n + 5) { --j: 1 }.cube:nth-child(4n + 3) { --i: 2 }
+  .cube:nth-child(n + 9) { --j: 2 }.cube:nth-child(4n + 4) { --i: 3 }
+  .cube:nth-child(n + 13) { --j: 3 }
+</style>
+<div class="grid" style="--n: 4">
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+</div>
+    
+  </body>
+  
+</html>
