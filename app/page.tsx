@@ -516,8 +516,10 @@ export default function Home() {
                   <div className="space-y-4">
                     {Object.values(interestsData[language]).map((category, index) => (
                       <div key={index} className="neumorphic-content-box">
-                        <h4 className="text-lg font-medium text-[#6C7587] mb-3">{category.name}</h4>
-                        <div className="flex flex-wrap gap-2">
+                        <h4 className="text-lg font-medium text-[#6C7587]">
+                          <span className="interest-category-label">{category.name}</span>
+                        </h4>
+                        <div className="flex flex-wrap gap-2 mt-3">
                           {category.keywords.map((keyword, keywordIndex) => (
                             <span
                               key={keywordIndex}

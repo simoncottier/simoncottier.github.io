@@ -649,6 +649,17 @@ body {
     inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
 }
 
+/* Neumorphism Shadow 2 for interest category labels */
+.interest-category-label {
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: var(--bg-color);
+  border-radius: 20px;
+  box-shadow: inset -4px -4px 6px -1px var(--light-shadow),
+    inset 2px 2px 8px -1px rgba(72, 79, 96, 0.5);
+  margin-bottom: 12px;
+}
+
 .cube-grid-wrapper > * {
   display: grid;
   transform-style: preserve-3d;
