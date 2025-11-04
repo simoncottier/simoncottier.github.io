@@ -527,10 +527,9 @@ export default function Home() {
                           heightClass = "cube cube-height-3"; // High
                         }
                         
-                        const isHighCube = i === 5 || i === 11 || i === 14; // Very high cubes for text (Chill, Adventure, FUN)
+                        const isHighCube = i === 11 || i === 14; // Very high cubes for text (Adventure, FUN)
                         const isDIYCube = i === 9; // DIY cube - extra high
                         const hasDIY = i === 9; // Position 10 (cube index 9) has DIY text
-                        const hasChill = i === 5; // Position 6 (cube index 5) has Chill text
                         const hasFun = i === 14; // Position 15 (cube index 14) has FUN text
                         const hasAdventure = i === 11; // Position 12 (cube index 11) has Adventure text - rightmost column
                         
@@ -546,9 +545,6 @@ export default function Home() {
                           <div key={i} className={finalClass}>
                             {hasDIY && (
                               <div className="cube-text cube-text-diy">DIY</div>
-                            )}
-                            {hasChill && (
-                              <div className="cube-text cube-text-chill">Chill</div>
                             )}
                             {hasFun && (
                               <div className="cube-text cube-text-fun">FUN</div>
