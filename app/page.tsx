@@ -527,30 +527,19 @@ export default function Home() {
                           heightClass = "cube cube-height-3"; // High
                         }
                         
-                        const isHighCube = i === 11 || i === 14; // Very high cubes for text (Adventure, FUN)
                         const isDIYCube = i === 9; // DIY cube - extra high
                         const hasDIY = i === 9; // Position 10 (cube index 9) has DIY text
-                        const hasFun = i === 14; // Position 15 (cube index 14) has FUN text
-                        const hasAdventure = i === 11; // Position 12 (cube index 11) has Adventure text - rightmost column
                         
-                        // If it's a very high cube or DIY cube, override with appropriate class
+                        // If it's a DIY cube, override with appropriate class
                         let finalClass = heightClass;
                         if (isDIYCube) {
                           finalClass = "cube cube-diy-high";
-                        } else if (isHighCube) {
-                          finalClass = "cube cube-very-high";
                         }
                         
                         return (
                           <div key={i} className={finalClass}>
                             {hasDIY && (
                               <div className="cube-text cube-text-diy">DIY</div>
-                            )}
-                            {hasFun && (
-                              <div className="cube-text cube-text-fun">FUN</div>
-                            )}
-                            {hasAdventure && (
-                              <div className="cube-text cube-text-adventure">Adventure</div>
                             )}
                           </div>
                         );
