@@ -464,48 +464,16 @@ export default function Home() {
                 <h2 className="text-3xl font-medium mb-6 text-[#6C7587]">{t.personalInfo}</h2>
                 <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
                   <div className="flex-shrink-0">
-                    <div className="neumorphic-image-container" style={{ borderRadius: '16px' }}>
-                      <div style={{ 
-                        width: '200px', 
-                        height: '200px', 
+                    <Image
+                      src="/images/me.png"
+                      alt="Simon Cottier"
+                      width={200}
+                      height={200}
+                      style={{ 
                         borderRadius: '16px',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        background: 'radial-gradient(circle, rgba(235, 236, 240, 0.3) 0%, rgba(235, 236, 240, 0.8) 50%, rgba(235, 236, 240, 1) 100%)'
-                      }}>
-                        <div style={{
-                          position: 'absolute',
-                          inset: '20px',
-                          borderRadius: '12px',
-                          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%)',
-                          pointerEvents: 'none',
-                          zIndex: 1
-                        }}></div>
-                        <Image
-                          src="/images/me.png"
-                          alt="Simon Cottier"
-                          width={200}
-                          height={200}
-                          className="neumorphic-image"
-                          style={{ 
-                            aspectRatio: '1/1', 
-                            objectFit: 'contain',
-                            width: '100%',
-                            height: '100%',
-                            position: 'relative',
-                            zIndex: 0
-                          }}
-                        />
-                        <div style={{
-                          position: 'absolute',
-                          inset: 0,
-                          borderRadius: '16px',
-                          background: 'radial-gradient(circle at center, transparent 40%, rgba(235, 236, 240, 0.4) 60%, rgba(235, 236, 240, 0.9) 100%)',
-                          pointerEvents: 'none',
-                          zIndex: 2
-                        }}></div>
-                      </div>
-                    </div>
+                        objectFit: 'contain'
+                      }}
+                    />
                   </div>
                   <div className="flex-1">
                     <p className="text-lg text-[#8992A5] leading-relaxed whitespace-pre-line">
