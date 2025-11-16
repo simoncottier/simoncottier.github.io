@@ -62,7 +62,7 @@ const translations = {
     digitalization: "Digitalization",
     conception3D: "3D Conception",
     conception3DTitle: "3D Design & CAD Projects",
-    conception3DText: "Explore my portfolio of 3D mechanical design projects created with professional CAD software. These projects showcase my expertise in mechanical engineering, product design, and technical documentation. From complex assemblies to precision components, each design demonstrates attention to detail and engineering best practices.",
+    conception3DText: "I specialize in building prototypes and components for vehicle applications, tailored to specific mechanical constraints. My design process involves creating detailed 3D models using professional CAD software such as AutoCAD, Fusion 360, and SolidWorks. Once the design is finalized, I collaborate with third-party suppliers for precision manufacturing through 3D printing or CNC machining. Each project demonstrates my ability to translate engineering requirements into functional, manufacturable components.",
     mechanical: "Mechanical",
     expandedView: "Expanded view",
     education: "Education",
@@ -140,7 +140,7 @@ const translations = {
     digitalization: "Digitalisation",
     conception3D: "Conception 3D",
     conception3DTitle: "Projets de Conception 3D & CAO",
-    conception3DText: "Découvrez mon portfolio de projets de conception mécanique 3D créés avec des logiciels CAO professionnels. Ces projets mettent en valeur mon expertise en ingénierie mécanique, conception de produits et documentation technique. Des assemblages complexes aux composants de précision, chaque conception démontre une attention aux détails et les meilleures pratiques d'ingénierie.",
+    conception3DText: "Je me spécialise dans la construction de prototypes et de composants pour applications véhiculaires, adaptés aux contraintes mécaniques spécifiques. Mon processus de conception implique la création de modèles 3D détaillés utilisant des logiciels CAO professionnels tels qu'AutoCAD, Fusion 360 et SolidWorks. Une fois la conception finalisée, je collabore avec des fournisseurs tiers pour la fabrication de précision par impression 3D ou usinage CNC. Chaque projet démontre ma capacité à traduire les exigences d'ingénierie en composants fonctionnels et fabricables.",
     mechanical: "Mécanique",
     expandedView: "Vue agrandie",
     education: "Formation",
@@ -971,34 +971,6 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                
-                {/* Expanded Image Modal */}
-                {expandedImage && (
-                  <div 
-                    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-                    onClick={() => setExpandedImage(null)}
-                  >
-                    <div 
-                      className="neumorphic-image-modal relative max-w-7xl w-full max-h-[95vh]"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <button
-                        className="absolute top-4 right-4 z-10 neumorphic-close-btn"
-                        onClick={() => setExpandedImage(null)}
-                      >
-                        ×
-                      </button>
-                      <Image
-                        src={expandedImage}
-                        alt={t.expandedView}
-                        width={1920}
-                        height={1080}
-                        className="w-full h-auto rounded-2xl"
-                        style={{ maxHeight: '90vh', objectFit: 'contain' }}
-                      />
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           )}
@@ -1131,6 +1103,28 @@ export default function Home() {
             </div>
           )}
         </div>
+
+        {/* Expanded Image Modal - Shared by all sections */}
+        {expandedImage && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            onClick={() => setExpandedImage(null)}
+          >
+            <div 
+              className="neumorphic-image-modal relative max-w-7xl w-full max-h-[95vh] cursor-pointer"
+              onClick={() => setExpandedImage(null)}
+            >
+              <Image
+                src={expandedImage}
+                alt={t.expandedView}
+                width={1920}
+                height={1080}
+                className="w-full h-auto rounded-2xl"
+                style={{ maxHeight: '90vh', objectFit: 'contain' }}
+              />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Scroll to Top Button */}
