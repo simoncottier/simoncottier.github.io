@@ -916,7 +916,7 @@ export default function Home() {
                         alt={t.expandedView}
                         width={1920}
                         height={1080}
-                        className="w-full h-auto rounded-lg"
+                        className="w-full h-auto rounded-2xl"
                         style={{ maxHeight: '90vh', objectFit: 'contain' }}
                       />
                     </div>
