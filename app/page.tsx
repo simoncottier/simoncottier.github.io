@@ -514,26 +514,47 @@ export default function Home() {
 
                   {/* Interest Tags */}
                   <div className="space-y-4">
-                    {Object.values(interestsData[language]).map((category, index) => (
-                      <div key={index} className="neumorphic-content-box">
-                        <h4 className="text-lg font-medium text-[#6C7587]">
-                          <span className="interest-category-label">{category.name}</span>
-                        </h4>
-                        <div className="flex flex-wrap gap-2 mt-3">
-                          {category.keywords.map((keyword, keywordIndex) => (
-                            <span
-                              key={keywordIndex}
-                              className="px-3 py-1.5 rounded-full text-sm text-[#8992A5] bg-[#EBECF0]"
-                              style={{
-                                boxShadow: 'inset 1px 1px 2px rgba(72, 79, 96, 0.1), inset -1px -1px 2px rgba(255, 255, 255, 0.8)'
-                              }}
-                            >
-                              {keyword}
-                            </span>
-                          ))}
+                    {Object.values(interestsData[language]).map((category, index) => {
+                      const isAdventure = category.name === "Adventure" || category.name === "Aventure";
+                      const isChillAndFun = category.name === "Chill & Fun";
+                      const isDIY = category.name === "DIY";
+                      const hasDropShadow = isAdventure || isChillAndFun || isDIY;
+                      return (
+                        <div key={index} className="neumorphic-content-box">
+                          <h4 className="text-lg font-medium text-[#6C7587] mb-3">{category.name}</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {category.keywords.map((keyword, keywordIndex) => {
+                              // Use medium grey for drop shadow sections (DIY, Chill & Fun, Adventure) for better readability
+                              const textColor = hasDropShadow ? '#7B8A9F' : '#8992A5';
+                              
+                              return (
+                                <span
+                                  key={keywordIndex}
+                                  className={`px-3 py-1.5 rounded-full text-sm ${
+                                    hasDropShadow ? 'interest-adventure-keyword' : 'bg-[#EBECF0]'
+                                  }`}
+                                  style={{
+                                    color: textColor,
+                                    backgroundColor: hasDropShadow ? '#E0E4E8' : '#EBECF0',
+                                    WebkitFontSmoothing: 'antialiased',
+                                    MozOsxFontSmoothing: 'grayscale',
+                                    ...(hasDropShadow
+                                      ? {
+                                          // Darker background, no border
+                                        }
+                                      : {
+                                          boxShadow: 'inset 1px 1px 2px rgba(72, 79, 96, 0.1), inset -1px -1px 2px rgba(255, 255, 255, 0.8)'
+                                        })
+                                  }}
+                                >
+                                  {keyword}
+                                </span>
+                              );
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               </div>
