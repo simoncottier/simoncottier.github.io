@@ -356,23 +356,6 @@ export default function Home() {
             />
             {t.personalInfo}
           </button>
-          <button
-            className="neumorphic-btn"
-            onClick={() => {
-              setSelectedSection("professional-exp");
-              setShowMenu(false);
-              setSelectedMenuItem(null);
-            }}
-          >
-            <Image
-              src="/icon/icons8-administrator-male-24.png"
-              alt="Administrator icon"
-              width={24}
-              height={24}
-              className="mr-3"
-            />
-            {t.professionalExp}
-          </button>
           <div className="relative" ref={menuRef}>
             <button
               className="neumorphic-dropdown-btn"
@@ -456,6 +439,23 @@ export default function Home() {
               </div>
             )}
           </div>
+          <button
+            className="neumorphic-btn"
+            onClick={() => {
+              setSelectedSection("professional-exp");
+              setShowMenu(false);
+              setSelectedMenuItem(null);
+            }}
+          >
+            <Image
+              src="/icon/icons8-administrator-male-24.png"
+              alt="Administrator icon"
+              width={24}
+              height={24}
+              className="mr-3"
+            />
+            {t.professionalExp}
+          </button>
         </div>
 
         {/* Section Content - Fixed position to avoid layout shift */}
