@@ -340,8 +340,8 @@ export default function Home() {
             <Image
               src="/icon/icons8-fingerprint-24.png"
               alt="Fingerprint icon"
-              width={32}
-              height={32}
+              width={24}
+              height={24}
               className="mr-3"
             />
             {t.personalInfo}
@@ -357,8 +357,8 @@ export default function Home() {
             <Image
               src="/icon/icons8-administrator-male-24.png"
               alt="Administrator icon"
-              width={32}
-              height={32}
+              width={24}
+              height={24}
               className="mr-3"
             />
             {t.professionalExp}
