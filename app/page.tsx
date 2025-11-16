@@ -61,6 +61,8 @@ const translations = {
     motomeshTech: "Web Technologies: Real-time Web Dashboard • MQTT Integration • RESTful APIs • Time-Series Data Visualization • Responsive UI • Performance Optimization",
     digitalization: "Digitalization",
     conception3D: "3D Conception",
+    conception3DTitle: "3D Design & CAD Projects",
+    conception3DText: "Explore my portfolio of 3D mechanical design projects created with professional CAD software. These projects showcase my expertise in mechanical engineering, product design, and technical documentation. From complex assemblies to precision components, each design demonstrates attention to detail and engineering best practices.",
     mechanical: "Mechanical",
     expandedView: "Expanded view",
     education: "Education",
@@ -137,6 +139,8 @@ const translations = {
     motomeshTech: "Technologies Web: Tableau de Bord Temps Réel • Intégration MQTT • APIs RESTful • Visualisation de Données Temporelles • UI Responsive • Optimisation des Performances",
     digitalization: "Digitalisation",
     conception3D: "Conception 3D",
+    conception3DTitle: "Projets de Conception 3D & CAO",
+    conception3DText: "Découvrez mon portfolio de projets de conception mécanique 3D créés avec des logiciels CAO professionnels. Ces projets mettent en valeur mon expertise en ingénierie mécanique, conception de produits et documentation technique. Des assemblages complexes aux composants de précision, chaque conception démontre une attention aux détails et les meilleures pratiques d'ingénierie.",
     mechanical: "Mécanique",
     expandedView: "Vue agrandie",
     education: "Formation",
@@ -400,7 +404,7 @@ export default function Home() {
                   onClick={() => {
                     setShowMenu(false);
                     setSelectedSection(null);
-                    setSelectedMenuItem(null);
+                    setSelectedMenuItem("3d-conception");
                   }}
                 >
                   <div className="flex items-center gap-2">
@@ -995,6 +999,134 @@ export default function Home() {
                     </div>
                   </div>
                 )}
+              </div>
+            </div>
+          )}
+
+          {/* 3D Conception Gallery */}
+          {selectedMenuItem === "3d-conception" && !showMenu && (
+            <div className="flex flex-col gap-6 justify-center items-center w-full max-w-6xl mx-auto px-4">
+              <div className="neumorphic-content-box w-full text-left">
+                <div className="flex items-center justify-start gap-3 mb-4">
+                  <h3 className="text-xl font-medium text-[#6C7587]">{t.conception3DTitle}</h3>
+                  <Image
+                    src="/icon/icons8-connect-24.png"
+                    alt="3D icon"
+                    width={24}
+                    height={24}
+                  />
+                </div>
+                <div className="text-base text-[#8992A5] leading-relaxed mb-6">
+                  <p>{t.conception3DText}</p>
+                </div>
+                
+                {/* Instagram-style Grid Gallery */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  <div 
+                    className="neumorphic-image-container cursor-pointer aspect-square"
+                    onClick={() => setExpandedImage("/screenshots/3D_56_2.png")}
+                  >
+                    <Image
+                      src="/screenshots/3D_56_2.png"
+                      alt="3D Design"
+                      width={300}
+                      height={300}
+                      className="neumorphic-image"
+                      style={{ aspectRatio: '1/1', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div 
+                    className="neumorphic-image-container cursor-pointer aspect-square"
+                    onClick={() => setExpandedImage("/screenshots/3D_56.png")}
+                  >
+                    <Image
+                      src="/screenshots/3D_56.png"
+                      alt="3D Design"
+                      width={300}
+                      height={300}
+                      className="neumorphic-image"
+                      style={{ aspectRatio: '1/1', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div 
+                    className="neumorphic-image-container cursor-pointer aspect-square"
+                    onClick={() => setExpandedImage("/screenshots/3D_bequille.png")}
+                  >
+                    <Image
+                      src="/screenshots/3D_bequille.png"
+                      alt="3D Design"
+                      width={300}
+                      height={300}
+                      className="neumorphic-image"
+                      style={{ aspectRatio: '1/1', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div 
+                    className="neumorphic-image-container cursor-pointer aspect-square"
+                    onClick={() => setExpandedImage("/screenshots/3D_CNC.png")}
+                  >
+                    <Image
+                      src="/screenshots/3D_CNC.png"
+                      alt="3D Design"
+                      width={300}
+                      height={300}
+                      className="neumorphic-image"
+                      style={{ aspectRatio: '1/1', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div 
+                    className="neumorphic-image-container cursor-pointer aspect-square"
+                    onClick={() => setExpandedImage("/screenshots/3D_Compteur.png")}
+                  >
+                    <Image
+                      src="/screenshots/3D_Compteur.png"
+                      alt="3D Design"
+                      width={300}
+                      height={300}
+                      className="neumorphic-image"
+                      style={{ aspectRatio: '1/1', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div 
+                    className="neumorphic-image-container cursor-pointer aspect-square"
+                    onClick={() => setExpandedImage("/screenshots/3D_ConceptionMachine.png")}
+                  >
+                    <Image
+                      src="/screenshots/3D_ConceptionMachine.png"
+                      alt="3D Design"
+                      width={300}
+                      height={300}
+                      className="neumorphic-image"
+                      style={{ aspectRatio: '1/1', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div 
+                    className="neumorphic-image-container cursor-pointer aspect-square"
+                    onClick={() => setExpandedImage("/screenshots/3D_grille.png")}
+                  >
+                    <Image
+                      src="/screenshots/3D_grille.png"
+                      alt="3D Design"
+                      width={300}
+                      height={300}
+                      className="neumorphic-image"
+                      style={{ aspectRatio: '1/1', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div 
+                    className="neumorphic-image-container cursor-pointer aspect-square"
+                    onClick={() => setExpandedImage("/screenshots/3D_salamontes.png")}
+                  >
+                    <Image
+                      src="/screenshots/3D_salamontes.png"
+                      alt="3D Design"
+                      width={300}
+                      height={300}
+                      className="neumorphic-image"
+                      style={{ aspectRatio: '1/1', objectFit: 'cover' }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           )}
