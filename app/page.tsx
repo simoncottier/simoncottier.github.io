@@ -257,7 +257,7 @@ export default function Home() {
           <div className="flex gap-8 mb-12">
             <button className="neumorphic-circle-icon-btn">
               <Image
-                src="/icon/icons8-github-24.png"
+                src="/icon/icons8-github-100.png"
                 alt="GitHub icon"
                 width={24}
                 height={24}
@@ -265,7 +265,7 @@ export default function Home() {
             </button>
             <button className="neumorphic-circle-icon-btn">
               <Image
-                src="/icon/icons8-instagram-24.png"
+                src="/icon/icons8-instagram-100.png"
                 alt="Instagram icon"
                 width={24}
                 height={24}
@@ -276,7 +276,7 @@ export default function Home() {
               onClick={() => window.open('https://www.linkedin.com/in/simoncottier/', '_blank', 'noopener,noreferrer')}
             >
               <Image
-                src="/icon/icons8-linkedin-24.png"
+                src="/icon/icons8-linkedin-100.png"
                 alt="LinkedIn icon"
                 width={24}
                 height={24}
@@ -284,7 +284,7 @@ export default function Home() {
             </button>
             <button className="neumorphic-circle-icon-btn">
               <Image
-                src="/icon/icons8-share-24.png"
+                src="/icon/icons8-share-100.png"
                 alt="Share icon"
                 width={24}
                 height={24}
