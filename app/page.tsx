@@ -249,7 +249,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center px-4 py-12">
       {/* Language Selector */}
-      <div className="absolute top-4 right-4 md:top-8 md:right-8">
+      <div className="absolute top-6 right-6 md:top-8 md:right-8">
         <div className="flex gap-3 neumorphic-language-selector">
           <label className="neumorphic-radio-label">
             <input
@@ -278,7 +278,7 @@ export default function Home() {
       
       <div className="text-center space-y-12 w-full flex-shrink-0">
         {/* Name/Title */}
-        <div className="flex flex-col items-center mb-24">
+        <div className="flex flex-col items-center mb-16 md:mb-24">
           <h1 className="text-6xl md:text-8xl font-medium text-[#6C7587] mb-12">
             Simon Cottier
           </h1>
@@ -328,7 +328,7 @@ export default function Home() {
         </div>
 
         {/* Three Neumorphic Buttons */}
-        <div className="flex flex-col md:flex-row gap-12 justify-center items-stretch md:items-center relative w-full max-w-4xl mx-auto px-4 flex-shrink-0 mt-8" style={{ minHeight: '120px' }}>
+        <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-center items-stretch md:items-center relative w-full max-w-4xl mx-auto px-4 flex-shrink-0 mt-8" style={{ minHeight: '120px' }}>
           <button
             className="neumorphic-btn"
             onClick={() => {

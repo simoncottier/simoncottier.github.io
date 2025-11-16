@@ -575,12 +575,12 @@ body {
 /* Language Selector Radio Buttons */
 .neumorphic-language-selector {
   display: flex;
-  gap: 8px;
-  padding: 4px;
+  gap: 6px;
+  padding: 3px;
   background-color: var(--bg-color);
   border-radius: 40px;
-  box-shadow: 8px 8px 12px -2px var(--dark-shadow),
-    -6px -6px 12px -1px var(--light-shadow);
+  box-shadow: 6px 6px 10px -2px var(--dark-shadow),
+    -4px -4px 10px -1px var(--light-shadow);
 }
 
 .neumorphic-radio-label {
@@ -600,19 +600,19 @@ body {
 
 .neumorphic-radio-text {
   font-family: "Montserrat", sans-serif;
-  font-size: 14px;
-  line-height: 14px;
+  font-size: 11px;
+  line-height: 11px;
   font-weight: 500;
   color: var(--text-color);
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   text-align: center;
   border-radius: 50%;
   background-color: var(--bg-color);
-  border: 3px solid rgba(255, 255, 255, 0);
+  border: 2px solid rgba(255, 255, 255, 0);
   transition: all 250ms ease-in-out;
-  box-shadow: 8px 8px 12px -2px var(--dark-shadow),
-    -6px -6px 12px -1px var(--light-shadow);
+  box-shadow: 6px 6px 10px -2px var(--dark-shadow),
+    -4px -4px 10px -1px var(--light-shadow);
   display: flex;
   align-items: center;
   justify-content: center;
