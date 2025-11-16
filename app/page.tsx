@@ -433,7 +433,15 @@ export default function Home() {
                     setSelectedMenuItem("digitalization");
                   }}
                 >
-                  {t.digitalization}
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src="/icon/icons8-application-window-25.png"
+                      alt="Application window icon"
+                      width={24}
+                      height={24}
+                    />
+                    <span>{t.digitalization}</span>
+                  </div>
                 </button>
               </div>
             )}
