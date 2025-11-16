@@ -46,18 +46,13 @@ const translations = {
     experience4Location: "Switzerland, Crissier",
     experience4Summary: "Established strategic plan for new ISO 17025 calibration laboratory in Europe, assessing regional needs and identifying the most appropriate location based on business relevance and technical feasibility.",
     portfolioTitle: "This Portfolio Website",
-    portfolioText1: "This very website serves as a live demonstration of my web development capabilities. Built with Next.js 14 and React, it showcases modern development practices including server-side rendering, optimized image loading, and responsive design.",
-    portfolioText2: "The site features a custom neumorphic design system implemented with CSS, demonstrating my ability to create unique, modern UI/UX experiences. Every interaction is optimized for performance, with smooth animations and efficient rendering that prioritizes user experience.",
+    portfolioText1: "Live demonstration of modern web development with Next.js 14, React, and TypeScript. Custom neumorphic design system with optimized performance and smooth animations. Server-side rendering, responsive design, and efficient user experience.",
     portfolioTech: "Built With: Next.js 14 • React • TypeScript • Tailwind CSS • Custom CSS Architecture • Image Optimization • Responsive Design",
-    cocoflowText1: "Cocoflow is a high-performance, modern web application built with React and Next.js, showcasing my expertise in creating fast, scalable, and beautifully designed websites. The site is hosted on Vercel for optimal performance, leveraging edge computing and automatic CDN distribution for lightning-fast load times worldwide.",
-    cocoflowText2: "This project demonstrates my full-stack capabilities: custom CSS architecture with modern design patterns, responsive mobile-first development, SEO optimization, and performance monitoring. I managed the complete project lifecycle from design to deployment, including domain configuration, analytics integration, and contact form functionality with proper validation and security measures.",
+    cocoflowText1: "High-performance web application built with React and Next.js, hosted on Vercel with edge computing and CDN distribution. Mobile-first responsive design with SEO optimization and performance monitoring. Complete project lifecycle from design to deployment including domain configuration, analytics, and secure contact forms.",
     cocoflowTech: "Key Highlights: React • Next.js • TypeScript • Vercel Edge Network • Custom CSS • Responsive Design • Performance Optimized • SEO Friendly",
-    littlemarketText1: "Littlemarket.ch is a sophisticated e-commerce platform built with modern web technologies. The application features a full product catalog system with dynamic filtering, sorting capabilities, and advanced search functionality. Users can browse products by categories, apply multiple filters simultaneously, and experience smooth navigation with optimized page transitions.",
-    littlemarketText2: "The platform implements a complete shopping cart system with real-time inventory management, secure checkout process, and order tracking functionality. Built with responsive design principles, it provides seamless shopping experience across all devices. The backend integrates with payment gateways and includes an admin dashboard for product management, order processing, and customer analytics.",
+    littlemarketText1: "Sophisticated e-commerce platform with full product catalog, dynamic filtering, and advanced search functionality. Complete shopping cart system with real-time inventory, secure payment integration, and order tracking. Admin dashboard for product management with responsive design across all devices.",
     littlemarketTech: "Technical Features: E-commerce Platform • Dynamic Filtering & Search • Shopping Cart System • Secure Payment Integration • Admin Dashboard • Responsive Design • Real-time Inventory • Order Management",
-    motomeshText1: "Motomesh demonstrates my ability to build full-stack web applications that integrate with complex IoT systems. The project includes a high-performance web dashboard that visualizes real-time sensor data with smooth, responsive charts and live updates.",
-    motomeshText2: "The web application was built with modern frameworks to handle real-time data streaming efficiently. It connects to an MQTT messaging server and integrates with TimescaleDB on Supabase, showcasing my expertise in database design, real-time data processing, and API development.",
-    motomeshText3: "This project highlights my capabilities in building scalable web applications that can handle continuous data streams while maintaining excellent performance and user experience. The dashboard features intuitive data visualization, responsive design, and optimized rendering for smooth interactions even with large datasets.",
+    motomeshText1: "Full-stack IoT web application with real-time sensor data visualization and live dashboard updates. MQTT integration with TimescaleDB on Supabase for efficient data streaming and time-series processing. Scalable architecture with intuitive data visualization and optimized performance for continuous data streams.",
     motomeshTech: "Web Technologies: Real-time Web Dashboard • MQTT Integration • RESTful APIs • Time-Series Data Visualization • Responsive UI • Performance Optimization",
     digitalization: "Digitalization",
     conception3D: "3D Conception",
@@ -124,18 +119,13 @@ const translations = {
     experience4Location: "Suisse, Crissier",
     experience4Summary: "Établir un plan stratégique pour un nouveau laboratoire d'étalonnage ISO 17025 en Europe, évaluant les besoins régionaux et identifiant l'emplacement le plus approprié basé sur la pertinence commerciale et la faisabilité technique.",
     portfolioTitle: "Ce Site Portfolio",
-    portfolioText1: "Ce site web sert de démonstration en direct de mes capacités en développement web. Construit avec Next.js 14 et React, il met en avant des pratiques de développement modernes incluant le rendu côté serveur, le chargement optimisé d'images et le design responsive.",
-    portfolioText2: "Le site présente un système de design néomorphique personnalisé implémenté en CSS, démontrant ma capacité à créer des expériences UI/UX uniques et modernes. Chaque interaction est optimisée pour les performances, avec des animations fluides et un rendu efficace qui privilégie l'expérience utilisateur.",
+    portfolioText1: "Démonstration en direct du développement web moderne avec Next.js 14, React et TypeScript. Système de design néomorphique personnalisé avec performances optimisées et animations fluides. Rendu côté serveur, design responsive et expérience utilisateur efficace.",
     portfolioTech: "Construit Avec: Next.js 14 • React • TypeScript • Tailwind CSS • Architecture CSS Personnalisée • Optimisation d'Images • Design Responsive",
-    cocoflowText1: "Cocoflow est une application web moderne et performante construite avec React et Next.js, démontrant mon expertise dans la création de sites web rapides, évolutifs et magnifiquement conçus. Le site est hébergé sur Vercel pour des performances optimales, tirant parti du edge computing et de la distribution CDN automatique pour des temps de chargement ultra-rapides dans le monde entier.",
-    cocoflowText2: "Ce projet démontre mes capacités full-stack: architecture CSS personnalisée avec des modèles de design modernes, développement mobile-first responsive, optimisation SEO et surveillance des performances. J'ai géré tout le cycle de vie du projet de la conception au déploiement, incluant la configuration du domaine, l'intégration d'analytics et la fonctionnalité de formulaire de contact avec validation et mesures de sécurité appropriées.",
+    cocoflowText1: "Application web haute performance construite avec React et Next.js, hébergée sur Vercel avec edge computing et distribution CDN. Design responsive mobile-first avec optimisation SEO et surveillance des performances. Cycle de vie complet du projet de la conception au déploiement incluant configuration domaine, analytics et formulaires sécurisés.",
     cocoflowTech: "Points Clés: React • Next.js • TypeScript • Réseau Edge Vercel • CSS Personnalisé • Design Responsive • Optimisé pour les Performances • SEO Friendly",
-    littlemarketText1: "Littlemarket.ch est une plateforme e-commerce sophistiquée construite avec des technologies web modernes. L'application présente un système de catalogue de produits complet avec filtrage dynamique, capacités de tri et fonctionnalité de recherche avancée. Les utilisateurs peuvent parcourir les produits par catégories, appliquer plusieurs filtres simultanément et profiter d'une navigation fluide avec des transitions de page optimisées.",
-    littlemarketText2: "La plateforme implémente un système de panier d'achat complet avec gestion d'inventaire en temps réel, processus de paiement sécurisé et fonctionnalité de suivi des commandes. Construite avec des principes de design responsive, elle offre une expérience d'achat fluide sur tous les appareils. Le backend s'intègre avec des passerelles de paiement et inclut un tableau de bord administrateur pour la gestion des produits, le traitement des commandes et l'analyse des clients.",
+    littlemarketText1: "Plateforme e-commerce sophistiquée avec catalogue produits complet, filtrage dynamique et recherche avancée. Système de panier complet avec inventaire temps réel, intégration paiement sécurisé et suivi des commandes. Tableau de bord admin pour la gestion produits avec design responsive sur tous les appareils.",
     littlemarketTech: "Fonctionnalités Techniques: Plateforme E-commerce • Filtrage & Recherche Dynamiques • Système de Panier • Intégration Paiement Sécurisé • Tableau de Bord Admin • Design Responsive • Inventaire Temps Réel • Gestion des Commandes",
-    motomeshText1: "Motomesh démontre ma capacité à construire des applications web full-stack qui s'intègrent avec des systèmes IoT complexes. Le projet inclut un tableau de bord web performant qui visualise les données de capteurs en temps réel avec des graphiques fluides et réactifs et des mises à jour en direct.",
-    motomeshText2: "L'application web a été construite avec des frameworks modernes pour gérer efficacement le streaming de données en temps réel. Elle se connecte à un serveur de messagerie MQTT et s'intègre avec TimescaleDB sur Supabase, mettant en avant mon expertise en conception de bases de données, traitement de données en temps réel et développement d'APIs.",
-    motomeshText3: "Ce projet met en avant mes capacités à construire des applications web évolutives qui peuvent gérer des flux de données continus tout en maintenant d'excellentes performances et une expérience utilisateur. Le tableau de bord présente une visualisation de données intuitive, un design responsive et un rendu optimisé pour des interactions fluides même avec de grands ensembles de données.",
+    motomeshText1: "Application web IoT full-stack avec visualisation données capteurs en temps réel et mises à jour tableau de bord en direct. Intégration MQTT avec TimescaleDB sur Supabase pour streaming données efficace et traitement séries temporelles. Architecture évolutive avec visualisation données intuitive et performances optimisées pour flux données continus.",
     motomeshTech: "Technologies Web: Tableau de Bord Temps Réel • Intégration MQTT • APIs RESTful • Visualisation de Données Temporelles • UI Responsive • Optimisation des Performances",
     digitalization: "Digitalisation",
     conception3D: "Conception 3D",
@@ -763,12 +753,9 @@ export default function Home() {
                     height={24}
                   />
                 </div>
-                <div className="text-base text-[#8992A5] leading-relaxed mb-6 space-y-4">
-                  <p>
+                <div className="text-base text-[#8992A5] leading-relaxed mb-6">
+                  <p className="mb-4">
                     {t.portfolioText1}
-                  </p>
-                  <p>
-                    {t.portfolioText2}
                   </p>
                   <p className="font-medium text-[#6C7587]">
                     {t.portfolioTech}
@@ -792,12 +779,9 @@ export default function Home() {
                     height={24}
                   />
                 </div>
-                <div className="text-base text-[#8992A5] leading-relaxed mb-6 space-y-4">
-                  <p>
+                <div className="text-base text-[#8992A5] leading-relaxed mb-6">
+                  <p className="mb-4">
                     {t.cocoflowText1}
-                  </p>
-                  <p>
-                    {t.cocoflowText2}
                   </p>
                   <p className="font-medium text-[#6C7587]">
                     {t.cocoflowTech}
@@ -859,12 +843,9 @@ export default function Home() {
                     height={24}
                   />
                 </div>
-                <div className="text-base text-[#8992A5] leading-relaxed mb-6 space-y-4">
-                  <p>
+                <div className="text-base text-[#8992A5] leading-relaxed mb-6">
+                  <p className="mb-4">
                     {t.littlemarketText1}
-                  </p>
-                  <p>
-                    {t.littlemarketText2}
                   </p>
                   <p className="font-medium text-[#6C7587]">
                     {t.littlemarketTech}
@@ -919,15 +900,9 @@ export default function Home() {
                     height={24}
                   />
                 </div>
-                <div className="text-base text-[#8992A5] leading-relaxed mb-6 space-y-4">
-                  <p>
+                <div className="text-base text-[#8992A5] leading-relaxed mb-6">
+                  <p className="mb-4">
                     {t.motomeshText1}
-                  </p>
-                  <p>
-                    {t.motomeshText2}
-                  </p>
-                  <p>
-                    {t.motomeshText3}
                   </p>
                   <p className="font-medium text-[#6C7587]">
                     {t.motomeshTech}
