@@ -14,7 +14,7 @@ const translations = {
     professionalExp: "Professional Experience",
     personalExp: "Personal Experience",
     formation: "Education & Certifications",
-    personalInfoText: "A self-taught technology enthusiast with an insatiable curiosity for understanding how things work and how they can be improved. I'm passionate about making things easier and better through smart deployment of new technologies. My approach is simple: identify the problem, design the solution, and deliver end-to-end results. A true 4x4 engineer, I adapt and thrive across any technical challenge—from web development to mechanical design, IoT systems to manufacturing solutions. I grew up and studied in Switzerland, earning my degree in Industrial Engineering. Today, I'm focused on creating innovative B2C solutions that bring real value to end users through thoughtful design and practical implementation.",
+    personalInfoText: "A self-taught technology enthusiast with an insatiable curiosity for understanding how things work and how they can be improved. I'm passionate about making things easier and better through smart deployment of new technologies.\n\nMy approach is simple: identify the problem, design the solution, and deliver end-to-end results. A true 4x4 engineer, I adapt and thrive across any technical challenge—from web development to mechanical design, IoT systems to manufacturing solutions.\n\nI grew up and studied in Switzerland, earning my degree in Industrial Engineering. Today, I'm focused on creating innovative B2C solutions that bring real value to end users through thoughtful design and practical implementation.",
     professionalExpTitle: "Professional Experience",
     professionalExpIntro: "Currently serving as Sr. Technical Solution Engineer at Medtronic, leading the Innovation 4 Manufacturing program across 13 European manufacturing sites.\n\nMy role focuses on identifying business needs, building business cases, and driving execution of technical solutions that can be scaled across multiple sites.\n\nI combine technical engineering, project management, and business strategy to deliver impactful innovations that improve quality, reduce waste, and digitalize manufacturing processes.",
     coreSkills: "Core Technical & Professional Skills",
@@ -92,7 +92,7 @@ const translations = {
     professionalExp: "Expérience Professionnelle",
     personalExp: "Expérience Personnelle",
     formation: "Formation & Certifications",
-    personalInfoText: "Passionné de technologie autodidacte avec une curiosité insatiable pour comprendre comment les choses fonctionnent et comment elles peuvent être améliorées. Je suis passionné par l'idée de rendre les choses plus faciles et meilleures grâce au déploiement intelligent de nouvelles technologies. Mon approche est simple : identifier le problème, concevoir la solution et livrer des résultats de bout en bout. Un véritable ingénieur 4x4, je m'adapte et prospère face à tout défi technique—du développement web à la conception mécanique, des systèmes IoT aux solutions de fabrication. J'ai grandi et étudié en Suisse, obtenant mon diplôme d'Ingénieur Industriel. Aujourd'hui, je me concentre sur la création de solutions B2C innovantes qui apportent une réelle valeur aux utilisateurs finaux grâce à une conception réfléchie et une mise en œuvre pratique.",
+    personalInfoText: "Passionné de technologie autodidacte avec une curiosité insatiable pour comprendre comment les choses fonctionnent et comment elles peuvent être améliorées. Je suis passionné par l'idée de rendre les choses plus faciles et meilleures grâce au déploiement intelligent de nouvelles technologies.\n\nMon approche est simple : identifier le problème, concevoir la solution et livrer des résultats de bout en bout. Un véritable ingénieur 4x4, je m'adapte et prospère face à tout défi technique—du développement web à la conception mécanique, des systèmes IoT aux solutions de fabrication.\n\nJ'ai grandi et étudié en Suisse, obtenant mon diplôme d'Ingénieur Industriel. Aujourd'hui, je me concentre sur la création de solutions B2C innovantes qui apportent une réelle valeur aux utilisateurs finaux grâce à une conception réfléchie et une mise en œuvre pratique.",
     professionalExpTitle: "Expérience Professionnelle",
     professionalExpIntro: "Actuellement Ingénieur Senior en Solutions Techniques chez Medtronic, dirigeant le programme Innovation 4 Manufacturing sur 13 sites de fabrication européens.\n\nMon rôle se concentre sur l'identification des besoins commerciaux, la construction de business cases et le pilotage de l'exécution de solutions techniques pouvant être déployées sur plusieurs sites.\n\nJe combine ingénierie technique, gestion de projet et stratégie commerciale pour livrer des innovations impactantes qui améliorent la qualité, réduisent les déchets et digitalisent les processus de fabrication.",
     coreSkills: "Compétences Techniques & Professionnelles Clés",
@@ -511,7 +511,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <p className="text-lg text-[#8992A5] leading-relaxed">
+                    <p className="text-lg text-[#8992A5] leading-relaxed whitespace-pre-line">
                       {t.personalInfoText}
                     </p>
                   </div>
