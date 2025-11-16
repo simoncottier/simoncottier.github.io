@@ -329,7 +329,7 @@ body {
 .neumorphic-image-modal {
   background-color: var(--bg-color);
   border-radius: 24px;
-  padding: 24px;
+  padding: 8px;
   box-shadow: 8px 8px 24px -2px var(--dark-shadow),
     -6px -6px 24px -1px var(--light-shadow);
   display: flex;
