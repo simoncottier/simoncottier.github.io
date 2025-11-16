@@ -485,59 +485,12 @@ export default function Home() {
                 {/* Interests Section */}
                 <div className="mt-12">
                   <h3 className="text-2xl font-medium mb-6 text-[#6C7587]">{t.interestsTitle}</h3>
-                  
-                  {/* Cube Grid Animation */}
-                  <div className="cube-grid-wrapper cube-grid-neumorphic mb-12 relative">
-                    <div className="cube-grid" style={{ '--n': 4 } as React.CSSProperties}>
-                      {Array.from({ length: 16 }).map((_, i) => (
-                        <div key={i} className="cube"></div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Interest Tags */}
-                  <div className="space-y-4">
-                    {Object.values(interestsData[language]).map((category, index) => {
-                      const isAdventure = category.name === "Adventure" || category.name === "Aventure";
-                      const isChillAndFun = category.name === "Chill & Fun";
-                      const isDIY = category.name === "DIY";
-                      const hasDropShadow = isAdventure || isChillAndFun || isDIY;
-                      return (
-                        <div key={index} className="neumorphic-content-box">
-                          <h4 className="text-lg font-medium text-[#6C7587] mb-3">{category.name}</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {category.keywords.map((keyword, keywordIndex) => {
-                              // Use medium grey for drop shadow sections (DIY, Chill & Fun, Adventure) for better readability
-                              const textColor = hasDropShadow ? '#7B8A9F' : '#8992A5';
-                              
-                              return (
-                                <span
-                                  key={keywordIndex}
-                                  className={`px-3 py-1.5 rounded-full text-sm ${
-                                    hasDropShadow ? 'interest-adventure-keyword' : 'bg-[#EBECF0]'
-                                  }`}
-                                  style={{
-                                    color: textColor,
-                                    backgroundColor: hasDropShadow ? '#E0E4E8' : '#EBECF0',
-                                    WebkitFontSmoothing: 'antialiased',
-                                    MozOsxFontSmoothing: 'grayscale',
-                                    ...(hasDropShadow
-                                      ? {
-                                          // Darker background, no border
-                                        }
-                                      : {
-                                          boxShadow: 'inset 1px 1px 2px rgba(72, 79, 96, 0.1), inset -1px -1px 2px rgba(255, 255, 255, 0.8)'
-                                        })
-                                  }}
-                                >
-                                  {keyword}
-                                </span>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      );
-                    })}
+                  <div className="flex flex-wrap gap-4 text-lg text-[#8992A5]">
+                    <span>{t.diy}</span>
+                    <span>•</span>
+                    <span>{t.chillAndFun}</span>
+                    <span>•</span>
+                    <span>{t.adventure}</span>
                   </div>
                 </div>
               </div>
