@@ -356,7 +356,15 @@ export default function Home() {
                 setSelectedMenuItem(null);
               }}
             >
-              <span>{t.personalExp}</span>
+              <span className="flex items-center gap-2">
+                <Image
+                  src="/icon/icons8-male-user-25.png"
+                  alt="User icon"
+                  width={24}
+                  height={24}
+                />
+                {t.personalExp}
+              </span>
               <svg
                 className={`icon-dropdown-arrow transition-transform ${showMenu ? "rotate-180" : ""}`}
                 xmlns="http://www.w3.org/2000/svg"
