@@ -52,6 +52,9 @@ const translations = {
     cocoflowText1: "Cocoflow is a high-performance, modern web application built with React and Next.js, showcasing my expertise in creating fast, scalable, and beautifully designed websites. The site is hosted on Vercel for optimal performance, leveraging edge computing and automatic CDN distribution for lightning-fast load times worldwide.",
     cocoflowText2: "This project demonstrates my full-stack capabilities: custom CSS architecture with modern design patterns, responsive mobile-first development, SEO optimization, and performance monitoring. I managed the complete project lifecycle from design to deployment, including domain configuration, analytics integration, and contact form functionality with proper validation and security measures.",
     cocoflowTech: "Key Highlights: React • Next.js • TypeScript • Vercel Edge Network • Custom CSS • Responsive Design • Performance Optimized • SEO Friendly",
+    littlemarketText1: "Littlemarket.ch is a sophisticated e-commerce platform built with modern web technologies. The application features a full product catalog system with dynamic filtering, sorting capabilities, and advanced search functionality. Users can browse products by categories, apply multiple filters simultaneously, and experience smooth navigation with optimized page transitions.",
+    littlemarketText2: "The platform implements a complete shopping cart system with real-time inventory management, secure checkout process, and order tracking functionality. Built with responsive design principles, it provides seamless shopping experience across all devices. The backend integrates with payment gateways and includes an admin dashboard for product management, order processing, and customer analytics.",
+    littlemarketTech: "Technical Features: E-commerce Platform • Dynamic Filtering & Search • Shopping Cart System • Secure Payment Integration • Admin Dashboard • Responsive Design • Real-time Inventory • Order Management",
     motomeshText1: "Motomesh demonstrates my ability to build full-stack web applications that integrate with complex IoT systems. The project includes a high-performance web dashboard that visualizes real-time sensor data with smooth, responsive charts and live updates.",
     motomeshText2: "The web application was built with modern frameworks to handle real-time data streaming efficiently. It connects to an MQTT messaging server and integrates with TimescaleDB on Supabase, showcasing my expertise in database design, real-time data processing, and API development.",
     motomeshText3: "This project highlights my capabilities in building scalable web applications that can handle continuous data streams while maintaining excellent performance and user experience. The dashboard features intuitive data visualization, responsive design, and optimized rendering for smooth interactions even with large datasets.",
@@ -125,6 +128,9 @@ const translations = {
     cocoflowText1: "Cocoflow est une application web moderne et performante construite avec React et Next.js, démontrant mon expertise dans la création de sites web rapides, évolutifs et magnifiquement conçus. Le site est hébergé sur Vercel pour des performances optimales, tirant parti du edge computing et de la distribution CDN automatique pour des temps de chargement ultra-rapides dans le monde entier.",
     cocoflowText2: "Ce projet démontre mes capacités full-stack: architecture CSS personnalisée avec des modèles de design modernes, développement mobile-first responsive, optimisation SEO et surveillance des performances. J'ai géré tout le cycle de vie du projet de la conception au déploiement, incluant la configuration du domaine, l'intégration d'analytics et la fonctionnalité de formulaire de contact avec validation et mesures de sécurité appropriées.",
     cocoflowTech: "Points Clés: React • Next.js • TypeScript • Réseau Edge Vercel • CSS Personnalisé • Design Responsive • Optimisé pour les Performances • SEO Friendly",
+    littlemarketText1: "Littlemarket.ch est une plateforme e-commerce sophistiquée construite avec des technologies web modernes. L'application présente un système de catalogue de produits complet avec filtrage dynamique, capacités de tri et fonctionnalité de recherche avancée. Les utilisateurs peuvent parcourir les produits par catégories, appliquer plusieurs filtres simultanément et profiter d'une navigation fluide avec des transitions de page optimisées.",
+    littlemarketText2: "La plateforme implémente un système de panier d'achat complet avec gestion d'inventaire en temps réel, processus de paiement sécurisé et fonctionnalité de suivi des commandes. Construite avec des principes de design responsive, elle offre une expérience d'achat fluide sur tous les appareils. Le backend s'intègre avec des passerelles de paiement et inclut un tableau de bord administrateur pour la gestion des produits, le traitement des commandes et l'analyse des clients.",
+    littlemarketTech: "Fonctionnalités Techniques: Plateforme E-commerce • Filtrage & Recherche Dynamiques • Système de Panier • Intégration Paiement Sécurisé • Tableau de Bord Admin • Design Responsive • Inventaire Temps Réel • Gestion des Commandes",
     motomeshText1: "Motomesh démontre ma capacité à construire des applications web full-stack qui s'intègrent avec des systèmes IoT complexes. Le projet inclut un tableau de bord web performant qui visualise les données de capteurs en temps réel avec des graphiques fluides et réactifs et des mises à jour en direct.",
     motomeshText2: "L'application web a été construite avec des frameworks modernes pour gérer efficacement le streaming de données en temps réel. Elle se connecte à un serveur de messagerie MQTT et s'intègre avec TimescaleDB sur Supabase, mettant en avant mon expertise en conception de bases de données, traitement de données en temps réel et développement d'APIs.",
     motomeshText3: "Ce projet met en avant mes capacités à construire des applications web évolutives qui peuvent gérer des flux de données continus tout en maintenant d'excellentes performances et une expérience utilisateur. Le tableau de bord présente une visualisation de données intuitive, un design responsive et un rendu optimisé pour des interactions fluides même avec de grands ensembles de données.",
@@ -825,6 +831,73 @@ export default function Home() {
                     <Image
                       src="/screenshots/cocoflow3.png"
                       alt="Cocoflow screenshot 3"
+                      width={400}
+                      height={225}
+                      className="neumorphic-image"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="neumorphic-content-box w-full text-left">
+                <div className="flex items-center justify-start gap-3 mb-4">
+                  <a 
+                    href="https://www.littlemarket.ch" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-xl font-medium text-[#6C7587] hover:underline cursor-pointer"
+                  >
+                    Littlemarket.ch
+                  </a>
+                  <Image
+                    src="/icon/icons8-internet-24.png"
+                    alt="Internet icon"
+                    width={24}
+                    height={24}
+                  />
+                </div>
+                <div className="text-base text-[#8992A5] leading-relaxed mb-6 space-y-4">
+                  <p>
+                    {t.littlemarketText1}
+                  </p>
+                  <p>
+                    {t.littlemarketText2}
+                  </p>
+                  <p className="font-medium text-[#6C7587]">
+                    {t.littlemarketTech}
+                  </p>
+                </div>
+                <div className="flex gap-4 justify-center items-center">
+                  <div 
+                    className="neumorphic-image-container cursor-pointer"
+                    onClick={() => setExpandedImage("/screenshots/littlemarket1.png")}
+                  >
+                    <Image
+                      src="/screenshots/littlemarket1.png"
+                      alt="Littlemarket screenshot 1"
+                      width={400}
+                      height={225}
+                      className="neumorphic-image"
+                    />
+                  </div>
+                  <div 
+                    className="neumorphic-image-container cursor-pointer"
+                    onClick={() => setExpandedImage("/screenshots/littlemarket2.png")}
+                  >
+                    <Image
+                      src="/screenshots/littlemarket2.png"
+                      alt="Littlemarket screenshot 2"
+                      width={400}
+                      height={225}
+                      className="neumorphic-image"
+                    />
+                  </div>
+                  <div 
+                    className="neumorphic-image-container cursor-pointer"
+                    onClick={() => setExpandedImage("/screenshots/littlemarket3.png")}
+                  >
+                    <Image
+                      src="/screenshots/littlemarket3.png"
+                      alt="Littlemarket screenshot 3"
                       width={400}
                       height={225}
                       className="neumorphic-image"
