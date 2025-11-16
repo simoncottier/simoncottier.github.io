@@ -575,7 +575,7 @@ body {
 /* Language Selector Radio Buttons */
 .neumorphic-language-selector {
   display: flex;
-  gap: 6px;
+  gap: 12px;
   padding: 3px;
   background-color: var(--bg-color);
   border-radius: 40px;
