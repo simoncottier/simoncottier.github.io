@@ -342,7 +342,6 @@ export default function Home() {
               alt="Fingerprint icon"
               width={24}
               height={24}
-              className="mr-3"
             />
             {t.personalInfo}
           </button>
@@ -450,7 +449,6 @@ export default function Home() {
               alt="Administrator icon"
               width={24}
               height={24}
-              className="mr-3"
             />
             {t.professionalExp}
           </button>
