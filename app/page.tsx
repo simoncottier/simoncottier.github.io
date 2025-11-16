@@ -248,34 +248,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col items-center px-4 py-12">
-      {/* Language Selector */}
-      <div className="absolute top-6 right-6 md:top-8 md:right-8">
-        <div className="flex gap-3 neumorphic-language-selector">
-          <label className="neumorphic-radio-label">
-            <input
-              type="radio"
-              name="language"
-              value="fr"
-              checked={language === "fr"}
-              onChange={(e) => setLanguage(e.target.value as Language)}
-              className="neumorphic-radio-input"
-            />
-            <span className="neumorphic-radio-text">FR</span>
-          </label>
-          <label className="neumorphic-radio-label">
-            <input
-              type="radio"
-              name="language"
-              value="en"
-              checked={language === "en"}
-              onChange={(e) => setLanguage(e.target.value as Language)}
-              className="neumorphic-radio-input"
-            />
-            <span className="neumorphic-radio-text">ENG</span>
-          </label>
-        </div>
-      </div>
-      
       <div className="text-center space-y-12 w-full flex-shrink-0">
         {/* Name/Title */}
         <div className="flex flex-col items-center mb-16 md:mb-24">
@@ -319,6 +291,35 @@ export default function Home() {
               />
             </button>
           </div>
+          
+          {/* Language Selector */}
+          <div className="flex justify-center mb-8">
+            <div className="flex gap-3 neumorphic-language-selector">
+              <label className="neumorphic-radio-label">
+                <input
+                  type="radio"
+                  name="language"
+                  value="fr"
+                  checked={language === "fr"}
+                  onChange={(e) => setLanguage(e.target.value as Language)}
+                  className="neumorphic-radio-input"
+                />
+                <span className="neumorphic-radio-text">FR</span>
+              </label>
+              <label className="neumorphic-radio-label">
+                <input
+                  type="radio"
+                  name="language"
+                  value="en"
+                  checked={language === "en"}
+                  onChange={(e) => setLanguage(e.target.value as Language)}
+                  className="neumorphic-radio-input"
+                />
+                <span className="neumorphic-radio-text">ENG</span>
+              </label>
+            </div>
+          </div>
+
           <p className="text-xl md:text-2xl text-[#8992A5] font-light">
             {t.tagline}
           </p>
