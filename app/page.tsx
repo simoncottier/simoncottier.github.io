@@ -465,7 +465,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
                   <div className="flex-shrink-0">
                     <Image
-                      src="/images/me.png"
+                      src="/images/me.jpg"
                       alt="Simon Cottier"
                       width={200}
                       height={200}
@@ -1026,7 +1026,7 @@ export default function Home() {
                       style={{ aspectRatio: '1/1', objectFit: 'cover' }}
                     />
                   </div>
-                  <div 
+                  <div
                     className="neumorphic-image-container cursor-pointer aspect-square"
                     onClick={() => setExpandedImage("/screenshots/3D_salamontes.png")}
                   >
@@ -1039,6 +1039,14 @@ export default function Home() {
                       style={{ aspectRatio: '1/1', objectFit: 'cover' }}
                     />
                   </div>
+                </div>
+                <div className="flex justify-center mt-6">
+                  <button
+                    className="neumorphic-btn"
+                    onClick={() => window.open('/printer-monitor.html', '_blank', 'noopener,noreferrer')}
+                  >
+                    Printer Monitor
+                  </button>
                 </div>
               </div>
             </div>

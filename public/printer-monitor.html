@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Printer Monitor</title>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    header h1 { font-size: 15px; font-weight: 600; color: #7c3aed; flex-shrink: 0; letter-spacing: 0.5px; }
+    .conn-form { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; flex: 1; }
+    .conn-form input {
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px;
+      color: #1e293b; padding: 5px 9px; font-size: 12px; outline: none; transition: border-color 0.15s;
+    }
+    .conn-form input:focus { border-color: #7c3aed; }
+    .conn-form input[placeholder="Host"] { width: 200px; }
+    .conn-form input[placeholder="Port"] { width: 60px; }
+    .conn-form input[placeholder="Path"] { width: 60px; }
+    .conn-form input[placeholder="User"] { width: 80px; }
+    .conn-form input[placeholder="Password"] { width: 100px; }
+
+    .status-dot { width: 9px; height: 9px; border-radius: 50%; background: #94a3b8; flex-shrink: 0; transition: background 0.3s; }
+    .status-dot.connected { background: #22c55e; box-shadow: 0 0 6px #22c55e88; }
+    .status-dot.connecting { background: #f59e0b; animation: pulse 1s infinite; }
+    .status-dot.error { background: #ef4444; }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
+    #status-text { font-size: 12px; color: #64748b; min-width: 80px; }
+
+    button { border: none; cursor: pointer; border-radius: 6px; font-size: 12px; font-weight: 500; padding: 5px 12px; transition: opacity 0.15s, background 0.15s; }
+    button:hover { opacity: 0.85; }
+    #btn-connect { background: #7c3aed; color: #fff; }
+    #btn-disconnect { background: #e2e8f0; color: #64748b; display: none; }
+    #btn-clear { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; }
+    .btn-home { background: none; color: #7c3aed; padding: 4px 8px; font-size: 18px; line-height: 1; border-radius: 6px; text-decoration: none; display: flex; align-items: center; }
+    .btn-home:hover { background: #f3f0ff; }
+
+    /* ── Layout ── */
+    .main { display: flex; flex: 1; overflow: hidden; }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 220px; flex-shrink: 0; background: #ffffff;
+      border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; overflow: hidden;
+    }
+    .sidebar-header { padding: 10px 12px; border-bottom: 1px solid #e2e8f0; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; }
+    .sub-row { display: flex; gap: 6px; padding: 8px 10px; border-bottom: 1px solid #f1f5f9; }
+    .sub-row input { flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 5px; color: #1e293b; padding: 4px 7px; font-size: 12px; outline: none; }
+    .sub-row input:focus { border-color: #7c3aed; }
+    .sub-row button { background: #f3f0ff; color: #7c3aed; padding: 4px 8px; border: 1px solid #ddd6fe; }
+
+    .quick-subs { display: flex; flex-wrap: wrap; gap: 5px; padding: 8px 10px; border-bottom: 1px solid #f1f5f9; }
+    .quick-sub-btn { background: #f8fafc; color: #475569; border: 1px solid #e2e8f0; padding: 3px 9px; font-size: 11px; border-radius: 5px; }
+    .quick-sub-btn:hover { background: #f1f5f9; color: #1e293b; }
+
+    .topic-list { flex: 1; overflow-y: auto; padding: 4px 0; }
+    .topic-item { display: flex; align-items: center; gap: 5px; padding: 4px 10px; cursor: pointer; border-radius: 5px; margin: 2px 5px; transition: background 0.1s; }
+    .topic-item:hover { background: #f1f5f9; }
+    .topic-item.active { background: #ede9fe; }
+    .topic-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .topic-name { font-size: 11px; color: #475569; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .topic-count { font-size: 10px; color: #94a3b8; background: #f1f5f9; border-radius: 10px; padding: 1px 5px; }
+    .unsub-btn { background: none; color: #cbd5e1; padding: 0 3px; font-size: 13px; border-radius: 3px; opacity: 0; transition: opacity 0.1s, color 0.1s; }
+    .topic-item:hover .unsub-btn { opacity: 1; }
+    .unsub-btn:hover { color: #ef4444; background: none; }
+    .empty-hint { padding: 16px; font-size: 11px; color: #cbd5e1; text-align: center; }
+
+    /* ── Content area ── */
+    .content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .tab-bar { display: flex; border-bottom: 1px solid #e2e8f0; background: #ffffff; padding: 0 14px; }
+    .tab { padding: 9px 14px; font-size: 12px; color: #94a3b8; cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; margin-bottom: -1px; }
+    .tab:hover { color: #475569; }
+    .tab.active { color: #7c3aed; border-bottom-color: #7c3aed; }
+
+    /* ── Bambu Dashboard ── */
+    #view-bambu {
+      flex: 1; overflow-y: auto; padding: 20px;
+      display: none; flex-direction: column; gap: 18px;
+    }
+    #view-bambu.visible { display: flex; }
+
+    /* State row */
+    .state-row {
+      display: flex; align-items: center; gap: 14px;
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 20px;
+      box-shadow: 0 1px 4px #0000000a;
+    }
+    .state-symbol {
+      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    .state-symbol.running  { background: #22c55e; box-shadow: 0 0 10px #22c55e88; }
+    .state-symbol.idle     { background: #94a3b8; }
+    .state-symbol.pause    { background: #f59e0b; box-shadow: 0 0 10px #f59e0b66; }
+    .state-symbol.error    { background: #ef4444; box-shadow: 0 0 10px #ef444466; }
+    .state-symbol.finish   { background: #3b82f6; }
+    .state-label { font-size: 15px; font-weight: 600; color: #1e293b; letter-spacing: 0.5px; }
+    .state-meta  { margin-left: auto; display: flex; gap: 20px; }
+    .meta-item   { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+    .meta-value  { font-size: 15px; font-weight: 600; color: #1e293b; }
+    .meta-label  { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Gauges row */
+    .gauges-row {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .gauge-card {
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 16px; display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 160px; max-width: 220px;
+      box-shadow: 0 1px 4px #0000000a;
+    }
+    .gauge-card svg { overflow: visible; }
+    .gauge-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; margin-bottom: 6px; }
+
+    /* Camera */
+    .camera-card,
+    .camera-header,
+    .camera-title,
+    .camera-status,
+    .camera-body,
+    .camera-overlay,
+    .camera-relay-url { display: none; }
+
+    /* Print history table */
+    .history-card {
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 1px 4px #0000000a;
+    }
+    .history-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px; border-bottom: 1px solid #e2e8f0;
+    }
+    .history-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; }
+    .history-clear-btn { background: #f1f5f9; color: #64748b; font-size: 11px; padding: 3px 10px; border: 1px solid #e2e8f0; }
+    .history-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .history-table thead tr { border-bottom: 1px solid #e2e8f0; }
+    .history-table th { padding: 8px 12px; text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #94a3b8; white-space: nowrap; }
+    .history-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; color: #475569; white-space: nowrap; vertical-align: middle; }
+    .history-table tbody tr:last-child td { border-bottom: none; }
+    .history-table tbody tr:hover td { background: #f8fafc; }
+    .history-table td.project { color: #1e293b; font-weight: 500; max-width: 220px; overflow: hidden; text-overflow: ellipsis; }
+    .history-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+    .history-badge.running  { background: #dcfce7; color: #16a34a; }
+    .history-badge.idle     { background: #f1f5f9; color: #64748b; }
+    .history-badge.finish   { background: #dbeafe; color: #2563eb; }
+    .history-badge.pause    { background: #fef3c7; color: #d97706; }
+    .history-badge.error    { background: #fee2e2; color: #dc2626; }
+    .history-empty { padding: 28px; text-align: center; color: #cbd5e1; font-size: 12px; }
+
+    /* Progress */
+    .progress-card {
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 20px;
+      box-shadow: 0 1px 4px #0000000a;
+    }
+    .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .progress-title  { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; }
+    .progress-pct    { font-size: 18px; font-weight: 700; color: #1e293b; }
+    .progress-track  { height: 18px; background: #f1f5f9; border-radius: 9px; overflow: hidden; position: relative; }
+    .progress-fill   { height: 100%; background: linear-gradient(90deg, #7c3aed, #a78bfa); border-radius: 9px; transition: width 0.6s ease; position: relative; }
+    .progress-ticks  { display: flex; justify-content: space-between; margin-top: 6px; }
+    .progress-tick   { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .progress-tick-line { width: 1px; height: 5px; background: #e2e8f0; }
+    .progress-tick-label { font-size: 10px; color: #94a3b8; }
+    .progress-tick:last-child { align-items: flex-end; }
+    .progress-tick:first-child { align-items: flex-start; }
+
+    /* ── Raw dashboard grid ── */
+    #view-dashboard {
+      flex: 1; overflow-y: auto; padding: 14px;
+      display: none; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; align-content: start;
+    }
+    #view-dashboard.visible { display: grid; }
+    .kv-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; position: relative; transition: border-color 0.2s; box-shadow: 0 1px 3px #0000000a; }
+    .kv-card.flash { border-color: #7c3aed; }
+    .kv-topic { font-size: 10px; color: #94a3b8; margin-bottom: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .kv-key   { font-size: 11px; color: #64748b; margin-bottom: 2px; }
+    .kv-value { font-size: 20px; font-weight: 700; color: #1e293b; line-height: 1.1; }
+    .kv-unit  { font-size: 12px; font-weight: 400; color: #94a3b8; margin-left: 3px; }
+    .kv-time  { position: absolute; top: 10px; right: 12px; font-size: 10px; color: #cbd5e1; }
+
+    /* ── Log ── */
+    #view-log { flex: 1; overflow-y: auto; padding: 8px 12px; display: none; flex-direction: column; gap: 4px; }
+    #view-log.visible { display: flex; }
+    .log-entry { display: flex; gap: 10px; padding: 5px 9px; border-radius: 5px; font-size: 11px; background: #ffffff; border: 1px solid #e2e8f0; animation: fadeIn 0.15s ease; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)} }
+    .log-time    { color: #94a3b8; flex-shrink: 0; font-family: monospace; }
+    .log-topic   { color: #7c3aed; flex-shrink: 0; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .log-payload { color: #475569; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: monospace; }
+
+    .empty-state { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#cbd5e1; gap:8px; font-size:13px; padding:40px; text-align:center; }
+    .empty-state svg { width:44px; height:44px; opacity:0.3; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="btn-home" title="Back to website">&#x2190;</a>
+  <h1>&#x25A0; Printer Monitor</h1>
+  <div class="conn-form">
+    <input id="i-host" placeholder="Host" value="9313d44eee75454483f6cfb7c34e2a1d.s1.eu.hivemq.cloud">
+    <input id="i-port" placeholder="Port" value="8884" type="number">
+    <input id="i-path" placeholder="Path" value="/mqtt">
+    <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:#6b7280;cursor:pointer;flex-shrink:0;">
+      <input id="i-tls" type="checkbox" checked style="accent-color:#7c3aed;cursor:pointer;"> TLS
+    </label>
+    <input id="i-user" placeholder="User" value="cottis2" autocomplete="off">
+    <input id="i-pass" placeholder="Password" value="An82Bxt(o0" type="password" autocomplete="off">
+    <button id="btn-connect">Connect</button>
+    <button id="btn-disconnect">Disconnect</button>
+  </div>
+  <div class="status-dot" id="dot"></div>
+  <span id="status-text">Disconnected</span>
+  <button id="btn-clear">Clear</button>
+</header>
+
+<div class="main">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">Subscriptions</div>
+    <div class="sub-row">
+      <input id="i-topic" placeholder="topic/# or topic/path" value="#">
+      <button id="btn-sub">+ Sub</button>
+    </div>
+    <div class="quick-subs">
+      <button class="quick-sub-btn" onclick="quickSubscribe('BambuLabX2D')">Bambu X2</button>
+    </div>
+    <div class="topic-list" id="topic-list">
+      <div class="empty-hint">No subscriptions yet</div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="tab-bar">
+      <div class="tab active" data-view="bambu">Printer</div>
+      <div class="tab" data-view="dashboard">Raw Data</div>
+      <div class="tab" data-view="log">Log</div>
+    </div>
+
+    <!-- Bambu printer dashboard -->
+    <div id="view-bambu">
+      <div id="bambu-empty" class="empty-state" style="display:none"></div>
+
+      <!-- State row -->
+      <div class="state-row" id="bambu-state-row">
+        <div class="state-symbol idle" id="state-symbol"></div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div class="state-label" id="state-label">IDLE</div>
+          <div id="job-name" style="font-size:11px;color:#6b7280;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
+        </div>
+        <div class="state-meta">
+          <div class="meta-item">
+            <span class="meta-value" id="meta-layer">—</span>
+            <span class="meta-label">Layer</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-value" id="meta-eta">—</span>
+            <span class="meta-label">Remaining</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-value" id="meta-speed">—</span>
+            <span class="meta-label">Speed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Temperature gauges -->
+      <div style="display:flex;gap:14px;align-items:center;">
+        <img src="images/x1Series-main-bg-v1-sm.png" id="printer-img"
+          style="width:220px;height:auto;flex-shrink:0;pointer-events:none;" alt="Printer">
+        <div class="gauges-row" id="bambu-gauges" style="flex:1">
+          <div class="gauge-card">
+            <div class="gauge-title">Nozzle</div>
+            <div id="gauge-nozzle"></div>
+          </div>
+          <div class="gauge-card">
+            <div class="gauge-title">Bed</div>
+            <div id="gauge-bed"></div>
+          </div>
+          <div class="gauge-card">
+            <div class="gauge-title">Chamber</div>
+            <div id="gauge-chamber"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="progress-card" id="bambu-progress">
+        <div class="progress-header">
+          <span class="progress-title">Print Progress</span>
+          <span class="progress-pct" id="prog-pct">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+        </div>
+        <div class="progress-ticks">
+          <div class="progress-tick"><div class="progress-tick-line"></div><span class="progress-tick-label">0%</span></div>
+          <div class="progress-tick"><div class="progress-tick-line"></div><span class="progress-tick-label">25%</span></div>
+          <div class="progress-tick"><div class="progress-tick-line"></div><span class="progress-tick-label">50%</span></div>
+          <div class="progress-tick"><div class="progress-tick-line"></div><span class="progress-tick-label">75%</span></div>
+          <div class="progress-tick"><div class="progress-tick-line"></div><span class="progress-tick-label">100%</span></div>
+        </div>
+        <div style="margin-top:10px;display:flex;align-items:center;gap:8px;">
+          <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#6b7280;">Remaining</span>
+          <span id="prog-remaining" style="font-size:15px;font-weight:700;color:#e2e8f0;">—</span>
+        </div>
+      </div>
+
+      <!-- Print history log -->
+      <div class="history-card">
+        <div class="history-header">
+          <span class="history-title">&#x1F5D3; Print History</span>
+          <button class="history-clear-btn" id="history-clear-btn">Clear</button>
+        </div>
+        <div id="history-empty" class="history-empty">No prints recorded yet — waiting for data&hellip;</div>
+        <table class="history-table" id="history-table" style="display:none">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Project</th>
+              <th>Status</th>
+              <th>Progress</th>
+              <th>Nozzle &#xB0;C</th>
+              <th>Bed &#xB0;C</th>
+              <th>Nozzle &#x2300;</th>
+              <th>Layer</th>
+              <th>Remaining</th>
+              <th>Speed</th>
+            </tr>
+          </thead>
+          <tbody id="history-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Raw dashboard -->
+    <div id="view-dashboard">
+      <div class="empty-state" id="dash-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5"/>
+        </svg>
+        Connect and subscribe to a topic to see data here.
+      </div>
+    </div>
+
+    <div id="view-log"></div>
+  </div>
+</div>
+
+<script>
+  let client = null;
+  const subscriptions = new Map();
+  const dashCards = new Map();
+  const logEntries = [];
+  const MAX_LOG = 500;
+  const COLORS = ['#7c3aed','#2563eb','#059669','#d97706','#dc2626','#db2777','#0891b2','#65a30d'];
+  let colorIdx = 0;
+  let activeView = 'bambu';
+
+  const dot = document.getElementById('dot');
+  const statusText = document.getElementById('status-text');
+  const topicList = document.getElementById('topic-list');
+  const dashEmpty = document.getElementById('dash-empty');
+  const logView = document.getElementById('view-log');
+  const dashView = document.getElementById('view-dashboard');
+  const bambuView = document.getElementById('view-bambu');
+
+  // ── SVG Gauge ─────────────────────────────────────────────────
+  function makeGauge(actual, target, maxTemp) {
+    const r = 58, cx = 75, cy = 75;
+    const circ = 2 * Math.PI * r;
+    const arcLen = circ * 0.75; // 270° sweep
+
+    const actualRatio = Math.min(Math.max(actual / maxTemp, 0), 1);
+    const actualLen   = actualRatio * arcLen;
+
+    // Color: green if close to target, amber if heating, purple if cold/off
+    let arcColor = '#374151';
+    if (target > 0) {
+      const diff = actual - target;
+      if (Math.abs(diff) <= 5)      arcColor = '#22c55e';
+      else if (actual < target - 5) arcColor = '#7c3aed';
+      else                          arcColor = '#f59e0b';
+    } else if (actual > 30) {
+      arcColor = '#7c3aed';
+    }
+
+    // Target marker position on the arc
+    // Arc start angle in SVG (y-down, CW): 135°. Sweeps 270° CW.
+    let targetMarker = '';
+    if (target > 0) {
+      const tRatio = Math.min(Math.max(target / maxTemp, 0), 1);
+      const tAngleRad = (135 + tRatio * 270) * Math.PI / 180;
+      const mx1 = cx + (r - 9) * Math.cos(tAngleRad);
+      const my1 = cy + (r - 9) * Math.sin(tAngleRad);
+      const mx2 = cx + (r + 9) * Math.cos(tAngleRad);
+      const my2 = cy + (r + 9) * Math.sin(tAngleRad);
+      targetMarker = `<line x1="${mx1.toFixed(1)}" y1="${my1.toFixed(1)}" x2="${mx2.toFixed(1)}" y2="${my2.toFixed(1)}" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>`;
+    }
+
+    const targetLabel = target > 0 ? `<tspan fill="#f59e0b">→${target}°</tspan>` : '';
+
+    return `<svg viewBox="0 0 150 130" width="150" height="130">
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1f2937" stroke-width="11"
+        stroke-dasharray="${arcLen.toFixed(1)} ${circ.toFixed(1)}"
+        transform="rotate(135 ${cx} ${cy})"/>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${arcColor}" stroke-width="11"
+        stroke-dasharray="${actualLen.toFixed(1)} ${circ.toFixed(1)}"
+        transform="rotate(135 ${cx} ${cy})" stroke-linecap="round"/>
+      ${targetMarker}
+      <text x="${cx}" y="${cy + 2}" text-anchor="middle" fill="#e2e8f0" font-size="22" font-weight="700" font-family="system-ui,sans-serif">${Math.round(actual)}°</text>
+      <text x="${cx}" y="${cy + 18}" text-anchor="middle" font-size="11" font-family="system-ui,sans-serif">${targetLabel}</text>
+    </svg>`;
+  }
+
+  // ── Bambu data parser ─────────────────────────────────────────
+  const SPEED_NAMES = { 1:'Silent', 2:'Standard', 3:'Sport', 4:'Ludicrous' };
+  const STATE_MAP = {
+    RUNNING:  { cls: 'running',  label: 'RUNNING'  },
+    PRINTING: { cls: 'running',  label: 'PRINTING' },
+    PREPARE:  { cls: 'pause',    label: 'PREPARING'},
+    PAUSE:    { cls: 'pause',    label: 'PAUSED'   },
+    IDLE:     { cls: 'idle',     label: 'IDLE'     },
+    FINISH:   { cls: 'finish',   label: 'FINISHED' },
+    FAILED:   { cls: 'error',    label: 'FAILED'   },
+    SLICING:  { cls: 'pause',    label: 'SLICING'  },
+  };
+
+  function updateBambuUI(p) {
+
+    // State — only update if field present
+    if (p.gcode_state != null) {
+      const rawState = p.gcode_state.toUpperCase();
+      const stateInfo = STATE_MAP[rawState] || { cls: 'idle', label: rawState };
+      document.getElementById('state-symbol').className = 'state-symbol ' + stateInfo.cls;
+      document.getElementById('state-label').textContent = stateInfo.label;
+    }
+    if (p.job_name != null) {
+      document.getElementById('job-name').textContent = p.job_name;
+    }
+
+    // Meta — only update if fields present
+    if (p.layer_num != null || p.total_layer_num != null) {
+      const layerCur = p.layer_num       ?? '—';
+      const layerTot = p.total_layer_num ?? '—';
+      document.getElementById('meta-layer').textContent =
+        (layerCur !== '—' && layerTot !== '—') ? `${layerCur}/${layerTot}` : '—';
+    }
+
+    if (p.mc_remaining_time != null) {
+      const rem = p.mc_remaining_time;
+      if (rem > 0) {
+        const h = Math.floor(rem / 60), m = rem % 60;
+        const txt = h > 0 ? `${h}h ${m}m` : `${m}m`;
+        document.getElementById('meta-eta').textContent = txt;
+        document.getElementById('prog-remaining').textContent = txt;
+      } else {
+        document.getElementById('meta-eta').textContent = '—';
+        document.getElementById('prog-remaining').textContent = '—';
+      }
+    }
+
+    if (p.spd_lvl != null) {
+      document.getElementById('meta-speed').textContent = SPEED_NAMES[p.spd_lvl] || p.spd_lvl;
+    }
+
+    // Gauges — only update if any temperature present
+    if (p.nozzle_temper != null || p.nozzle_target_temper != null) {
+      const nozzle  = p.nozzle_temper        ?? 0;
+      const nozzleT = p.nozzle_target_temper ?? 0;
+      document.getElementById('gauge-nozzle').innerHTML = makeGauge(nozzle, nozzleT, 320);
+    }
+    if (p.bed_temper != null || p.bed_target_temper != null) {
+      const bed  = p.bed_temper        ?? 0;
+      const bedT = p.bed_target_temper ?? 0;
+      document.getElementById('gauge-bed').innerHTML = makeGauge(bed, bedT, 120);
+    }
+    if (p.chamber_temper != null) {
+      document.getElementById('gauge-chamber').innerHTML = makeGauge(p.chamber_temper, 0, 60);
+    }
+
+    // Progress — only update if present
+    if (p.mc_percent != null) {
+      const pct = p.mc_percent;
+      document.getElementById('prog-pct').textContent  = pct + '%';
+      document.getElementById('prog-fill').style.width = pct + '%';
+    }
+
+    // History log
+    addHistoryRow(p);
+  }
+
+  // ── Connection ────────────────────────────────────────────────
+  document.getElementById('btn-connect').addEventListener('click', connect);
+  document.getElementById('btn-disconnect').addEventListener('click', disconnect);
+  document.getElementById('i-host').addEventListener('keydown', e => e.key === 'Enter' && connect());
+
+  // Auto-subscribe to BambuLabX2D on connect
+  quickSubscribe('BambuLabX2D');
+
+  function connect() {
+    if (client) disconnect();
+    const host   = document.getElementById('i-host').value.trim();
+    const port   = parseInt(document.getElementById('i-port').value) || 9001;
+    const path   = document.getElementById('i-path').value.trim() || '/mqtt';
+    const user   = document.getElementById('i-user').value.trim();
+    const pass   = document.getElementById('i-pass').value;
+    const tls    = document.getElementById('i-tls').checked;
+    const url    = `${tls ? 'wss' : 'ws'}://${host}:${port}${path}`;
+
+    setStatus('connecting', 'Connecting…');
+    const opts = { reconnectPeriod: 3000 };
+    if (user) { opts.username = user; opts.password = pass; }
+    client = mqtt.connect(url, opts);
+
+    client.on('connect', () => {
+      setStatus('connected', 'Connected');
+      document.getElementById('btn-connect').style.display = 'none';
+      document.getElementById('btn-disconnect').style.display = '';
+      subscriptions.forEach((_, t) => client.subscribe(t));
+    });
+    client.on('error',   err => setStatus('error', 'Error: ' + (err.message || err)));
+    client.on('offline', ()  => setStatus('connecting', 'Reconnecting…'));
+    client.on('close',   ()  => {
+      setStatus('', 'Disconnected');
+      document.getElementById('btn-connect').style.display = '';
+      document.getElementById('btn-disconnect').style.display = 'none';
+    });
+    client.on('message', (topic, payload) => {
+      const msg = payload.toString();
+      addToLog(topic, msg);
+      updateDashboard(topic, msg);
+      bumpTopicCount(topic);
+      tryParseBambu(topic, msg);
+    });
+  }
+
+  function disconnect() { if (client) { client.end(true); client = null; } }
+  function setStatus(state, msg) { dot.className = 'status-dot ' + state; statusText.textContent = msg; }
+
+  // ── Subscriptions ─────────────────────────────────────────────
+  document.getElementById('btn-sub').addEventListener('click', subscribe);
+  document.getElementById('i-topic').addEventListener('keydown', e => e.key === 'Enter' && subscribe());
+
+  function quickSubscribe(topic) { document.getElementById('i-topic').value = topic; subscribe(); }
+
+  function subscribe() {
+    const topic = document.getElementById('i-topic').value.trim();
+    if (!topic || subscriptions.has(topic)) return;
+    const color = COLORS[colorIdx++ % COLORS.length];
+    const el = buildTopicItem(topic, color);
+    subscriptions.set(topic, { count: 0, color, element: el });
+    renderTopicList();
+    if (client && client.connected) client.subscribe(topic);
+  }
+
+  function unsubscribe(topic) {
+    subscriptions.delete(topic);
+    renderTopicList();
+    if (client && client.connected) client.unsubscribe(topic);
+  }
+
+  function buildTopicItem(topic, color) {
+    const div = document.createElement('div');
+    div.className = 'topic-item';
+    div.dataset.topic = topic;
+    div.innerHTML = `
+      <span class="topic-dot" style="background:${color}"></span>
+      <span class="topic-name">${topic}</span>
+      <span class="topic-count">0</span>
+      <button class="unsub-btn" title="Unsubscribe">&#x2715;</button>`;
+    div.querySelector('.unsub-btn').addEventListener('click', e => { e.stopPropagation(); unsubscribe(topic); });
+    div.addEventListener('click', () => div.classList.toggle('active'));
+    return div;
+  }
+
+  function renderTopicList() {
+    topicList.innerHTML = '';
+    if (subscriptions.size === 0) { topicList.innerHTML = '<div class="empty-hint">No subscriptions yet</div>'; return; }
+    subscriptions.forEach(({ element }) => topicList.appendChild(element));
+  }
+
+  function bumpTopicCount(incomingTopic) {
+    subscriptions.forEach(({ count, element }, pattern) => {
+      if (topicMatches(pattern, incomingTopic)) {
+        subscriptions.get(pattern).count++;
+        element.querySelector('.topic-count').textContent = subscriptions.get(pattern).count;
+      }
+    });
+  }
+
+  function topicMatches(pattern, topic) {
+    if (pattern === '#') return true;
+    const pp = pattern.split('/'), tp = topic.split('/');
+    for (let i = 0; i < pp.length; i++) {
+      if (pp[i] === '#') return true;
+      if (pp[i] === '+') continue;
+      if (pp[i] !== tp[i]) return false;
+    }
+    return pp.length === tp.length;
+  }
+
+  // ── Bambu parser ──────────────────────────────────────────────
+  function tryParseBambu(topic, raw) {
+    // Match topics containing 'bambu' (case-insensitive)
+    if (!topic.toLowerCase().includes('bambu')) return;
+    let data;
+    try { data = JSON.parse(raw); } catch { return; }
+    if (!data || typeof data !== 'object') return;
+
+    // Normalize: support both old Bambu MQTT format {print:{...}} and
+    // the custom bridge format {state, progress, nozzle:{temp,target}, ...}
+    let p = (data.print) ? data.print : data;
+
+    // Map custom bridge field names → internal names
+    if (p.state        != null && p.gcode_state    == null) p.gcode_state          = p.state;
+    if (p.progress     != null && p.mc_percent      == null) p.mc_percent           = p.progress;
+    if (p.remaining_min != null && p.mc_remaining_time == null) p.mc_remaining_time = p.remaining_min;
+    if (p.layer        != null && p.layer_num       == null) p.layer_num            = p.layer;
+    if (p.total_layers != null && p.total_layer_num == null) p.total_layer_num      = p.total_layers;
+    if (p.nozzle) {
+      if (p.nozzle.temp   != null && p.nozzle_temper        == null) p.nozzle_temper        = p.nozzle.temp;
+      if (p.nozzle.target != null && p.nozzle_target_temper == null) p.nozzle_target_temper = p.nozzle.target;
+    }
+    if (p.bed) {
+      if (p.bed.temp   != null && p.bed_temper        == null) p.bed_temper        = p.bed.temp;
+      if (p.bed.target != null && p.bed_target_temper == null) p.bed_target_temper = p.bed.target;
+    }
+    if (p.chamber_temp != null && p.chamber_temper == null) p.chamber_temper = p.chamber_temp;
+    if (p.speed && p.speed.level != null && p.spd_lvl == null) p.spd_lvl = p.speed.level;
+
+    if (Object.keys(p).length > 0) updateBambuUI(p);
+  }
+
+  // ── Raw dashboard ─────────────────────────────────────────────
+  function updateDashboard(topic, raw) {
+    dashEmpty.style.display = 'none';
+    let parsed;
+    try { parsed = JSON.parse(raw); } catch { parsed = null; }
+    if (parsed && typeof parsed === 'object') {
+      flattenObj(parsed, '', (key, val) => {
+        upsertCard(topic + '/' + key, topic, key.split('.').pop(), val);
+      });
+    } else {
+      upsertCard(topic, topic, topicLeaf(topic), raw);
+    }
+  }
+
+  function flattenObj(obj, prefix, cb) {
+    Object.entries(obj).forEach(([k, v]) => {
+      const path = prefix ? prefix + '.' + k : k;
+      if (v !== null && typeof v === 'object' && !Array.isArray(v)) flattenObj(v, path, cb);
+      else cb(path, v);
+    });
+  }
+
+  function topicLeaf(topic) { const p = topic.split('/'); return p[p.length - 1]; }
+
+  function upsertCard(cardKey, topic, label, value) {
+    const { displayVal, unit } = parseValue(value);
+    const now = new Date().toLocaleTimeString();
+    if (dashCards.has(cardKey)) {
+      const { element, timer } = dashCards.get(cardKey);
+      element.querySelector('.kv-value').innerHTML = displayVal + (unit ? `<span class="kv-unit">${unit}</span>` : '');
+      element.querySelector('.kv-time').textContent = now;
+      clearTimeout(timer);
+      element.classList.add('flash');
+      dashCards.get(cardKey).timer = setTimeout(() => element.classList.remove('flash'), 600);
+    } else {
+      const card = document.createElement('div');
+      card.className = 'kv-card';
+      card.innerHTML = `
+        <div class="kv-time">${now}</div>
+        <div class="kv-topic">${topic}</div>
+        <div class="kv-key">${label}</div>
+        <div class="kv-value">${displayVal}${unit ? `<span class="kv-unit">${unit}</span>` : ''}</div>`;
+      dashView.appendChild(card);
+      dashCards.set(cardKey, { element: card, timer: null });
+    }
+  }
+
+  function parseValue(val) {
+    if (typeof val === 'boolean') return { displayVal: val ? 'ON' : 'OFF', unit: '' };
+    const str = String(val);
+    const num = parseFloat(str);
+    if (!isNaN(num) && str.trim() === String(num)) return { displayVal: Number.isInteger(num) ? num : num.toFixed(2), unit: '' };
+    return { displayVal: str.length > 30 ? str.slice(0, 30) + '…' : str, unit: '' };
+  }
+
+  // ── Log ───────────────────────────────────────────────────────
+  function addToLog(topic, payload) {
+    const entry = document.createElement('div');
+    entry.className = 'log-entry';
+    entry.innerHTML = `
+      <span class="log-time">${new Date().toLocaleTimeString()}</span>
+      <span class="log-topic">${topic}</span>
+      <span class="log-payload">${escHtml(payload)}</span>`;
+    logView.appendChild(entry);
+    logEntries.push(entry);
+    if (logEntries.length > MAX_LOG) logView.removeChild(logEntries.shift());
+    if (activeView === 'log') logView.scrollTop = logView.scrollHeight;
+  }
+
+  function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  // ── Tabs ──────────────────────────────────────────────────────
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      activeView = tab.dataset.view;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      bambuView.classList.toggle('visible', activeView === 'bambu');
+      dashView.classList.toggle('visible', activeView === 'dashboard');
+      logView.classList.toggle('visible', activeView === 'log');
+      if (activeView === 'log') logView.scrollTop = logView.scrollHeight;
+    });
+  });
+  // Set initial view
+  bambuView.classList.add('visible');
+
+  // Auto-connect on page load
+  connect();
+
+  // Initialize gauges with 0 values so they render immediately
+  document.getElementById('gauge-nozzle').innerHTML  = makeGauge(0, 0, 320);
+  document.getElementById('gauge-bed').innerHTML     = makeGauge(0, 0, 120);
+  document.getElementById('gauge-chamber').innerHTML = makeGauge(0, 0, 60);
+
+  // ── Print history log ─────────────────────────────────────────
+  const HISTORY_KEY = 'bambu_print_history';
+  const MAX_HISTORY = 200;
+  let historyData = [];   // array of plain objects, persisted in localStorage
+  let lastHistoryKey = '';
+
+  function saveHistory() {
+    try { localStorage.setItem(HISTORY_KEY, JSON.stringify(historyData)); } catch {}
+  }
+
+  function renderHistoryTable() {
+    const tbody = document.getElementById('history-tbody');
+    tbody.innerHTML = '';
+    if (historyData.length === 0) {
+      document.getElementById('history-empty').style.display = '';
+      document.getElementById('history-table').style.display = 'none';
+      return;
+    }
+    document.getElementById('history-empty').style.display = 'none';
+    document.getElementById('history-table').style.display = '';
+    // Most recent first
+    [...historyData].reverse().forEach(d => {
+      const stateClass = { RUNNING:'running', PRINTING:'running', IDLE:'idle', FINISH:'finish', PAUSE:'pause', FAILED:'error' }[d.state] || 'idle';
+      const tr = document.createElement('tr');
+      tr.dataset.id = d.id;
+      tr.innerHTML = `
+        <td>${d.time}</td>
+        <td class="project">${d.project}</td>
+        <td><span class="history-badge ${stateClass}">${d.state || 'IDLE'}</span></td>
+        <td class="h-pct">${d.pct}</td>
+        <td class="h-nozzle">${d.nozzle}</td>
+        <td class="h-bed">${d.bed}</td>
+        <td>${d.nozzleDia}</td>
+        <td class="h-layer">${d.layer}</td>
+        <td class="h-rem">${d.rem}</td>
+        <td>${d.speed}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Load persisted history on startup
+  try {
+    const saved = localStorage.getItem(HISTORY_KEY);
+    if (saved) { historyData = JSON.parse(saved); lastHistoryKey = historyData.length ? (historyData[historyData.length-1].state + '|' + historyData[historyData.length-1].project) : ''; }
+  } catch {}
+  renderHistoryTable();
+
+  function addHistoryRow(p) {
+    const state     = (p.gcode_state || '').toUpperCase();
+    const project   = p.job_name || '—';
+    const pct       = p.mc_percent != null ? p.mc_percent + '%' : '—';
+    const nozzle    = p.nozzle_temper != null ? p.nozzle_temper + '°' : '—';
+    const bed       = p.bed_temper    != null ? p.bed_temper    + '°' : '—';
+    const nozzleDia = p.nozzle?.diameter != null ? p.nozzle.diameter + 'mm' : '—';
+    const layerCur  = p.layer_num       ?? '—';
+    const layerTot  = p.total_layer_num ?? '—';
+    const layer     = (layerCur !== '—' && layerTot !== '—') ? `${layerCur}/${layerTot}` : '—';
+    const rem       = p.mc_remaining_time;
+    let remTxt = '—';
+    if (rem != null && rem > 0) { const h = Math.floor(rem/60), m = rem%60; remTxt = h > 0 ? `${h}h ${m}m` : `${m}m`; }
+    const speed = p.speed?.mode || (SPEED_NAMES[p.spd_lvl] || '—');
+
+    const key = state + '|' + project;
+    if (key === lastHistoryKey) {
+      // Update last record in place (live update)
+      const last = historyData[historyData.length - 1];
+      if (last) {
+        last.pct = pct; last.nozzle = nozzle; last.bed = bed;
+        last.layer = layer; last.rem = remTxt;
+        saveHistory();
+        // Update DOM row
+        const tr = document.querySelector(`#history-tbody tr[data-id="${last.id}"]`);
+        if (tr) {
+          tr.querySelector('.h-pct').textContent    = pct;
+          tr.querySelector('.h-nozzle').textContent = nozzle;
+          tr.querySelector('.h-bed').textContent    = bed;
+          tr.querySelector('.h-layer').textContent  = layer;
+          tr.querySelector('.h-rem').textContent    = remTxt;
+        }
+      }
+      return;
+    }
+    lastHistoryKey = key;
+
+    const record = { id: Date.now(), time: new Date().toLocaleString(), state, project, pct, nozzle, bed, nozzleDia, layer, rem: remTxt, speed };
+    historyData.push(record);
+    if (historyData.length > MAX_HISTORY) historyData.shift();
+    saveHistory();
+    renderHistoryTable();
+  }
+
+  document.getElementById('history-clear-btn').addEventListener('click', () => {
+    historyData = []; lastHistoryKey = '';
+    saveHistory();
+    renderHistoryTable();
+  });
+
+  // ── Clear ─────────────────────────────────────────────────────
+  document.getElementById('btn-clear').addEventListener('click', () => {
+    logView.innerHTML = ''; logEntries.length = 0;
+    dashCards.forEach(({ element }) => element.parentNode?.removeChild(element));
+    dashCards.clear();
+    dashEmpty.style.display = '';
+    subscriptions.forEach(sub => { sub.count = 0; sub.element.querySelector('.topic-count').textContent = '0'; });
+  });
+</script>
+</body>
+</html>
