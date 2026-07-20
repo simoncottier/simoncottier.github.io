@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 type Section = "personal-info" | "professional-exp" | "personal-exp" | "formation";
 type Language = "en" | "fr";
@@ -248,6 +249,12 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col items-center px-4 py-12">
+      <Link className="workout-key" href="/login" aria-label="Open workout login" title="Workout login">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="8" cy="15" r="4" />
+          <path d="m11 12 8-8m-3 3 2 2m-5 1 2 2" />
+        </svg>
+      </Link>
       <div className="text-center space-y-12 w-full flex-shrink-0">
         {/* Name/Title */}
         <div className="flex flex-col items-center mb-16 md:mb-24">

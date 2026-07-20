@@ -26,6 +26,30 @@ body {
   min-height: 100vh;
 }
 
+.workout-key {
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  z-index: 100;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--text-color);
+  background: var(--bg-color);
+  box-shadow: 7px 7px 13px -3px var(--dark-shadow), -6px -6px 12px var(--light-shadow);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.workout-key:hover { transform: translateY(-2px); }
+.workout-key:active { box-shadow: inset 3px 3px 7px rgba(72,79,96,.35), inset -4px -4px 8px #fff; }
+.workout-key svg { width: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 520px) {
+  .workout-key { left: 14px; top: 14px; width: 42px; height: 42px; }
+}
+
 /* Neumorphic Button Styles */
 .neumorphic-btn {
   font-family: "Montserrat", sans-serif;
