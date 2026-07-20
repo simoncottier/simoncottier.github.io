@@ -128,18 +128,32 @@ export default function WorkoutPage() {
       </nav>
 
       <header className="workout-header">
-        <div><p className="eyebrow">SHORTCUT TO SHRED · ADAPTED</p></div>
+        <div><h1 className="workout-name-title">{name} vs. Gravity.</h1></div>
         <div className="stats-card"><div><strong>{sessions.length}</strong><span>Sessions</span></div><div><strong>{lastDate}</strong><span>Last workout</span></div></div>
       </header>
 
       <section className="routine-grid" aria-label="Workout routine">
         {workouts.map((workout, index) => (
-          <button key={workout.title} onClick={() => { setSelected(index); setSaved(false); }} className={`routine-card ${selected === index ? "active" : ""}`}>
+          <button key={workout.title} onClick={() => { setSelected(index); setSaved(false); }} className={`routine-card ${selected === index ? "active" : ""} ${index === nextIndex ? "next" : ""}`}>
             <span className="routine-number">0{index + 1}</span>
             {index === nextIndex && <span className="next-badge">UP NEXT</span>}
             <strong>{workout.title}</strong>
           </button>
         ))}
+      </section>
+
+      <section className="workout-detail">
+        <div className="detail-intro">
+          <p className="eyebrow">WEEK {currentWeek + 1} · WORKOUT {selected + 1} OF 6</p>
+          <h2>{selectedWorkout.title}</h2>
+          <p>{selectedWorkout.focus}</p>
+          <div className="detail-meta"><span>◷ {selectedWorkout.duration}</span><span>◇ {selectedWorkout.level}</span></div>
+          <button onClick={completeWorkout} className={`go-button ${saved ? "saved" : ""}`} disabled={saved}><span>{saved ? "✓" : "GO"}</span><small>{saved ? "WORKOUT SAVED" : "COMPLETE WORKOUT"}</small></button>
+          <p className="save-help">Saves today’s date and selects the next workout.</p>
+        </div>
+        <div className="exercise-list">
+          {selectedWorkout.exercises.map((exercise, index) => <div className="exercise" key={exercise.name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{exercise.name}</strong><small>{exercise.sets} sets × {exercise.reps || targetReps} reps</small></div>)}
+        </div>
       </section>
 
       <section className="activity-chart" aria-labelledby="activity-title">
@@ -159,7 +173,15 @@ export default function WorkoutPage() {
             </div>
           </div>
           <div className="counter-items">
-            {workoutCounts.map((count, index) => <div className="counter-item" key={index} title={`Workout ${index + 1}: ${count}`}><span>{index + 1}</span><strong>{count}</strong></div>)}
+            {workoutCounts.map((count, index) => (
+              <div className="counter-item" key={index} title={`Workout ${index + 1}: ${count}`}>
+                <span>{index + 1}</span>
+                <strong>{count}</strong>
+                <div className="counter-bar-track">
+                  {Array.from({ length: Math.min(count, 8) }, (_, segment) => <i key={segment} />)}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         <div className="activity-scroll">
@@ -180,15 +202,6 @@ export default function WorkoutPage() {
           })}
           </div>
         </div>
-      </section>
-
-      <section className="workout-detail">
-        <div className="detail-intro"><p className="eyebrow">WEEK {currentWeek + 1} · WORKOUT {selected + 1} OF 6</p><h2>{selectedWorkout.title}</h2><p>{selectedWorkout.focus}</p><div className="detail-meta"><span>◷ {selectedWorkout.duration}</span><span>◇ {selectedWorkout.level}</span></div><div className="cardio-note"><strong>Cardio acceleration</strong><span>After every lifting set, perform 60 seconds of active cardio, then continue to the next set.</span></div></div>
-        <div className="exercise-list">
-          {selectedWorkout.exercises.map((exercise, index) => <div className="exercise" key={exercise.name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{exercise.name}</strong><small>{exercise.sets} sets × {exercise.reps || targetReps} reps</small></div>)}
-        </div>
-        <button onClick={completeWorkout} className={`go-button ${saved ? "saved" : ""}`} disabled={saved}><span>{saved ? "✓" : "GO"}</span><small>{saved ? "WORKOUT SAVED" : "COMPLETE THIS WORKOUT"}</small></button>
-        <p className="save-help">Clicking GO saves today’s date and selects the following workout. This is an original adaptation; use the official program for the author’s complete prescription.</p>
       </section>
       <footer className="program-credit">Inspired by Jim Stoppani’s <a href="https://www.jimstoppani.com/training/shortcut-to-shred-overview" target="_blank" rel="noreferrer">Shortcut to Shred program overview ↗</a></footer>
     </main>
